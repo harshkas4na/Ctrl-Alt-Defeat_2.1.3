@@ -149,3 +149,6 @@
   /* filter: blur(750px); */
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
