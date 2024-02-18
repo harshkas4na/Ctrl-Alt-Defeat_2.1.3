@@ -4,3 +4,9 @@
     background-color: #6f0000;
     position: sticky;
 }
+
+@media (width<500px) {
+    .navSpace{
+        height : 128px;
+    }
+}

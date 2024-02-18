@@ -17,3 +17,9 @@
 .Cars{
     background: url("../images/carsBackground.png") center/cover;
 }
+
+@media (width<500px) {
+    nav.eventsNavBar{
+        margin-top: 128px;
+    }
+}

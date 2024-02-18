@@ -34,6 +34,7 @@ menu {
     margin: 0 auto;
     padding: 0 1rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     color: white;
@@ -137,7 +138,7 @@ section.active .bar::after {
     left: 0;
     transform-style: preserve-3d;
     transform-origin: left;
-    background-color: #888;
+    background-color: #f3f4f6;
 }
 
 #curr{
