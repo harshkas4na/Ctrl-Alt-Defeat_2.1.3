@@ -125,11 +125,11 @@ const EventsPage = () => {
                         </div>
                         <div className="px-4 py-3">
                           <p className="text-gray-700">{event.description}</p>
-                          <div className="flex items-center">
+                          {/* <div className="flex items-center">
                             {renderStars(event.rating).map((star, index) => (
                               <span key={index} className="text-yellow-400">{star}</span>
                             ))}
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     ))}

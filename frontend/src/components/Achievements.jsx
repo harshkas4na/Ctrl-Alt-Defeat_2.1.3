@@ -1,4 +1,5 @@
 import React from 'react';
+import "../pages/PagesCss/Achievements.css";
 
 const Achievements = () => {
   // Updated achievements data with more details
@@ -31,7 +32,7 @@ const Achievements = () => {
         <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">Our Achievements</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {achievementsData.map((achievement, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between">
+            <div key={index} className={`bg-white rounded-lg shadow-md p-6 flex flex-col justify-between achievementsElement-${index}`}>
               <div>
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">{achievement.title}</h3>
                 <p className="text-3xl font-bold text-primary mb-4">{achievement.count}</p>
