@@ -11,6 +11,7 @@ section.active .events{
     eventsAni 0.5s ease,
     goBackEvents 0.5s ease;
 }
+/* These animations are used to show the 3d navbar effect */
 @keyframes eventsAni {
     0%{
         transform: translate(0);
@@ -39,6 +40,7 @@ section.active .events.hover{
     z-index: 6;
     opacity: 1;
 } 
+/* These animations are used to cycle through the windows */
 @keyframes bringFwdEvents {
     from{
         transform: perspective(1300px) rotateY(20deg) scale(0.5) translateZ(17vw);

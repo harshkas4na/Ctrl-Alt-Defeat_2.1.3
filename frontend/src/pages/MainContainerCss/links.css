@@ -36,7 +36,7 @@ ul {
 section.active .links a {
     animation: appear 0.5s forwards ease var(--i);
 }
-
+/* This is used to animate the appearance of our links when we open navbar */
 @keyframes appear {
     from {
         opacity: 0;

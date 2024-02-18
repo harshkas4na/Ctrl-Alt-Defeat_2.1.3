@@ -1,3 +1,5 @@
+/* These are just extra windows that we may need if we add more pages */
+
 .about{
     z-index: -4;
     opacity: 0.25;
