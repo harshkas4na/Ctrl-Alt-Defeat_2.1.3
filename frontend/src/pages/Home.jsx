@@ -4,10 +4,12 @@ import UpcomingEvents from '../components/UpcomingEvents';
 import Testimonials from '../components/Testimonials'
 import Footer from '../components/Footer';
 import OurStars from '../components/OurStars';
+import NavSpace from '../components/NavSpace';
 
 const Home = () => {
   return (
     <div>
+      <NavSpace/>
       <Achievements/>
       <OurStars/>
       <UpcomingEvents/>

@@ -15,8 +15,10 @@ const Testimonials = () => {
         <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">Testimonials</h2>
         <div className="grid gap-8 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-6">
+            <div key={index} className="bg-white flex flex-col justify-between rounded-lg shadow-md p-6">
+              <div>
               <p className="text-gray-600 mb-4">{testimonial.message}</p>
+              </div>
               <div className="flex items-center mb-4">
                 <div className="flex-shrink-0 mr-3">
                   <img className="w-10 h-10 rounded-full" src={`https://randomuser.me/api/portraits/men/${index}.jpg`} alt={testimonial.name} />

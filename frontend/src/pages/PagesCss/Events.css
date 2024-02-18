@@ -1,0 +1,19 @@
+.art{
+    background: url("../images/artBackground.png") center/cover;
+}
+
+.realEstate{
+    background: url("../images/realEstateBackground.png") center/cover;
+}
+
+.jewellary{
+    background: url("../images/jewellaryBackground.png") center/cover;
+}
+
+.antiques{
+    background: url("../images/antiquesBackground.png") center/cover;
+}
+
+.cars{
+    background: url("../images/carsBackground.png") center/cover;
+}
