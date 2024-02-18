@@ -1,24 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-useEffect( async() => {
-  const response = await fetch("http://localhost:3000/register",{
-    method:'GET',
-    headers:{
-      'Content-Type':'application/json'
-    } 
-  })
-  const data = await response.json();
-  const {events} = data;
-  setEvents(...events,events)
-},[])
-
-
-
-
-
-
+import { Link } from 'react-router-dom';
 
 const EventsPage = () => {
+  
+  
+
   // Sample data for event categories and events
   const eventCategories = [
     { id: 1, name: 'All' },
@@ -41,7 +27,7 @@ const EventsPage = () => {
     { id: 7, category: 'Real Estate', name: 'Urban Condo Auction', date: 'March 25, 2024', time: '11:00 AM - 3:00 PM', description: 'Discover stylish urban condos in prime locations up for auction.' },
     // Add more events as needed
   ]);
-
+  // console.log(events);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('newest'); // Default sorting option
 
@@ -82,6 +68,20 @@ const EventsPage = () => {
     return stars;
   };
 
+  const  GetRequest = async () => {
+  const response = await fetch("http://localhost:3000/event",{
+    method:'GET',
+    headers:{
+      'Content-Type':'application/json'
+    } 
+  })
+  const data = await response.json();
+  setEvents([...events, ...data]);
+}
+  useEffect(() => {
+    GetRequest();
+  },[])
+  
   return (
     <div className="bg-gray-100 py-12">
       <div className="container mx-auto px-4">
@@ -140,6 +140,7 @@ const EventsPage = () => {
                         </div>
                         <div className="px-4 py-3">
                           <p className="text-gray-700">{event.description}</p>
+                          
                           <div className="flex items-center">
                             {renderStars(event.rating).map((star, index) => (
                               <span key={index} className="text-yellow-400">{star}</span>

@@ -1,17 +1,17 @@
 // LiveData.jsx
 import React, { useEffect } from 'react';
 
-useEffect(async () => { 
-    const response = await fetch('http://localhost:3000/register', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  const data = await response.json()
-  const { items } = data
-  setItems(...items, items)
-},[])
+// useEffect(async () => { 
+//     const response = await fetch('http://localhost:3000/register', {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   const data = await response.json()
+//   const { items } = data
+//   setItems(...items, items)
+// },[])
 
 const LiveData = () => {
   // Placeholder data for demonstration
@@ -38,6 +38,44 @@ const LiveData = () => {
     },
     // Add more live data items as needed
   ]);
+  // const  GetRequest = async () => {
+//   const response = await fetch("http://localhost:3000/event",{
+//     method:'GET',
+//     headers:{
+//       'Content-Type':'application/json'
+//     } 
+//   })
+//   const data = await response.json();
+//   const {name,
+//     date,
+//     time,
+//     } = data;
+// }
+//   useEffect(() => {
+//     GetRequest();
+//   },[])
+  
+//   const GetItems = async () => {
+//     const response = await fetch('http://localhost:3000/item', {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     })
+//     const data = await response.json()
+//     console.log(data);
+//     if(event.name===data.eventName){
+//     const {
+//       _id,
+//       name,
+//       description,
+//       itemPic,
+//       startingPrice,
+//       sold
+//     } =data;
+    
+//   }
+// }
 
   const getTimeRemaining = (endTime) => {
     const now = new Date();

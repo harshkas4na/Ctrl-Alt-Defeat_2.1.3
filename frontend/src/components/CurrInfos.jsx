@@ -1,20 +1,33 @@
 // CurrInfos.jsx
 import React, { useEffect } from 'react';
 
-useEffect(async () => {
-  const response = await fetch('http://localhost:3000/register', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  const data = await response.json()
-  const { items } = data
-  setItems(...items, items)
-},[])
 
 const CurrInfos = ({ currentItem, currentBid, startingPrice, bidderInfo }) => {
-  const [items, setItems] = useState([{currentItem, currentBid, startingPrice, bidderInfo}])
+  // const [items, setItems] = useState([{currentItem, currentBid, startingPrice, bidderInfo}])
+
+
+  
+//   const GetItems = async () => {
+//     const response = await fetch('http://localhost:3000/item', {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     })
+//     const data = await response.json()
+//     console.log(data);
+//     if(event.name===data.eventName){
+//     const {
+//       _id,
+//       name,
+//       description,
+//       itemPic,
+//       startingPrice,
+//       sold
+//     } =data;
+    
+//   }
+// }
   return (
     <div className="container  mx-auto py-8">
       <div className="flex flex-wrap  justify-between items-start">

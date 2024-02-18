@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
+
 
 const EventPage = () => {
+  
+  
+
   // Sample event details
   const eventDetails = {
     name: 'Modern Art Auction',
@@ -11,20 +15,68 @@ const EventPage = () => {
   };
 
   // Sample data for items being sold at the event
-  const eventItems = [
-    { id: 1, name: 'Artwork 1', imageUrl: '/artwork1.jpg', minBidPrice: '$100', description: 'Description of Artwork 1' },
-    { id: 2, name: 'Artwork 2', imageUrl: '/artwork2.jpg', minBidPrice: '$150', description: 'Description of Artwork 2' },
+  const [eventItems,setEventItems] = useState([
+    { _id: 1, name: 'Artwork 1',seller:"armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100' },
+    { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150' },
     // Add more items as needed
-  ];
+  ]);
+   // To get the event details of the clicked event
+
+  // const  GetRequest = async () => {
+  //   const response = await fetch("http://localhost:3000/event",{
+  //     method:'GET',
+  //     headers:{
+  //       'Content-Type':'application/json'
+  //     } 
+  //   })
+  //   const data = await response.json();
+  //   //logic to fetch the clicked events info only
+  //   if(event.name === data.name){
+
+  //   }
+  //   setEvents();
+  // }
+  //   useEffect(() => {
+  //     GetRequest();
+  //   },[])
+
+
+  // const GetItems = async () => {
+  //   const response = await fetch('http://localhost:3000/item', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   const data = await response.json()
+  //   console.log(data);
+  //   if(event.name===data.eventName){
+  //   const { 
+  //     _id,
+  //     name,
+  //     seller,
+  //     description,
+  //     itemPic,
+  //     startingPrice
+  //   } =data;
+  //   setEventItems([...eventItems,{_id,name,seller,description,itemPic,startingPrice}]);
+  // }
+
+  // useEffect(() => {
+  //   GetItems();
+  // }, [])
+  
+ 
 
   // Function to render the table rows for event items
   const renderEventItems = () => {
     return eventItems.map(item => (
-      <tr key={item.id}>
+      <tr key={item._id}>
         <td>{item.name}</td>
-        <td><img src={item.imageUrl} alt={item.name} /></td>
-        <td>{item.minBidPrice}</td>
+        <td><img src={item.imagePic} alt={item.name} /></td>
+        <td>{item.startingPrice}</td>
         <td>{item.description}</td>
+        <td>{item.seller}</td>
       </tr>
     ));
   };
@@ -50,6 +102,7 @@ const EventPage = () => {
                 <th className="px-4 py-2">Item Pic</th>
                 <th className="px-4 py-2">Item Min Bid Price</th>
                 <th className="px-4 py-2">Description</th>
+                <th className="px-4 py-2">Seller</th>
               </tr>
             </thead>
             <tbody>
