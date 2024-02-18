@@ -8,23 +8,23 @@ const EventsPage = () => {
   // Sample data for event categories and events
   const eventCategories = [
     { id: 1, name: 'All' },
-    { id: 2, name: 'Art Auctions' },
-    { id: 3, name: 'Collectibles' },
-    { id: 4, name: 'Real Estate' },
-    { id: 5, name: 'Historical Artifacts' },
-    { id: 6, name: 'Cars Auctions' },
-    { id: 7, name: 'Jewelry Auctions' },
+    { id: 2, name: 'Art' },
+    
+    { id: 3, name: 'Real-Estate' },
+    { id: 4, name: 'Antiques' },
+    { id: 5, name: 'Cars' },
+    { id: 6, name: 'Jewelry' },
     // Add more event categories as needed
   ];
 
   const [events,setEvents] = useState([
-    { id: 1, category: 'Art Auctions', name: 'Modern Art Auction', date: 'February 20, 2024', time: '10:00 AM - 2:00 PM', description: 'Browse through a collection of modern art pieces and place your bids.', rating: 4.5 },
-    { id: 2, category: 'Art Auctions', name: 'Classic Art Auction', date: 'February 28, 2024', time: '9:00 AM - 1:00 PM', description: 'Explore classic art pieces from renowned artists and bid for your favorites.', rating: 4.8 },
-    { id: 3, category: 'Art Auctions', name: 'Abstract Art Auction', date: 'March 5, 2024', time: '11:00 AM - 3:00 PM', description: 'Discover unique abstract art pieces and express your creativity.', rating: 4.3 },
-    { id: 4, category: 'Collectibles', name: 'Rare Coin Collection Auction', date: 'March 10, 2024', time: '12:00 PM - 4:00 PM', description: 'Explore a curated collection of rare coins from different eras.' },
-    { id: 5, category: 'Collectibles', name: 'Antique Furniture Auction', date: 'March 15, 2024', time: '10:00 AM - 2:00 PM', description: 'Bid on exquisite antique furniture pieces to add a touch of elegance to your space.' },
-    { id: 6, category: 'Real Estate', name: 'Luxury Villa Auction', date: 'March 20, 2024', time: '9:00 AM - 1:00 PM', description: 'Experience the epitome of luxury living with our exclusive villa auction.' },
-    { id: 7, category: 'Real Estate', name: 'Urban Condo Auction', date: 'March 25, 2024', time: '11:00 AM - 3:00 PM', description: 'Discover stylish urban condos in prime locations up for auction.' },
+    { id: 1, category: 'Art', name: 'Modern Art Auction', date: 'February 20, 2024', time: '10:00 AM - 2:00 PM', description: 'Browse through a collection of modern art pieces and place your bids.', rating: 4.5 },
+    { id: 2, category: 'Art', name: 'Classic Art Auction', date: 'February 28, 2024', time: '9:00 AM - 1:00 PM', description: 'Explore classic art pieces from renowned artists and bid for your favorites.', rating: 4.8 },
+    { id: 3, category: 'Art', name: 'Abstract Art Auction', date: 'March 5, 2024', time: '11:00 AM - 3:00 PM', description: 'Discover unique abstract art pieces and express your creativity.', rating: 4.3 },
+    { id: 4, category: 'Antiques', name: 'Rare Coin Collection Auction', date: 'March 10, 2024', time: '12:00 PM - 4:00 PM', description: 'Explore a curated collection of rare coins from different eras.' },
+    { id: 5, category: 'Antiques', name: 'Antique Furniture Auction', date: 'March 15, 2024', time: '10:00 AM - 2:00 PM', description: 'Bid on exquisite antique furniture pieces to add a touch of elegance to your space.' },
+    { id: 6, category: 'Real-Estate', name: 'Luxury Villa Auction', date: 'March 20, 2024', time: '9:00 AM - 1:00 PM', description: 'Experience the epitome of luxury living with our exclusive villa auction.' },
+    { id: 7, category: 'Real-Estate', name: 'Urban Condo Auction', date: 'March 25, 2024', time: '11:00 AM - 3:00 PM', description: 'Discover stylish urban condos in prime locations up for auction.' },
     // Add more events as needed
   ]);
   // console.log(events);
@@ -81,7 +81,7 @@ const EventsPage = () => {
   useEffect(() => {
     GetRequest();
   },[])
-  
+ 
   return (
     <div className="bg-gray-100 py-12">
       <div className="container mx-auto px-4">

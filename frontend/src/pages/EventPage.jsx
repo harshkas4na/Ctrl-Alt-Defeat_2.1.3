@@ -1,10 +1,8 @@
 import React, { useEffect,useState } from 'react';
 
 
+  
 const EventPage = () => {
-  
-  
-
   // Sample event details
   const eventDetails = {
     name: 'Modern Art Auction',
@@ -20,8 +18,6 @@ const EventPage = () => {
     { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150' },
     // Add more items as needed
   ]);
-   // To get the event details of the clicked event
-
   // const  GetRequest = async () => {
   //   const response = await fetch("http://localhost:3000/event",{
   //     method:'GET',
@@ -30,44 +26,41 @@ const EventPage = () => {
   //     } 
   //   })
   //   const data = await response.json();
-  //   //logic to fetch the clicked events info only
-  //   if(event.name === data.name){
-
-  //   }
-  //   setEvents();
+  //   setEvents([...events, ...data]);
   // }
   //   useEffect(() => {
   //     GetRequest();
   //   },[])
-
-
-  // const GetItems = async () => {
-  //   const response = await fetch('http://localhost:3000/item', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   const data = await response.json()
-  //   console.log(data);
-  //   if(event.name===data.eventName){
-  //   const { 
-  //     _id,
-  //     name,
-  //     seller,
-  //     description,
-  //     itemPic,
-  //     startingPrice
-  //   } =data;
-  //   setEventItems([...eventItems,{_id,name,seller,description,itemPic,startingPrice}]);
-  // }
-
-  // useEffect(() => {
-  //   GetItems();
-  // }, [])
+   
+  const GetItems = async () => {
+    const response = await fetch('http://localhost:3000/item', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    console.log(data);
+    if(eventDetails.name===data.eventName){
+    const { 
+      _id,
+      name,
+      seller,
+      description,
+      itemPic,
+      startingPrice
+    } =data;
+    console.log([...eventItems,{_id,name,seller,description,itemPic,startingPrice}]);
+    setEventItems([...eventItems,{_id,name,seller,description,itemPic,startingPrice}]);
+    }
+  }
+  // console.log(eventItems);
   
+  useEffect(() => {
+    GetItems();
+  }, [])
  
-
+ 
   // Function to render the table rows for event items
   const renderEventItems = () => {
     return eventItems.map(item => (

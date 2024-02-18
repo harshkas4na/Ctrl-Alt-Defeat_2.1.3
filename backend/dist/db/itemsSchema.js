@@ -15,6 +15,6 @@ const itemschema = new mongoose_1.default.Schema({
     startingPrice: Number,
     soldPrice: Number,
     category: String,
-    eventName: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Events' }
+    eventName: String
 });
 exports.Items = mongoose_1.default.model('Items', itemschema);
