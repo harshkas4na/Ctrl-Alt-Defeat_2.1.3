@@ -3,12 +3,10 @@ import mongoose from 'mongoose';
 const bidderschema = new mongoose.Schema({
     name: String,
     username: String,
-    anonymousId: String,
     password: String,
     email: String,
     phoneNo: Number,
-    permanentAddress: String,
-    correspondenceAddress: String,
+    address: String,
     idType: String,
     govId: String,
     purchasedItems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Items' }],
