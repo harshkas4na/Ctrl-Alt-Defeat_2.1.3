@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Items } from "../../db/itemsSchema";
 
 
-const deleteItem = async (req: Request, res: Response) => {
+export const deleteItem = async (req: Request, res: Response) => {
     try {
         const itemId = req.params.itemId;
         const item = await Items.findOne({ _id: itemId });
