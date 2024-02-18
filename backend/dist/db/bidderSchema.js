@@ -8,12 +8,10 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const bidderschema = new mongoose_1.default.Schema({
     name: String,
     username: String,
-    anonymousId: String,
     password: String,
     email: String,
     phoneNo: Number,
-    permanentAddress: String,
-    correspondenceAddress: String,
+    address: String,
     idType: String,
     govId: String,
     purchasedItems: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Items' }],

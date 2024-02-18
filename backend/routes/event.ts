@@ -1,13 +1,13 @@
 import express from 'express';
-import { eventDetails } from '../controller/eventRoutes/eventDetails'
+import { categoryEventDetails } from '../controller/eventRoutes/categoryEventDetails'
 import { allEvents } from '../controller/eventRoutes/allEvents';
+import { eventDetails } from '../controller/eventRoutes/eventDetails';
 
 const app = express();
 
-app.post('/createEvent',)
-app.get('/:category', eventDetails);
-app.get('/', allEvents);
-
+app.get('/:category', categoryEventDetails); // Route to get all the events listed in the given category.
+app.get('/', allEvents);             // Route to get all the events without any filter.   
+app.get('/:eventId', eventDetails)
 
 
 export default app

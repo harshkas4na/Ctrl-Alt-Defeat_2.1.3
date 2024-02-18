@@ -13,14 +13,12 @@ exports.eventDetails = void 0;
 const eventSchema_1 = require("../../db/eventSchema");
 const eventDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const category = req.params.category;
-        const events = yield eventSchema_1.Events.find({ category: category });
-        if (!events) {
-            res.status(400).json({ message: 'Invalid category' });
+        const eventId = req.params.eventId;
+        const event = yield eventSchema_1.Events.findOne({ _id: eventId });
+        if (!event) {
+            res.sendStatus(404);
         }
-        else {
-            res.status(200).json(events);
-        }
+        res.status(200).json(event);
     }
     catch (error) {
         return res.status(500).json({ message: 'Internal server error' });

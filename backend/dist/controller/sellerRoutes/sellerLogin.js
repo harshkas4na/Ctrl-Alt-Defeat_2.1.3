@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sellerLogin = void 0;
 const sellerSchema_1 = require("../../db/sellerSchema");
-const sellerToken_1 = require("../jwtToken/sellerToken");
+const sellerToken_1 = require("../jwtTokenGeneration/sellerToken");
 const sellerLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const seller = yield sellerSchema_1.Sellers.findOne({ username: req.body.username, password: req.body.password });
@@ -21,7 +21,8 @@ const sellerLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         else {
             //@ts-ignore
             const token = (0, sellerToken_1.generateTokenSeller)(seller._id);
-            res.status(200).json({
+            res.cookie('token', token);
+            return res.status(200).json({
                 message: 'Seller logged in successfully'
             });
         }

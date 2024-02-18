@@ -9,12 +9,12 @@ import { jwtVerificationSeller } from '../middlewares/jwtSeller';
 
 const app = express();
 
-app.post('/signup', sellerSignup);
-app.post('/login', sellerLogin);
-app.put('/:sellerId', jwtVerificationSeller, updateProfileSeller);
-app.post('/item/:sellerId', jwtVerificationSeller, addItem);
-app.put('/item/:itemId', jwtVerificationSeller, updateItem);
-app.delete('/item/:itemid', jwtVerificationSeller, deleteItem);
+app.post('/signup', sellerSignup);  // Route for seller to signup.
+app.post('/login', sellerLogin);    // Route for seller to login.
+app.put('/:sellerId', jwtVerificationSeller, updateProfileSeller); // Route for seller to update/modify his/her profile.
+app.post('/item/:sellerId', jwtVerificationSeller, addItem);    // Route for seller to publish new item for bidding into any upcoming event.
+app.put('/item/:itemId', jwtVerificationSeller, updateItem);    // Route for seller to update/modify the details of his/her published items.
+app.delete('/item/:itemid', jwtVerificationSeller, deleteItem); // Route for seller to delete his/her item from the listing. 
 
 
 export default app

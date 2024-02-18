@@ -2,10 +2,20 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PagesCss/Events.css';
 import NavSpace from '../components/NavSpace';
+import { useNavigate } from 'react-router-dom';
+
 
 const EventsPage = () => {
 
+  const navigate = useNavigate();
 
+  const handleDivClick = (event) => {
+    // Perform any additional logic before navigation if needed
+    // For example, you can extract data from the event object
+
+    // Navigate to the new page with the event id as a parameter
+    navigate(`/EventPage/${event.id}`);
+  };
 
   // Sample data for event categories and events
   const eventCategories = [
@@ -131,7 +141,7 @@ const EventsPage = () => {
                     <h3 className="text-2xl mt-4 font-semibold text-gray-800 mb-4">{category.name}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {sortEvents(events.filter((event) => category.name === 'All' ? true : event.category === category.name)).map((event) => (
-                        <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden" onClick={() => handleDivClick(event)}>
                           <div className={`flex justify-between items-center px-4 py-3 bg-gray-200 ${event.category}`}>
                             <div className="text-lg font-semibold text-gray-800">{event.name}</div>
                             <div className="text-sm text-gray-600">{event.date} | {event.time}</div>

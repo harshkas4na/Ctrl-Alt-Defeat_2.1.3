@@ -1,25 +1,25 @@
-import { NextFunction } from 'express'
-import jwt from 'jsonwebtoken'
+import { NextFunction } from 'express';
+import jwt, { VerifyErrors } from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
-
-const secret_key_seller: (string | undefined) = process.env.secret_key_user || 'IwillsettleForthis02';
+const secret_key_seller: string = process.env.secret_key_seller || 'IwillsettleForthis02';
 
 export const jwtVerificationSeller = (req: Request, res: Response, next: NextFunction) => {
     try {
-        const authHeader = req.header('authorization');
-        if (authHeader) {
-            const Token = authHeader.split(' ')[1];
-            jwt.verify(Token, secret_key_seller, (err, user) => {
-                if (err) throw res.sendStatus(401);
-                next();
-            })
+        const token = req.cookies?.token;
+        if (!token) {
+            return res.status(401).json({ message: 'Unauthorized, please login' });
         }
-        else {
-            res.status(401).json({ message: 'Token authentication failed' });
-        }
-    }
-    catch (error) {
+        jwt.verify(token, secret_key_seller, (err: any, decoded: any) => {
+            if (err) {
+                return res.status(401).json({ message: 'Token authentication failed' });
+            }
+            if (!decoded) {
+                return res.status(401).json({ message: 'Invalid token' });
+            }
+            next();
+        });
+    } catch (error) {
         return res.status(500).json({ message: 'Internal server error' });
     }
-}
+};

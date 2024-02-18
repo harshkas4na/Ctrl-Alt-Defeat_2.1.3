@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.bidderLogin = void 0;
 const bidderSchema_1 = require("../../db/bidderSchema");
-const bidderToken_1 = require("../jwtToken/bidderToken");
+const bidderToken_1 = require("../jwtTokenGeneration/bidderToken");
 const bidderLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const bidder = yield bidderSchema_1.Bidders.findOne({ username: req.body.username, password: req.body.password });
@@ -21,7 +21,8 @@ const bidderLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         else {
             //@ts-ignore
             const token = (0, bidderToken_1.generateTokenBidder)(bidder._id);
-            res.status(200).json({
+            res.cookie('token', token);
+            return res.status(200).json({
                 message: 'Bidder logged in successfully'
             });
         }

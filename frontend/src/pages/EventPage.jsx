@@ -1,23 +1,16 @@
 import React, { useEffect,useState } from 'react';
-
+import { useParams } from 'react-router-dom';
 
   
 const EventPage = () => {
-  // Sample event details
-  const eventDetails = {
-    name: 'Modern Art Auction',
-    date: 'February 20, 2024',
-    time: '10:00 AM - 2:00 PM',
-    description: 'Browse through a collection of modern art pieces and place your bids.',
-    rating: 4.5,
-  };
 
+  const { eventId } = useParams();
+
+  // Sample event details
+ 
+  const [eventDetails, setEventDetails] = useState({})
   // Sample data for items being sold at the event
-  const [eventItems,setEventItems] = useState([
-    { _id: 1, name: 'Artwork 1',seller:"armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100' },
-    { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150' },
-    // Add more items as needed
-  ]);
+  const [eventItems,setEventItems] = useState([]);
   // const  GetRequest = async () => {
   //   const response = await fetch("http://localhost:3000/event",{
   //     method:'GET',
@@ -31,33 +24,33 @@ const EventPage = () => {
   //   useEffect(() => {
   //     GetRequest();
   //   },[])
-   
-  const GetItems = async () => {
-    const response = await fetch('http://localhost:3000/item', {
+
+const GetEventDetails = async () => {
+  const response = await fetch(`http://localhost:3000/event/get/${eventId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     })
     const data = await response.json()
-    console.log(data);
-    if(eventDetails.name===data.eventName){
-    const { 
-      _id,
-      name,
-      seller,
-      description,
-      itemPic,
-      startingPrice
-    } =data;
-    console.log([...eventItems,{_id,name,seller,description,itemPic,startingPrice}]);
-    setEventItems([...eventItems,{_id,name,seller,description,itemPic,startingPrice}]);
-    }
+    setEventDetails(data);
+}
+   
+  const GetItems = async () => {
+    const response = await fetch(`http://localhost:3000/item/event/${eventId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    setEventItems(data);
   }
   // console.log(eventItems);
   
   useEffect(() => {
     GetItems();
+    GetEventDetails();
   }, [])
  
  

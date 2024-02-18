@@ -7,6 +7,6 @@ const express_1 = __importDefault(require("express"));
 const allItems_1 = require("../controller/itemRoutes/allItems");
 const sellerItems_1 = require("../controller/itemRoutes/sellerItems");
 const app = (0, express_1.default)();
-app.use('/', allItems_1.allItems); // All the published items irrespective of any categories or filters.
-app.use('/:sellerId', sellerItems_1.sellerItems); // All the items published by a particular seller.
+app.use('/', allItems_1.allItems); // Route to get all the published items irrespective of any categories or filters.
+app.use('/:sellerId', sellerItems_1.sellerItems); // Route to get all the items published by a particular seller.
 exports.default = app;
