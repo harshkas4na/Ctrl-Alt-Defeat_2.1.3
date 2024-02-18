@@ -1,19 +1,19 @@
-.art{
+.Art{
     background: url("../images/artBackground.png") center/cover;
 }
 
-.realEstate{
+.Real-Estate{
     background: url("../images/realEstateBackground.png") center/cover;
 }
 
-.jewellary{
+.Jewelry{
     background: url("../images/jewellaryBackground.png") center/cover;
 }
 
-.antiques{
+.Antiques{
     background: url("../images/antiquesBackground.png") center/cover;
 }
 
-.cars{
+.Cars{
     background: url("../images/carsBackground.png") center/cover;
 }
