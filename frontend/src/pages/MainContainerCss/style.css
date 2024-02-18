@@ -144,8 +144,8 @@ section.active .bar::after {
     opacity: 1;
     animation: load 0.5s ease;
 }
-
-
+ 
+/* Here load animation works to load the selected link forward  */
 
 @keyframes load {
     from {

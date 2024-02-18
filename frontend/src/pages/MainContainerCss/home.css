@@ -19,7 +19,7 @@ section.active .home {
     homeAni0.5s ease;
     opacity: 0.45;
 }
-
+/* These animations are used to show the 3d navbar effect */
 @keyframes homeAni {
     from {
         transform: translate(0);
@@ -35,7 +35,7 @@ section.active .home.hover{
     z-index: 6;
     opacity: 1;
 }
-
+/* These animations are used to cycle through the windows */
 @keyframes bringFwdHome {
     from{
         transform: perspective(1300px) rotateY(20deg) scale(0.5) translateZ(25vw);

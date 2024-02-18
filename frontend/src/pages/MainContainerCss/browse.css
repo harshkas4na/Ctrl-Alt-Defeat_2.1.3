@@ -10,6 +10,7 @@ section.active .browse{
     browseAni 0.5 ease,
     goBackBrowse 0.5s ease;
 }
+/* These animations are used to show the 3d navbar effect */
 @keyframes browseAni {
     0%{
         transform: translate(0);
@@ -38,7 +39,7 @@ section.active .browse.hover{
     z-index: 6;
     opacity: 1;
 } 
-
+/* These animations are used to cycle through the windows */
 @keyframes bringFwdBrowse {
     from{
         transform: perspective(1300px) rotateY(20deg) scale(0.5) translateZ(21vw);

@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MainContainerCss/style.css';
 import './MainContainerCss/about.css';
 import './MainContainerCss/home.css';
 import './MainContainerCss/events.css';
 import './MainContainerCss/browse.css';
 import './MainContainerCss/links.css';
+import logo from "./MainContainerImages/logo.png"
 import Home from './Home';
 import EventsPage from './EventsPage';
 import About from './About';
+import Browse from '../components/Browse';
 
 const MainContainer = () => {
   const [active, setActive] = useState(false);
+  const [currentLink, setCurrentLink] = useState(0);
+
+  useEffect(() => {
+    console.log(currentLink);
+  }, [currentLink]);
 
   const toggleMenu = () => {
     setActive(!active);
+    if(!active){
+      const elements = document.querySelectorAll('.behind');
+      elements.forEach((element, i) => {
+        element.id = '';
+    });
+    }
   };
 
   const handleLinkClick = (index) => {
@@ -26,6 +39,7 @@ const MainContainer = () => {
         element.id = '';
       }
     });
+    setCurrentLink(index);
   };
 
   const handleMouseOver = (index) => {
@@ -43,7 +57,7 @@ const MainContainer = () => {
       <nav>
         <menu>
           <div>
-            <img src="images/logo.png" alt="logo" />
+            <img src={logo} alt="logo" />
             <div className="logo">SUB<span>ASTA</span></div>
           </div>
           <div>
@@ -56,20 +70,22 @@ const MainContainer = () => {
         </menu>
       </nav>
       <div className="main-con">
-        <div className="behind home no-scrollbar" id="curr">
-          <Home/>
-        </div>
-        <div className="behind browse no-scrollbar">
-          
-        </div>
-        <div className="behind events no-scrollbar">
-         <EventsPage/>
-        </div>
-        <div className="behind about no-scrollbar">
-          <About/>
-        </div>
+        {/* This is the main container where the whole website is hosted, All the components will be loaded here and we will have multiple windows (divs) inside and they will rotate through z-indexing in css with some transitions */}
+      {['home', 'browse', 'events', 'about'].map((section, index) => (
+          <div
+            key={section}
+            className={`behind ${section} no-scrollbar`}
+            id={`${currentLink === index ? 'curr' : ''}`}
+          >
+            {index === 0 && <Home />}
+            {index === 1 && <Browse />}
+            {index === 2 && <EventsPage />}
+            {index === 3 && <About />}
+          </div>
+        ))}
       </div>
       <div className="links">
+        {/* When we hover over these links their corresponding window (div) will come forward to show a prreview of the page and when clicked it will open the corresponding page  */}
         <ul>
           <li className="behindLink homeLink" onMouseOver={() => handleMouseOver(0)} onMouseOut={() => handleMouseOut(0)} onClick={() => handleLinkClick(0)}>
             <a href="#" style={{ '--i': '0.05s' }}>Home</a>
