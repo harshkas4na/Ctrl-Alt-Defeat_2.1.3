@@ -1,5 +1,5 @@
 import React from 'react';
-import "../pages/PagesCss/NavSpace.css";
+import "../pages/pagesCss/NavSpace.css";
 const NavSpace = () => {
     return (
         <div className="navSpace"></div>

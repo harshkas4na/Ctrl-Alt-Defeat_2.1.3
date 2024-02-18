@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import './pagesCss/Events.css'
 import NavSpace from '../components/NavSpace';
 
 const EventsPage = () => {
@@ -80,9 +80,9 @@ const EventsPage = () => {
   const data = await response.json();
   setEvents([...events, ...data]);
 }
-  useEffect(() => {
-    GetRequest();
-  },[])
+  
+
+  console.log(events);
  
   return (
     <div>
@@ -138,7 +138,7 @@ const EventsPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {sortEvents(events.filter((event) => category.name === 'All' ? true : event.category === category.name)).map((event) => (
                       <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div className="flex justify-between items-center px-4 py-3 bg-gray-200">
+                         <div className={`flex justify-between items-center px-4 py-3 bg-gray-200 ${event.category}`}>
                           <div className="text-lg font-semibold text-gray-800">{event.name}</div>
                           <div className="text-sm text-gray-600">{event.date} | {event.time}</div>
                         </div>

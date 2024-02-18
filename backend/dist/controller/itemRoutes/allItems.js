@@ -14,7 +14,7 @@ const itemsSchema_1 = require("../../db/itemsSchema");
 const allItems = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const items = yield itemsSchema_1.Items.find({});
-        console.log(items);
+        // console.log(items);
         res.status(200).json(items);
     }
     catch (error) {
