@@ -4,16 +4,17 @@ import { sellerLogin } from '../controller/seller/sellerLogin';
 import { updateProfileSeller } from '../controller/seller/updateProfile';
 import { addItem } from '../controller/seller/addItem';
 import { updateItem } from '../controller/seller/updateItem';
-
+import { deleteItem } from '../controller/seller/deleteItem';
+import { jwtVerificationSeller } from '../middlewares/jwtSeller';
 
 const app = express();
 
 app.post('/signup', sellerSignup);
 app.post('/login', sellerLogin);
-app.put('/:sellerId', updateProfileSeller);
-app.post('/item/:sellerId', addItem);
-app.put('/item/:itemId', updateItem);
-app.delete('/item/:itemid', deleteItem);
+app.put('/:sellerId', jwtVerificationSeller, updateProfileSeller);
+app.post('/item/:sellerId', jwtVerificationSeller, addItem);
+app.put('/item/:itemId', jwtVerificationSeller, updateItem);
+app.delete('/item/:itemid', jwtVerificationSeller, deleteItem);
 
 
 export default app
