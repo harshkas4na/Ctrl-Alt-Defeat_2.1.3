@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import '../pages/PagesCss/OurStars.css';
+import '../pages/pagesCss/OurStars.css';
 
 const OurStars = () => {
   const topBuyersRef = useRef(null);

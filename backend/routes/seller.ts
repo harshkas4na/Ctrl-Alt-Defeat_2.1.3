@@ -1,10 +1,10 @@
 import express from 'express';
-import { sellerSignup } from '../controller/seller/sellerSignup';
-import { sellerLogin } from '../controller/seller/sellerLogin';
-import { updateProfileSeller } from '../controller/seller/updateProfile';
-import { addItem } from '../controller/seller/addItem';
-import { updateItem } from '../controller/seller/updateItem';
-import { deleteItem } from '../controller/seller/deleteItem';
+import { sellerSignup } from '../controller/sellerRoutes/sellerSignup';
+import { sellerLogin } from '../controller/sellerRoutes/sellerLogin';
+import { updateProfileSeller } from '../controller/sellerRoutes/updateProfile';
+import { addItem } from '../controller/sellerRoutes/addItem';
+import { updateItem } from '../controller/sellerRoutes/updateItem';
+import { deleteItem } from '../controller/sellerRoutes/deleteItem';
 import { jwtVerificationSeller } from '../middlewares/jwtSeller';
 
 const app = express();

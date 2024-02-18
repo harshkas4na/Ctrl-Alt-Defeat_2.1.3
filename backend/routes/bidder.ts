@@ -1,7 +1,7 @@
 import express from 'express';
-import { bidderSignup } from '../controller/bidder/bidderSignup';
-import { bidderLogin } from '../controller/bidder/bidderLogin';
-import { updateProfileBidder } from '../controller/bidder/updateProfile';
+import { bidderSignup } from '../controller/bidderRoutes/bidderSignup';
+import { bidderLogin } from '../controller/bidderRoutes/bidderLogin';
+import { updateProfileBidder } from '../controller/bidderRoutes/updateProfile';
 import { jwtVerificationBidder } from '../middlewares/jwtBidder';
 
 const app = express();

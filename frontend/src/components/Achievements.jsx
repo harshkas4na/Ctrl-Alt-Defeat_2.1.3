@@ -1,5 +1,5 @@
 import React from 'react';
-import "../pages/PagesCss/Achievements.css";
+import "../pages/pagesCss/Achievements.css";
 
 const Achievements = () => {
   // Updated achievements data with more details
