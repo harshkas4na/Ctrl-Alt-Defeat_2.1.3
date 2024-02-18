@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import NavSpace from '../components/NavSpace';
 
 const EventsPage = () => {
   // Sample data for event categories and events
@@ -65,10 +66,12 @@ const EventsPage = () => {
   };
 
   return (
+    <div>
+      <NavSpace/>
     <div className="bg-gray-100 py-12">
       <div className="container mx-auto px-4">
         {/* Navbar */}
-        <nav className="flex justify-between items-center mb-8">
+        <nav className="mt-[64px] flex justify-between items-center mb-8">
           <div>
             <h2 className="text-3xl font-semibold text-gray-800">Events</h2>
           </div>
@@ -140,6 +143,7 @@ const EventsPage = () => {
         {/* Ref for all events section */}
         <div ref={allEventsRef} />
       </div>
+    </div>
     </div>
   );
 };
