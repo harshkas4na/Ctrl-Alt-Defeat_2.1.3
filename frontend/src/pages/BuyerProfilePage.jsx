@@ -16,33 +16,33 @@ const ProfilePage = () => {
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4 text-[#4e5358]">Personal Info</h2>
           <div className="flex flex-wrap">
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#5c5757] flex-shrink-0 mr-2">Name:</label>
               <p className="mt-1 text-sm flex-grow">John Doe</p>
             </div>
 
 
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#5c5757] flex-shrink-0 mr-2">Profile Type:</label>
               <p className="mt-1 text-sm flex-grow">Public</p>
             </div>
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#5c5757] flex-shrink-0 mr-2">Email:</label>
               <p className="mt-1 text-sm flex-grow">johndoe123@example.com</p>
             </div>
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#5c5757] flex-shrink-0 mr-2">Phone number:</label>
               <p className="mt-1 text-sm flex-grow">9876543210</p>
             </div>
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#5c5757] flex-shrink-0 mr-2">Address:</label>
               <p className="mt-1 text-sm">123 Main Street, City, Country</p>
             </div>
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#5c5757] flex-shrink-0 mr-2">ID Type:</label>
               <p className="mt-1 text-sm">Aadhar Card</p>
             </div>
-            <div className="w-1/2 mb-4 flex" >
+            <div className="w-1/2 mb-4 flex relative" >
               <label className="block text-lg font-semibold text-[#5c5757] flex-shrink-0 mr-2">ID Number:</label>
               <p className="mt-1 text-sm">1234567890</p>
             </div>
@@ -52,15 +52,15 @@ const ProfilePage = () => {
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4 text-[#091521b4]">Account Info</h2>
           <div className="flex flex-wrap">
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#233137] flex-shrink-0 mr-2">Card Type:</label>
               <p className="mt-1 text-sm">Debit</p>
             </div>
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#233137] flex-shrink-0 mr-2">Card Holder NAme:</label>
               <p className="mt-1 text-sm">John Doe</p>
             </div>
-            <div className="w-1/2 mb-4 flex">
+            <div className="w-1/2 mb-4 flex relative">
               <label className="block text-lg font-semibold text-[#233137] flex-shrink-0 mr-2">Card Number:</label>
               <p className="mt-1 text-sm">1234-2345-3456-7890</p>
             </div>

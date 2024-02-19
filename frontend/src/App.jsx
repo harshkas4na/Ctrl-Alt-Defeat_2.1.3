@@ -7,8 +7,8 @@ import EventPage from './pages/EventPage';
 import SearchPage from './pages/SearchPage';
 import BiddingPage from './pages/BiddingPage';
 import EventsPage from './pages/EventsPage';
-import BuyerProfilePage from './pages/BuyerProfilePage'
-
+import BuyerProfilePage from './pages/BuyerProfilePage';
+import AddItemForm from './pages/AddItemForm';
 const App = () => {
   return (
     <div>
@@ -25,7 +25,7 @@ const App = () => {
           <Route path="/Search" element={<SearchPage />} />
           <Route path="/Bidding" element={<BiddingPage />} />
           <Route path="/BuyerProfilePage" element={<BuyerProfilePage />} />
-
+          <Route path="/AddItemForm" element={<AddItemForm />} />
 
         </Routes>
       </BrowserRouter>

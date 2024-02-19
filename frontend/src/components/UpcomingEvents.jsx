@@ -1,5 +1,6 @@
 import React from 'react';
 import '../pages/PagesCss/Events.css';
+
 const UpcomingEvents = () => {
   // Sample data for upcoming events
   const upcomingEvents = [
@@ -9,7 +10,6 @@ const UpcomingEvents = () => {
     { name: 'Real Estate Auction', date: 'March 18, 2024', time: '12:00 PM - 4:00 PM', description: 'Discover your dream home at our real estate auction with properties across the city.', type: 'Real-Estate' },
     { name: 'Real Estate Auction', date: 'March 18, 2024', time: '12:00 PM - 4:00 PM', description: 'Discover your dream home at our real estate auction with properties across the city.', type: 'Real-Estate' },
     { name: 'Real Estate Auction', date: 'March 18, 2024', time: '12:00 PM - 4:00 PM', description: 'Discover your dream home at our real estate auction with properties across the city.', type: 'Real-Estate' },
-    // Add more upcoming events as needed
   ];
 
   return (
