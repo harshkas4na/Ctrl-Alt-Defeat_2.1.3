@@ -94,7 +94,6 @@ const EventsPage = () => {
             <div className="flex items-center space-x-4 mr-4 mt-4">
               <div className="relative">
                 <div>
-                  <label htmlFor="Filter" className="text-xl">Filter : </label>
                   <select
                     className="appearance-none bg-white text-gray-800 border border-gray-300 rounded-md py-2 px-4 pr-8 focus:outline-none focus:border-primary"
                     id='Filter'
@@ -112,7 +111,6 @@ const EventsPage = () => {
               </div>
               <div className="relative">
                 <div>
-                  <label htmlFor="Sort">Sort : </label>
                   <select
                     className="appearance-none bg-white text-gray-800 border border-gray-300 rounded-md py-2 px-4 pr-8 focus:outline-none focus:border-primary"
                     value={sortBy}
