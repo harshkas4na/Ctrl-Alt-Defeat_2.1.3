@@ -14,8 +14,8 @@ const EventPage = () => {
 
   // Sample data for items being sold at the event
   const [eventItems,setEventItems] = useState([
-    { _id: 1, name: 'Artwork 1',seller:"armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100' },
-    { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150' },
+    { _id: 1, name: 'Artwork 1',seller:"armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100',seller:"armaan" },
+    { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150',seller:"prakhar" },
     // Add more items as needed
   ]);
   // const  GetRequest = async () => {
@@ -32,29 +32,25 @@ const EventPage = () => {
   //     GetRequest();
   //   },[])
    
-  const GetItems = async () => {
-    const response = await fetch('http://localhost:3000/item', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
+   const GetItems = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/item', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch items');
       }
-    })
-    const data = await response.json()
-    console.log(data);
-    if(eventDetails.name===data.eventName){
-    const { 
-      _id,
-      name,
-      seller,
-      description,
-      itemPic,
-      startingPrice
-    } =data;
-    console.log([...eventItems,{_id,name,seller,description,itemPic,startingPrice}]);
-    setEventItems([...eventItems,{_id,name,seller,description,itemPic,startingPrice}]);
+      const data = await response.json();
+      const filteredItems = data.filter(item => item.eventName === eventDetails.name);
+      setEventItems(filteredItems);
+    } catch (error) {
+      console.error('Error fetching items:', error.message);
     }
-  }
-  // console.log(eventItems);
+  };
+  console.log(eventItems);
   
   useEffect(() => {
     GetItems();

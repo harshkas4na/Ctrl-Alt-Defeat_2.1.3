@@ -1,81 +1,42 @@
 // LiveData.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 
-// useEffect(async () => { 
-//     const response = await fetch('http://localhost:3000/register', {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//   const data = await response.json()
-//   const { items } = data
-//   setItems(...items, items)
-// },[])
 
-const LiveData = () => {
+
+const LiveData = ({itemsList,currentBid}) => {
   // Placeholder data for demonstration
   const [items,setItems] = useState([
     { 
-      itemId: 1,
-      itemName: "Antique Painting",
+      _id: 1,
+      name: "Antique Painting",
       itemPic: "https://via.placeholder.com/150",
       startingPrice: "$100",
-      ongoingBid: "$250",
+      ongoingBid: {currentBid},
       saleTime: "Complete",
-      activityStatus: "Sold",
+      sold: "Sold",
       endTime: new Date("2024-02-20T15:00:00Z") // Placeholder end time for demonstration
-    },
-    { 
-      itemId: 2,
-      itemName: "Vintage Watch",
-      itemPic: "https://via.placeholder.com/150",
-      startingPrice: "$200",
-      ongoingBid: "$300",
-      saleTime: "Ongoing",
-      activityStatus: "Left",
-      endTime: new Date("2024-02-21T10:00:00Z") // Placeholder end time for demonstration
-    },
+    }
     // Add more live data items as needed
   ]);
-  // const  GetRequest = async () => {
-//   const response = await fetch("http://localhost:3000/event",{
-//     method:'GET',
-//     headers:{
-//       'Content-Type':'application/json'
-//     } 
-//   })
-//   const data = await response.json();
-//   const {name,
-//     date,
-//     time,
-//     } = data;
-// }
-//   useEffect(() => {
-//     GetRequest();
-//   },[])
+  useEffect(()=>{
+    setItems(itemsList)
+  },[itemsList])
+  console.log(items)
   
-//   const GetItems = async () => {
-//     const response = await fetch('http://localhost:3000/item', {
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//     const data = await response.json()
-//     console.log(data);
-//     if(event.name===data.eventName){
-//     const {
-//       _id,
-//       name,
-//       description,
-//       itemPic,
-//       startingPrice,
-//       sold
-//     } =data;
+  // const GetItems = async () => {
+  //   const response = await fetch('http://localhost:3000/item', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   const data = await response.json()
     
-//   }
-// }
+  
+  //   setCurrentItem(data[0]);
+   
+  // }
+ 
 
   const getTimeRemaining = (endTime) => {
     const now = new Date();
@@ -105,16 +66,16 @@ const LiveData = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {items.map(item => (
-              <tr key={item.itemId}>
-                <td className="px-6 py-4 whitespace-nowrap">{item.itemId}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.itemName}</td>
+              <tr key={item._id}>
+                <td className="px-6 py-4 whitespace-nowrap">{item._id}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <img src={item.itemPic} alt={item.itemName} className="w-12 h-12" />
+                  <img src={item.itemPic} alt={item.name} className="w-12 h-12" />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.startingPrice}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.ongoingBid}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.saleTime === "Ongoing" ? getTimeRemaining(item.endTime) : item.saleTime}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.activityStatus}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{currentBid}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.saleTime === "Ongoing" ? getTimeRemaining(new Date("2024-02-20T15:00:00Z")) : "Complete"}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.sold ===true ?"Sold":"Not Sold" }</td>
               </tr>
             ))}
           </tbody>

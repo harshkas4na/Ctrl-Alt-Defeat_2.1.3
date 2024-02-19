@@ -3,48 +3,48 @@ import React, { useEffect } from 'react';
 
 
 
-const Header = ({ eventName, totalItems, remainingItems, previousRatings }) => {
+const Header = ({ eventName, totalItems,itemsList,setItemsList ,remainingItems, previousRatings,setEventName,setTotalItems,setRemainingItems }) => {
   // Add other basic information about the event here
   // const [events, setEvents] = useState([{ eventName, totalItems, remainingItems, previousRatings }])
 
-  // const  GetRequest = async () => {
-//   const response = await fetch("http://localhost:3000/event",{
-//     method:'GET',
-//     headers:{
-//       'Content-Type':'application/json'
-//     } 
-//   })
-//   const data = await response.json();
-//   const {name,
-//     date,
-//     time,
-//     } = data;
-// }
-//   useEffect(() => {
-//     GetRequest();
-//   },[])
+  const  GetRequest = async () => {
+  const response = await fetch("http://localhost:3000/event",{
+    method:'GET',
+    headers:{
+      'Content-Type':'application/json'
+    } 
+  })
+  const data = await response.json();
+  const curEventData=data.filter(event => event.startTime === 1600);
+  setEventName(curEventData[0].name)
+}
+  useEffect(() => {
+    GetRequest();
+   
+  },[])
+  useEffect(()=>{
+    GetItems();
+  },[eventName])
   
-//   const GetItems = async () => {
-//     const response = await fetch('http://localhost:3000/item', {
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//     const data = await response.json()
-//     console.log(data);
-//     if(event.name===data.eventName){
-//     const {
-//       _id,
-//       name,
-//       description,
-//       itemPic,
-//       startingPrice,
-//       sold
-//     } =data;
+  const GetItems = async () => {
+    const response = await fetch('http://localhost:3000/item', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
     
-//   }
-// }
+    setItemsList(data.filter(item => item.eventName===eventName));
+    setTotalItems(itemsList.length)
+    
+    const itemNotSold=data.filter(item => item.sold===false);
+    
+    setRemainingItems(itemNotSold.length);
+    
+    
+  }
+
 
   return (
     <header className="bg-gray-800 text-white py-4">
