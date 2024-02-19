@@ -6,6 +6,7 @@ import item2 from '../pages/images/antiquesBackground.png';
 import item3 from '../pages/images/realEstateBackground.png';
 import item4 from '../pages/images/carsBackground.png';
 import item5 from '../pages/images/jewellaryBackground.png';
+import { Link } from 'react-router-dom';
 
 // import axios from 'axios'; // You may use Axios for making API requests
 
@@ -142,6 +143,7 @@ const sampleItems = [
     <div>
     <NavSpace/>
     <div className="container mx-auto mt-8 p-4">
+    <Link to="/AddItemForm" className='font-bold text-xl mx-20 border-4 bg-slate-200 p-2 round-xl'>Add Item</Link>
       {/* Search Bar */}
       <input
         type="text"

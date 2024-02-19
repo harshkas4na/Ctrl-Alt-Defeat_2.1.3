@@ -93,7 +93,9 @@ const EventsPage = () => {
             </div>
             <div className="flex items-center space-x-4 mr-4 mt-4">
               <div className="relative">
-                <div>
+                <div className=''>
+                  <Link to="/Bidding" className='font-bold text-xl mx-20 border-4 bg-slate-200 p-2 round-xl'>Live Bidding</Link>
+
                   <select
                     className="appearance-none bg-white text-gray-800 border border-gray-300 rounded-md py-2 px-4 pr-8 focus:outline-none focus:border-primary"
                     id='Filter'
@@ -111,6 +113,7 @@ const EventsPage = () => {
               </div>
               <div className="relative">
                 <div>
+
                   <select
                     className="appearance-none bg-white text-gray-800 border border-gray-300 rounded-md py-2 px-4 pr-8 focus:outline-none focus:border-primary"
                     value={sortBy}
@@ -125,42 +128,44 @@ const EventsPage = () => {
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12l-6-6h12l-6 6z" /></svg>
                   </div>
-                </div>
-              </div>
-            </div>
-          </nav>
+                </div >
+              </div >
+            </div >
+          </nav >
 
           {/* Event Categories */}
-          <div className="mb-8">
-            {eventCategories.map((category) => (
-              <div key={category.id}>
-                {selectedCategory === 'All' || selectedCategory === category.name ? (
-                  <div>
-                    <h3 className="text-2xl mt-4 font-semibold text-gray-800 mb-4">{category.name}</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {sortEvents(events.filter((event) => category.name === 'All' ? true : event.category === category.name)).map((event) => (
-                        <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden" onClick={() => handleDivClick(event)}>
-                          <div className={`flex justify-between items-center px-4 py-3 bg-gray-200 ${event.category}`}>
-                            <div className="text-lg font-semibold text-gray-800">{event.name}</div>
-                            <div className="text-sm text-gray-600">{event.date} | {event.time}</div>
+          <div div className="mb-8" >
+            {
+              eventCategories.map((category) => (
+                <div key={category.id}>
+                  {selectedCategory === 'All' || selectedCategory === category.name ? (
+                    <div>
+                      <h3 className="text-2xl mt-4 font-semibold text-gray-800 mb-4">{category.name}</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {sortEvents(events.filter((event) => category.name === 'All' ? true : event.category === category.name)).map((event) => (
+                          <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden" onClick={() => handleDivClick(event)}>
+                            <div className={`flex justify-between items-center px-4 py-3 bg-gray-200 ${event.category}`}>
+                              <div className="text-lg font-semibold text-gray-800">{event.name}</div>
+                              <div className="text-sm text-gray-600">{event.date} | {event.time}</div>
+                            </div>
+                            <div className="px-4 py-3">
+                              <p className="text-gray-700">{event.description}</p>
+                            </div>
                           </div>
-                          <div className="px-4 py-3">
-                            <p className="text-gray-700">{event.description}</p>
-                          </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ) : null}
-              </div>
-            ))}
+                  ) : null}
+                </div>
+              ))
+            }
           </div>
 
           {/* Ref for all events section */}
-          <div ref={allEventsRef} />
-        </div>
-      </div>
-    </div>
+          < div ref={allEventsRef} />
+        </div >
+      </div >
+    </div >
   );
 };
 

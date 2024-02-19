@@ -10,6 +10,8 @@ import NavSpace from '../components/NavSpace';
 const Home = () => {
   return (
     <div>
+
+
       <Hero />
       <Achievements />
       <OurStars />

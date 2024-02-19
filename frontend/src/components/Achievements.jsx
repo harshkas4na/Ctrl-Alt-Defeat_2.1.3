@@ -4,23 +4,23 @@ import "../pages/PagesCss/Achievements.css";
 const Achievements = () => {
   // Updated achievements data with more details
   const achievementsData = [
-    { 
-      title: 'Total Auction Events', 
+    {
+      title: 'Total Auction Events',
       count: 50,
       description: 'Hosted successful auction events across various categories.'
     },
-    { 
-      title: 'Items Sold', 
+    {
+      title: 'Items Sold',
       count: 1000,
       description: 'A wide range of items sold, including art, collectibles, and real estate.'
     },
-    { 
-      title: 'Satisfied Customers', 
+    {
+      title: 'Satisfied Customers',
       count: 500,
       description: 'Received positive feedback and testimonials from satisfied buyers.'
     },
-    { 
-      title: 'Total Bids Placed', 
+    {
+      title: 'Total Bids Placed',
       count: 2000,
       description: 'Active bidding activity with bids placed on numerous items.'
     }

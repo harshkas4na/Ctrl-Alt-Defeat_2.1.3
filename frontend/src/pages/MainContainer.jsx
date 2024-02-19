@@ -11,6 +11,7 @@ import EventsPage from './EventsPage';
 import About from './About';
 import BrowsingPage from './BrowsingPage';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const MainContainer = () => {
   const [active, setActive] = useState(false);
@@ -70,12 +71,13 @@ const MainContainer = () => {
         <div>
           <button className="signin" onClick={signinHandler}>SIGN<span>&nbsp;IN</span></button>
           <button className="signup" onClick={signupHandler}>SIGN<span>&nbsp;UP</span></button>
+          <Link to="/BuyerProfilePage" className=' profile '>Profile</Link>
         </div>
       )
     } else {
       return (
         <div>
-          <button className='profile'>PROFILE</button>
+          
           <button className='logout'>LOG OUT</button>
         </div>
       )
