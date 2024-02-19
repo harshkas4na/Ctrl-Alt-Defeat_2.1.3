@@ -10,7 +10,8 @@ const itemschema = new mongoose.Schema({
     startingPrice: Number,
     soldPrice: Number,
     category: String,
-    eventName: String
+    eventName: String,
+    
 })
 
 export const Items = mongoose.model('Items', itemschema);

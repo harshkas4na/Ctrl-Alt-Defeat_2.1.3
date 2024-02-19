@@ -1,50 +1,34 @@
-// LiveData.jsx
-import React, { useEffect,useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+const LiveData = ({ itemsList, currentBid, currentItem }) => {
+  const [items, setItems] = useState([]);
 
+  useEffect(() => {
+    // Update items with calculated endTime
+    const updatedItems = itemsList.map(item => {
+      const durationInMinutes = 30; // Example duration
+      const endTime = new Date();
+      endTime.setMinutes(endTime.getMinutes() + durationInMinutes);
+      
+      return { ...item, endTime };
+    });
 
-const LiveData = ({itemsList,currentBid}) => {
-  // Placeholder data for demonstration
-  const [items,setItems] = useState([
-    { 
-      _id: 1,
-      name: "Antique Painting",
-      itemPic: "https://via.placeholder.com/150",
-      startingPrice: "$100",
-      ongoingBid: {currentBid},
-      saleTime: "Complete",
-      sold: "Sold",
-      endTime: new Date("2024-02-20T15:00:00Z") // Placeholder end time for demonstration
-    }
-    // Add more live data items as needed
-  ]);
-  useEffect(()=>{
-    setItems(itemsList)
-  },[itemsList])
-  console.log(items)
-  
-  // const GetItems = async () => {
-  //   const response = await fetch('http://localhost:3000/item', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   const data = await response.json()
-    
-  
-  //   setCurrentItem(data[0]);
-   
-  // }
- 
+    setItems(updatedItems);
+  }, [itemsList]);
 
   const getTimeRemaining = (endTime) => {
     const now = new Date();
     const distance = endTime - now;
+
+    if (distance <= 0) {
+      return "Complete";
+    }
+
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
     return `${days}d ${hours}h ${minutes}m ${seconds}s`;
   };
 
@@ -73,9 +57,10 @@ const LiveData = ({itemsList,currentBid}) => {
                   <img src={item.itemPic} alt={item.name} className="w-12 h-12" />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.startingPrice}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{currentBid}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.saleTime === "Ongoing" ? getTimeRemaining(new Date("2024-02-20T15:00:00Z")) : "Complete"}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.sold ===true ?"Sold":"Not Sold" }</td>
+                <td className="px-6 py-4 whitespace-nowrap">{currentItem === item.name ? currentBid : item.startingPrice}</td>
+                
+                <td className="px-6 py-4 whitespace-nowrap">{getTimeRemaining(item.endTime)}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.sold ? "Sold" : "Not Sold"}</td>
               </tr>
             ))}
           </tbody>

@@ -34,10 +34,9 @@ const Header = ({ eventName, totalItems,itemsList,setItemsList ,remainingItems, 
       }
     })
     const data = await response.json()
-    
+    const itemslistLength=data.filter(item => item.eventName===eventName)
     setItemsList(data.filter(item => item.eventName===eventName));
-    setTotalItems(itemsList.length)
-    
+    setTotalItems(itemslistLength.length)
     const itemNotSold=data.filter(item => item.sold===false);
     
     setRemainingItems(itemNotSold.length);
