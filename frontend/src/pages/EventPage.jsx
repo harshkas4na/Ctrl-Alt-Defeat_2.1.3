@@ -1,16 +1,16 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-  
+
 const EventPage = () => {
 
   const { eventId } = useParams();
 
   // Sample event details
- 
+  console.log(eventId);
   const [eventDetails, setEventDetails] = useState({})
   // Sample data for items being sold at the event
-  const [eventItems,setEventItems] = useState([]);
+  const [eventItems, setEventItems] = useState([]);
   // const  GetRequest = async () => {
   //   const response = await fetch("http://localhost:3000/event",{
   //     method:'GET',
@@ -25,8 +25,8 @@ const EventPage = () => {
   //     GetRequest();
   //   },[])
 
-const GetEventDetails = async () => {
-  const response = await fetch(`http://localhost:3000/event/get/${eventId}`, {
+  const GetEventDetails = async () => {
+    const response = await fetch(`http://localhost:3000/event/get/${eventId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -34,8 +34,8 @@ const GetEventDetails = async () => {
     })
     const data = await response.json()
     setEventDetails(data);
-}
-   
+  }
+
   const GetItems = async () => {
     const response = await fetch(`http://localhost:3000/item/event/${eventId}`, {
       method: 'GET',
@@ -47,13 +47,13 @@ const GetEventDetails = async () => {
     setEventItems(data);
   }
   // console.log(eventItems);
-  
+
   useEffect(() => {
     GetItems();
     GetEventDetails();
-  }, [])
- 
- 
+  }, [eventId])
+
+
   // Function to render the table rows for event items
   const renderEventItems = () => {
     return eventItems.map(item => (

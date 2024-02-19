@@ -10,5 +10,5 @@ const eventDetails_1 = require("../controller/eventRoutes/eventDetails");
 const app = (0, express_1.default)();
 app.get('/:category', categoryEventDetails_1.categoryEventDetails); // Route to get all the events listed in the given category.
 app.get('/', allEvents_1.allEvents); // Route to get all the events without any filter.   
-app.get('/:eventId', eventDetails_1.eventDetails);
+app.get('/get/:eventId', eventDetails_1.eventDetails);
 exports.default = app;

@@ -20,10 +20,5 @@ app.use('/item', itemRoutes);
 connect('mongodb+srv://namandevv45:XcaNAef52r7n9GF8@cluster0.mttpu48.mongodb.net/Subasta', { dbName: 'Subasta' });
 
 app.listen(3000, () => {
-<<<<<<< HEAD
     console.log('server is listening on port 3000');
 })
-=======
-    console.log('Server is listening on port 3000');
-});
->>>>>>> 003f7595a102a5360a63c93a2eb12fdb69c2cc04

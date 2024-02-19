@@ -7,9 +7,8 @@ import EventPage from './pages/EventPage';
 import SearchPage from './pages/SearchPage';
 import BiddingPage from './pages/BiddingPage';
 import EventsPage from './pages/EventsPage';
-import Hero from './components/Hero/Hero';
-import BuyerRegister from './pages/BuyerSignup';
-
+import BuyerProfilePage from './pages/BuyerProfilePage';
+import AddItemForm from './pages/AddItemForm';
 const App = () => {
   return (
     <div>
@@ -22,18 +21,11 @@ const App = () => {
 
           <Route path="/Home" element={<Home />} />
           <Route path="/EventsPage" element={<EventsPage />} />
-          <Route path="/EventPage" element={<EventPage />} />
+          <Route path="/EventPage/:eventId" element={<EventPage />} />
           <Route path="/Search" element={<SearchPage />} />
           <Route path="/Bidding" element={<BiddingPage />} />
-
-          <Route path="/Hero" element={<Hero />} />
-          <Route path="/BuyerSignup" element={<BuyerRegister />} />
-
-
-
-
-
-
+          <Route path="/BuyerProfilePage" element={<BuyerProfilePage />} />
+          <Route path="/AddItemForm" element={<AddItemForm />} />
 
         </Routes>
       </BrowserRouter>

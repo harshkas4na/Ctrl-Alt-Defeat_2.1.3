@@ -4,13 +4,12 @@ import UpcomingEvents from '../components/UpcomingEvents';
 import Testimonials from '../components/Testimonials'
 import Footer from '../components/Footer';
 import OurStars from '../components/OurStars';
-import Hero from '../components/Hero/Hero';
 import NavSpace from '../components/NavSpace';
 
 const Home = () => {
   return (
     <div>
-      <Hero/>
+      <NavSpace/>
       <Achievements/>
       <OurStars/>
       <UpcomingEvents/>

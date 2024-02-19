@@ -14,7 +14,7 @@ const EventsPage = () => {
     // For example, you can extract data from the event object
 
     // Navigate to the new page with the event id as a parameter
-    navigate(`/EventPage/${event.id}`);
+    navigate(`/EventPage/${event._id}`);
   };
 
   // Sample data for event categories and events
