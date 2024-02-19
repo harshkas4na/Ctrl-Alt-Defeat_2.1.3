@@ -1,5 +1,5 @@
 import React from 'react';
-import '../pages/PagesCss/Events.css';
+import '../pages/pagesCss/Events.css';
 
 const UpcomingEvents = () => {
   // Sample data for upcoming events
