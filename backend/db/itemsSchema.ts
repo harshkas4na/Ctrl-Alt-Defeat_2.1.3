@@ -10,7 +10,7 @@ const itemschema = new mongoose.Schema({
     startingPrice: Number,
     soldPrice: Number,
     category: String,
-    eventName: { type: mongoose.Schema.Types.ObjectId, ref: 'Events' }
+    eventName: String
 })
 
 export const Items = mongoose.model('Items', itemschema);
