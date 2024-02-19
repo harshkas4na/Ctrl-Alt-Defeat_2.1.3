@@ -10,11 +10,23 @@ import Home from './Home';
 import EventsPage from './EventsPage';
 import About from './About';
 import BrowsingPage from './BrowsingPage';
+import { useNavigate } from 'react-router-dom';
 
 const MainContainer = () => {
   const [active, setActive] = useState(false);
   const [currentLink, setCurrentLink] = useState(0);
-  const loggedIn = true;
+  const loggedIn = false;
+  const navigate = useNavigate();
+
+
+  const signinHandler = () => {
+    navigate('/BuyerSignup');
+  }
+
+  const signupHandler = () => {
+    navigate('/BuyerSignup');
+  }
+
   useEffect(() => {
     console.log(currentLink);
   }, [currentLink]);
@@ -56,8 +68,8 @@ const MainContainer = () => {
     if (!loggedIn) {
       return (
         <div>
-          <button className="signin">SIGN<span>&nbsp;IN</span></button>
-          <button className="signup">SIGN<span>&nbsp;UP</span></button>
+          <button className="signin" onClick={signinHandler}>SIGN<span>&nbsp;IN</span></button>
+          <button className="signup" onClick={signupHandler}>SIGN<span>&nbsp;UP</span></button>
         </div>
       )
     } else {

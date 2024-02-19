@@ -4,11 +4,11 @@ import { BidderSchema } from '../../zod/bidderValidations';
 
 export const bidderSignup = async (req: Request, res: Response) => {
     try {
-        // const validationResult = BidderSchema.safeParse(req.body);
+        const validationResult = BidderSchema.safeParse(req.body);
 
-        // if (!validationResult.success) {
-        //     return res.status(400).json({ message: 'Validation error', errors: validationResult.error.errors });
-        // }
+        if (!validationResult.success) {
+            return res.status(400).json({ message: 'Validation error', errors: validationResult.error.errors });
+        }
 
         const bidder = await Bidders.findOne({ username: req.body.username });
         if (bidder) {
