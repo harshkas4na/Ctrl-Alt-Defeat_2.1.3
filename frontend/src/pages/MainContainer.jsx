@@ -9,11 +9,24 @@ import logo from "./MainContainerImages/logo.png"
 import Home from './Home';
 import EventsPage from './EventsPage';
 import About from './About';
-import Browse from '../components/Browse';
+import BrowsingPage from './BrowsingPage';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const MainContainer = () => {
   const [active, setActive] = useState(false);
   const [currentLink, setCurrentLink] = useState(0);
+  const loggedIn = false;
+  const navigate = useNavigate();
+
+
+  const signinHandler = () => {
+    navigate('/BuyerSignup');
+  }
+
+  const signupHandler = () => {
+    navigate('/BuyerSignup');
+  }
 
   useEffect(() => {
     console.log(currentLink);
@@ -21,11 +34,11 @@ const MainContainer = () => {
 
   const toggleMenu = () => {
     setActive(!active);
-    if(!active){
+    if (!active) {
       const elements = document.querySelectorAll('.behind');
       elements.forEach((element, i) => {
         element.id = '';
-    });
+      });
     }
   };
 
@@ -52,6 +65,24 @@ const MainContainer = () => {
     element.classList.remove('hover');
   };
 
+  const loggedInToggle = (loggedIn) => {
+    if (!loggedIn) {
+      return (
+        <div>
+          <button className="signin" onClick={signinHandler}>SIGN<span>&nbsp;IN</span></button>
+          <button className="signup" onClick={signupHandler}>SIGN<span>&nbsp;UP</span></button>
+          <Link to="/BuyerProfilePage" className=' profile '>Profile</Link>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          
+          <button className='logout'>LOG OUT</button>
+        </div>
+      )
+    }
+  }
   return (
     <section className={active ? 'active' : ''}>
       <nav>
@@ -61,8 +92,7 @@ const MainContainer = () => {
             <div className="logo">SUB<span>ASTA</span></div>
           </div>
           <div>
-            <button className="signin">SIGN<span>&nbsp;IN</span></button>
-            <button className="signup">SIGN<span>&nbsp;UP</span></button>
+            {loggedInToggle(loggedIn)}
             <div className="hamburger-menu" onClick={toggleMenu}>
               <div className="bar"></div>
             </div>
@@ -71,14 +101,14 @@ const MainContainer = () => {
       </nav>
       <div className="main-con">
         {/* This is the main container where the whole website is hosted, All the components will be loaded here and we will have multiple windows (divs) inside and they will rotate through z-indexing in css with some transitions */}
-      {['home', 'browse', 'events', 'about'].map((section, index) => (
+        {['home', 'browse', 'events', 'about'].map((section, index) => (
           <div
             key={section}
             className={`behind ${section} no-scrollbar`}
             id={`${currentLink === index ? 'curr' : ''}`}
           >
             {index === 0 && <Home />}
-            {index === 1 && <Browse />}
+            {index === 1 && <BrowsingPage />}
             {index === 2 && <EventsPage />}
             {index === 3 && <About />}
           </div>

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Bidders } from "../../db/bidderSchema";
-import { generateTokenBidder } from '../jwtToken/bidderToken'
+import { generateTokenBidder } from '../jwtTokenGeneration/bidderToken'
 
 export const bidderLogin = async (req: Request, res: Response) => {
     try {
@@ -11,7 +11,8 @@ export const bidderLogin = async (req: Request, res: Response) => {
         else {
             //@ts-ignore
             const token = generateTokenBidder(bidder._id);
-            res.status(200).json({
+            res.cookie('token', token);
+            return res.status(200).json({
                 message: 'Bidder logged in successfully'
             });
         }

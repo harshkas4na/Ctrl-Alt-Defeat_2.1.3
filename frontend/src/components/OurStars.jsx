@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import '../pages/PagesCss/OurStars.css';
 
 const OurStars = () => {
   const topBuyersRef = useRef(null);
@@ -40,12 +41,13 @@ const OurStars = () => {
   return (
     <div className="bg-gray-100 py-12 w-full">
       <div className="container  w-full">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">Our Stars</h2>
+        <h2 className="text-3xl w-full font-semibold text-center text-gray-800 mb-8">Our Stars</h2>
         <div className="overflow-hidden mb-8 w-screen">
           {/* Top Buyers */}
-          <div className="flex mb-4 items-center overflow-x-scroll no-scrollbar" ref={topBuyersRef}>
+          <div className="flex mb-4 items-center overflow-x-auto" ref={topBuyersRef}>
             {topBuyers.map((buyer, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 mr-4" style={{ minWidth: '300px' }}>
+              <div key={index} className="bg-white rounded-lg starElementBuyer shadow-md p-6 mr-4" style={{ minWidth: '300px' }}>
+                <p className="text-gray-600 font-bold mb-2">Buyer #{index + 1}</p>
                 <h4 className="text-xl font-semibold text-gray-800 mb-2">{buyer.name}</h4>
                 <p className="text-gray-600 mb-2">{buyer.info}</p>
                 <p className="text-gray-600 mb-2">{buyer.achievements}</p>
@@ -61,9 +63,10 @@ const OurStars = () => {
         </div>
         <div className="overflow-hidden  w-screen no-scrollbar">
           {/* Top Sellers */}
-          <div className="flex items-center overflow-x-auto no-scrollbar" ref={topSellersRef}>
+          <div className="flex items-center overflow-x-auto" ref={topSellersRef}>
             {topSellers.map((seller, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 mr-4" style={{ minWidth: '300px' }}>
+              <div key={index} className="bg-white rounded-lg starElementSeller shadow-md p-6 mr-4" style={{ minWidth: '300px' }}>
+                <p className="text-gray-600 font-bold mb-2">Seller #{index + 1}</p>
                 <h4 className="text-xl font-semibold text-gray-800 mb-2">{seller.name}</h4>
                 <p className="text-gray-600 mb-2">{seller.info}</p>
                 <p className="text-gray-600 mb-2">{seller.achievements}</p>

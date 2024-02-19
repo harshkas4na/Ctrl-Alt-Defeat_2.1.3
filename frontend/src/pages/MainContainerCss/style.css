@@ -15,7 +15,7 @@ section {
     min-height: 100vh;
     width: 100%;
     background-color: #485461;
-    background-image: linear-gradient(135deg, #485461 0%, #28313b 74%);
+    background-image: linear-gradient(135deg, #4b5563 0%, #111827 74%);
     overflow-x: hidden;
     transform-style: preserve-3d;
 }
@@ -34,9 +34,11 @@ menu {
     margin: 0 auto;
     padding: 0 1rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     color: white;
+    background-color: #11182788;
 }
 
 menu div {
@@ -63,7 +65,7 @@ menu div img{
     color: #eab9ab;
 }
 
-.signin, .signup {
+.signin, .signup, .profile, .logout {
     border: 2px solid #eab9ab;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
@@ -73,7 +75,7 @@ menu div img{
     background-color: transparent;
 }
 
-.signin:hover, .signup:hover {
+.signin:hover, .signup:hover, .profile:hover, .logout:hover {
     background-color: #eab9ab;
     color: #42002c;
     transition: 0.2s;
@@ -136,7 +138,8 @@ section.active .bar::after {
     left: 0;
     transform-style: preserve-3d;
     transform-origin: left;
-    background-color: #888;
+    background-color: #f3f4f6;
+    overflow-y: auto;
 }
 
 #curr{
