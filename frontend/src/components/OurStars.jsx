@@ -41,7 +41,7 @@ const OurStars = () => {
   return (
     <div className="bg-gray-100 py-12 w-full">
       <div className="container  w-full">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">Our Stars</h2>
+        <h2 className="text-3xl w-full font-semibold text-center text-gray-800 mb-8">Our Stars</h2>
         <div className="overflow-hidden mb-8 w-screen">
           {/* Top Buyers */}
           <div className="flex mb-4 items-center overflow-x-auto" ref={topBuyersRef}>

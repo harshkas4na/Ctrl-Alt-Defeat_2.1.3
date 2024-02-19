@@ -65,7 +65,7 @@ menu div img{
     color: #eab9ab;
 }
 
-.signin, .signup {
+.signin, .signup, .profile, .logout {
     border: 2px solid #eab9ab;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
@@ -75,7 +75,7 @@ menu div img{
     background-color: transparent;
 }
 
-.signin:hover, .signup:hover {
+.signin:hover, .signup:hover, .profile:hover, .logout:hover {
     background-color: #eab9ab;
     color: #42002c;
     transition: 0.2s;
@@ -139,6 +139,7 @@ section.active .bar::after {
     transform-style: preserve-3d;
     transform-origin: left;
     background-color: #f3f4f6;
+    overflow-y: auto;
 }
 
 #curr{
