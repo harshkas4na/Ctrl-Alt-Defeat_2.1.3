@@ -2,42 +2,48 @@
 import React, { useEffect } from 'react';
 
 
-const CurrInfos = ({ currentItem, currentBid, startingPrice, bidderInfo }) => {
+const CurrInfos = ({eventName,setCurrentItem, currentItem, currentBid, startingPrice, bidderInfo }) => {
   // const [items, setItems] = useState([{currentItem, currentBid, startingPrice, bidderInfo}])
 
 
   
-//   const GetItems = async () => {
-//     const response = await fetch('http://localhost:3000/item', {
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//     const data = await response.json()
-//     console.log(data);
-//     if(event.name===data.eventName){
-//     const {
-//       _id,
-//       name,
-//       description,
-//       itemPic,
-//       startingPrice,
-//       sold
-//     } =data;
+  useEffect(()=>{
+    GetItems();
+  },[])
+  
+  const GetItems = async () => {
+    const response = await fetch('http://localhost:3000/item', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
     
-//   }
-// }
+
+    setCurrentItem(data[0]);
+   
+   
+    
+    
+    
+    
+  }
+  const currentItemName=currentItem.name;
+  const currentItemDescription=currentItem.description;
+  const currentItemstartingPrice=currentItem.startingPrice;
+  
+
   return (
     <div className="container  mx-auto py-8">
       <div className="flex flex-wrap  justify-between items-start">
         {/* Left Side - Current Item Info */}
         <div className="w-full md:w-[60%] mb-4 md:mb-0">
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4">Current Item</h2>
-            <p className="text-gray-700 mb-2"><span className="font-semibold">Description:</span> {currentItem}</p>
-            <p className="text-gray-700 mb-2"><span className="font-semibold">Current Bid:</span> ${currentBid}</p>
-            <p className="text-gray-700 mb-2"><span className="font-semibold">Starting Price:</span> ${startingPrice}</p>
+            <h2 className="text-xl font-semibold mb-4">{currentItemName}</h2>
+            <p className="text-gray-700 mb-2"><span className="font-semibold">Description:</span> {currentItemDescription}</p>
+            <p className="text-gray-700 mb-2"><span className="font-semibold">Current Bid:</span> {currentBid}</p>
+            <p className="text-gray-700 mb-2"><span className="font-semibold">Starting Price:</span> ${currentItemstartingPrice}</p>
           </div>
         </div>
         {/* Right Side - Bidder Info */}
