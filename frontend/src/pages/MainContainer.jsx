@@ -9,7 +9,7 @@ import logo from "./MainContainerImages/logo.png"
 import Home from './Home';
 import EventsPage from './EventsPage';
 import About from './About';
-import Browse from '../components/Browse';
+import Browse from '../pages/Browse';
 
 const MainContainer = () => {
   const [active, setActive] = useState(false);

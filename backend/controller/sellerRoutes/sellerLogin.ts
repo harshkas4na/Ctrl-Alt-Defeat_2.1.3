@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Sellers } from "../../db/sellerSchema";
-import { generateTokenSeller } from '../jwtToken/sellerToken'
+import { generateTokenSeller } from '../jwtTokenGeneration/sellerToken'
 
 export const sellerLogin = async (req: Request, res: Response) => {
     try {
@@ -11,7 +11,8 @@ export const sellerLogin = async (req: Request, res: Response) => {
         else {
             //@ts-ignore
             const token = generateTokenSeller(seller._id);
-            res.status(200).json({
+            res.cookie('token', token);
+            return res.status(200).json({
                 message: 'Seller logged in successfully'
             });
         }

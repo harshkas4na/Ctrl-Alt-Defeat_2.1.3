@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const searchPage = () => {
+// useEffect(async () => {
+//   const response = await fetch('http://localhost:3000/register', {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   const data = await response.json()
+//   const { items } = data
+//   setItems(...items, items)
+// }, [])
+
+
+const SearchPage = () => {
+  // const [items, setItems] = useState([{id:'1',name:'Bat',imgPic:"" ,minBidPrice:'$100',description:'Description of Bat',sold:'false'}])
   return (
-    <div>searchPage</div>
+    <div>SearchPage</div>
   )
 }
 
-export default searchPage
+export default SearchPage
