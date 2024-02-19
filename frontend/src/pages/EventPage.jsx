@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect,useState } from 'react';
 
 
+  
 const EventPage = () => {
-
-  const { eventId } = useParams();
-
   // Sample event details
-  console.log(eventId);
-  const [eventDetails, setEventDetails] = useState({})
+  const eventDetails = {
+    name: 'Modern Art Auction',
+    date: 'February 20, 2024',
+    time: '10:00 AM - 2:00 PM',
+    description: 'Browse through a collection of modern art pieces and place your bids.',
+    rating: 4.5,
+  };
+
   // Sample data for items being sold at the event
-  const [eventItems, setEventItems] = useState([]);
+  const [eventItems,setEventItems] = useState([
+    { _id: 1, name: 'Artwork 1',seller:"armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100',seller:"armaan" },
+    { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150',seller:"prakhar" },
+    // Add more items as needed
+  ]);
   // const  GetRequest = async () => {
   //   const response = await fetch("http://localhost:3000/event",{
   //     method:'GET',
@@ -24,36 +31,32 @@ const EventPage = () => {
   //   useEffect(() => {
   //     GetRequest();
   //   },[])
-
-  const GetEventDetails = async () => {
-    const response = await fetch(`http://localhost:3000/event/get/${eventId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
+   
+   const GetItems = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/item', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch items');
       }
-    })
-    const data = await response.json()
-    setEventDetails(data);
-  }
-
-  const GetItems = async () => {
-    const response = await fetch(`http://localhost:3000/item/event/${eventId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const data = await response.json()
-    setEventItems(data);
-  }
-  // console.log(eventItems);
-
+      const data = await response.json();
+      const filteredItems = data.filter(item => item.eventName === eventDetails.name);
+      setEventItems(filteredItems);
+    } catch (error) {
+      console.error('Error fetching items:', error.message);
+    }
+  };
+  console.log(eventItems);
+  
   useEffect(() => {
     GetItems();
-    GetEventDetails();
-  }, [eventId])
-
-
+  }, [])
+ 
+ 
   // Function to render the table rows for event items
   const renderEventItems = () => {
     return eventItems.map(item => (
