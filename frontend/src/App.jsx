@@ -9,6 +9,10 @@ import BiddingPage from './pages/BiddingPage';
 import EventsPage from './pages/EventsPage';
 import BuyerProfilePage from './pages/BuyerProfilePage';
 import AddItemForm from './pages/AddItemForm';
+import SellerSignup from './pages/SellerSignup';
+import BuyerSignup from './pages/BuyerSignup';
+
+
 const App = () => {
   return (
     <div>
@@ -26,6 +30,8 @@ const App = () => {
           <Route path="/Bidding" element={<BiddingPage />} />
           <Route path="/BuyerProfilePage" element={<BuyerProfilePage />} />
           <Route path="/AddItemForm" element={<AddItemForm />} />
+          <Route path="/SellerSignup" element={<SellerSignup />} />
+          <Route path="/BuyerSignup" element={<BuyerSignup />} />
 
         </Routes>
       </BrowserRouter>

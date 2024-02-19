@@ -1,8 +1,8 @@
 import express from 'express';
 import { connect } from 'mongoose';
 import cors from 'cors';
-import sellerRoutes from './routes/bidder';
-import bidderRoutes from './routes/seller';
+import sellerRoutes from './routes/seller';
+import bidderRoutes from './routes/bidder';
 import eventRoutes from './routes/event';
 import itemRoutes from './routes/item';
 import cookieParser from 'cookie-parser';
