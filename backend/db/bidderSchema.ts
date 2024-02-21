@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const bidderschema = new mongoose.Schema({
+    role: String,
     name: String,
     username: String,
     profileType: String,

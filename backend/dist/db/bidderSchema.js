@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Bidders = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const bidderschema = new mongoose_1.default.Schema({
+    role: String,
     name: String,
     username: String,
     profileType: String,
