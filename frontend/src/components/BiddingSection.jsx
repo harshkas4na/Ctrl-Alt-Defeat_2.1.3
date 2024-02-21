@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const BiddingSection = ({ currentBid, setCurrentBid,disableBidRaising, timerClosed }) => {
+const BiddingSection = ({ currentBid, setCurrentBid, disableBidRaising, timerClosed }) => {
   const [customBid, setCustomBid] = useState("");
   const [timer, setTimer] = useState(null);
 
@@ -55,7 +55,7 @@ const BiddingSection = ({ currentBid, setCurrentBid,disableBidRaising, timerClos
   const startTimer = () => {
     // Set a timeout to close bidding after 15 seconds
     const newTimer = setTimeout(() => {
-      alert("Bidding closed. No bids were placed within 15 seconds.");
+      alert("Bidding closed.");
       // Disable bid submission after the timer expires
       setCustomBid("");
     }, 15000);
