@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const subscriptionSchema = z.object({
-    username: z.string(),
+    name: z.string(),
     email: z.string(),
     address: z.string(),
     subscription: z.string()
