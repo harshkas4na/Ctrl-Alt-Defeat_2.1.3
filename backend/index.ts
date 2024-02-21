@@ -1,8 +1,8 @@
 import express from 'express';
-const http = require('http');
+import http from 'http';
 import { connect } from 'mongoose';
 import cors from 'cors';
-const { Server } = require('socket.io');
+import { Server } from 'socket.io';
 import sellerRoutes from './routes/seller';
 import bidderRoutes from './routes/bidder';
 import eventRoutes from './routes/event';

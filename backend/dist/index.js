@@ -4,20 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const http = require('http');
+const http_1 = __importDefault(require("http"));
 const mongoose_1 = require("mongoose");
 const cors_1 = __importDefault(require("cors"));
-const { Server } = require('socket.io');
+const socket_io_1 = require("socket.io");
 const seller_1 = __importDefault(require("./routes/seller"));
 const bidder_1 = __importDefault(require("./routes/bidder"));
 const event_1 = __importDefault(require("./routes/event"));
 const item_1 = __importDefault(require("./routes/item"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const subscription_1 = __importDefault(require("./routes/subscription"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const server = http.createServer(app);
-const io = new Server(server, {
+const server = http_1.default.createServer(app);
+const io = new socket_io_1.Server(server, {
     cors: {
         origin: '*',
     }
@@ -28,6 +29,7 @@ app.use('/event', event_1.default);
 app.use('/seller', seller_1.default);
 app.use('/bidder', bidder_1.default);
 app.use('/item', item_1.default);
+app.use('/subscription', subscription_1.default);
 (0, mongoose_1.connect)('mongodb+srv://namandevv45:XcaNAef52r7n9GF8@cluster0.mttpu48.mongodb.net/Subasta', { dbName: 'Subasta' });
 io.on('connection', (socket) => {
     console.log('user connected', socket.id);
