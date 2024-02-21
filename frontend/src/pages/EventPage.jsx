@@ -1,7 +1,7 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
-  
+
 const EventPage = () => {
   // Sample event details
   const eventDetails = {
@@ -13,9 +13,9 @@ const EventPage = () => {
   };
 
   // Sample data for items being sold at the event
-  const [eventItems,setEventItems] = useState([
-    { _id: 1, name: 'Artwork 1',seller:"armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100' },
-    { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150' },
+  const [eventItems, setEventItems] = useState([
+    { _id: 1, name: 'Artwork 1', seller: "armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100' },
+    { _id: 2, name: 'Artwork 2', seller: 'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150' },
     // Add more items as needed
   ]);
   // const  GetRequest = async () => {
@@ -31,8 +31,8 @@ const EventPage = () => {
   //   useEffect(() => {
   //     GetRequest();
   //   },[])
-   
-   const GetItems = async () => {
+
+  const GetItems = async () => {
     try {
       const response = await fetch('http://localhost:3000/item', {
         method: 'GET',
@@ -51,12 +51,12 @@ const EventPage = () => {
     }
   };
   console.log(eventItems);
-  
+
   useEffect(() => {
     GetItems();
   }, [])
- 
- 
+
+
   // Function to render the table rows for event items
   const renderEventItems = () => {
     return eventItems.map(item => (

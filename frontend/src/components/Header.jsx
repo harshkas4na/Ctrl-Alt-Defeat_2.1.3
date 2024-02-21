@@ -3,45 +3,50 @@ import React, { useEffect } from 'react';
 
 
 
-const Header = ({ eventName, totalItems,itemsList,setItemsList ,remainingItems, previousRatings,setEventName,setTotalItems,setRemainingItems }) => {
+const Header = ({ eventName, totalItems, itemsList, setItemsList, remainingItems, previousRatings, setEventName, setTotalItems, setRemainingItems }) => {
   // Add other basic information about the event here
   // const [events, setEvents] = useState([{ eventName, totalItems, remainingItems, previousRatings }])
 
-  const  GetRequest = async () => {
-  const response = await fetch("http://localhost:3000/event",{
-    method:'GET',
-    headers:{
-      'Content-Type':'application/json'
-    } 
-  })
-  const data = await response.json();
-  const curEventData=data.filter(event => event.startTime === 1600);
-  setEventName(curEventData[0].name)
-}
+  const GetRequest = async () => {
+    const response = await fetch("http://localhost:3000/event/", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json();
+    const curEventData = data.filter(event => event.startTime === 1600);
+    // console.log(curEventData);
+    setEventName(curEventData[0].name)
+    console.log(eventName);
+  }
   useEffect(() => {
     GetRequest();
-   
-  },[])
-  useEffect(()=>{
+
+  }, [])
+  useEffect(() => {
     GetItems();
-  },[eventName])
-  
+  }, [eventName])
+
   const GetItems = async () => {
-    const response = await fetch('http://localhost:3000/item', {
+    const response = await fetch('http://localhost:3000/item/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     })
     const data = await response.json()
-    const itemslistLength=data.filter(item => item.eventName===eventName)
-    setItemsList(data.filter(item => item.eventName===eventName));
-    setTotalItems(itemslistLength.length)
-    const itemNotSold=data.filter(item => item.sold===false);
-    
+    // console.log(data);
+    const itemslist = data.filter(item => item.eventName === eventName)
+    setItemsList(data.filter(item => item.eventName === eventName));
+    // console.log(itemsList);
+    // console.log(itemsList);
+    setTotalItems(itemslist.length)
+    const itemNotSold = data.filter(item => item.sold === false);
+
     setRemainingItems(itemNotSold.length);
-    
-    
+
+
   }
 
 

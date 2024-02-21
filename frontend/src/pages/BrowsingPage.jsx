@@ -133,6 +133,8 @@ const BrowsingPage = () => {
       <NavSpace />
       <div className="container mx-auto mt-8 p-4">
         <Link to="/AddItemForm" className='font-bold text-xl mx-20 border-4 bg-slate-200 p-2 round-xl'>Add Item</Link>
+        <Link to="/AddItemForm" className=" inline-block bg-primary text-white px-4 py-2 rounded-md h-10 mr-4 mb-2">Add Item</Link>
+        {/* Search Bar */}
         <input
           type="text"
           placeholder="Search by item name"

@@ -16,8 +16,7 @@ const bidderschema = new mongoose.Schema({
     expiryDate: String,
     cardHolderName: String,
     ifscCode: String,
-    bankName: String,
-    pancardId: String
+
 });
 
 export const Bidders = mongoose.model('Bidders', bidderschema);

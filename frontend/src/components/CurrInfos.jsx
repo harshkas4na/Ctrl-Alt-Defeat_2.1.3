@@ -2,37 +2,42 @@
 import React, { useEffect } from 'react';
 
 
-const CurrInfos = ({eventName,setCurrentItem, currentItem, currentBid, startingPrice, bidderInfo }) => {
+const CurrInfos = ({ eventName, setCurrentItem, currentItem, currentBid, startingPrice, bidderInfo, itemsList }) => {
   // const [items, setItems] = useState([{currentItem, currentBid, startingPrice, bidderInfo}])
 
 
-  
-  useEffect(()=>{
-    GetItems();
-  },[])
-  
-  const GetItems = async () => {
-    const response = await fetch('http://localhost:3000/item', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const data = await response.json()
-    
 
-    setCurrentItem(data[0]);
-   
-   
-    
-    
-    
-    
+  useEffect(() => {
+    GetItems();
+  }, [])
+
+  const GetItems = async () => {
+    // const response = await fetch('http://localhost:3000/item/', {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    // const data = await response.json()
+
+    const itemsListLength = itemsList.length
+
+    if (itemsListLength !== 0) {
+      setCurrentItem(itemsList[0]);
+
+
+
+    }
+
+
+
+
+
   }
-  const currentItemName=currentItem.name;
-  const currentItemDescription=currentItem.description;
-  const currentItemstartingPrice=currentItem.startingPrice;
-  
+  const currentItemName = currentItem.name;
+  const currentItemDescription = currentItem.description;
+  const currentItemstartingPrice = currentItem.startingPrice;
+
 
   return (
     <div className="container  mx-auto py-8">
