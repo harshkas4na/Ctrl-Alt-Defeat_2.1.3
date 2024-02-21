@@ -6,6 +6,10 @@ import bidderRoutes from './routes/bidder';
 import eventRoutes from './routes/event';
 import itemRoutes from './routes/item';
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+
+
+dotenv.config();
 
 const app = express();
 
@@ -17,7 +21,9 @@ app.use('/seller', sellerRoutes);
 app.use('/bidder', bidderRoutes);
 app.use('/item', itemRoutes);
 
-connect('mongodb+srv://namandevv45:XcaNAef52r7n9GF8@cluster0.mttpu48.mongodb.net/Subasta', { dbName: 'Subasta' });
+const mongodb_url = process.env.mongoDB_URL || 'mongodb+srv://namandevv45:REoyCgljCUv02b7c@cluster0.sfelgwu.mongodb.net/Subasta'
+
+connect(mongodb_url, { dbName: 'Subasta' });
 
 app.listen(3000, () => {
     console.log('server is listening on port 3000');

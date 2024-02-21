@@ -2,7 +2,7 @@ import { NextFunction } from 'express';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
-const secret_key_bidder: string = process.env.secret_key_bidder || 'IwillsettleForthis02';
+const secret_key_bidder: string = process.env.secret_key_bidder || 'AlrightIwillsettleforthis';
 
 export const jwtVerificationBidder = (req: Request, res: Response, next: NextFunction) => {
     try {
