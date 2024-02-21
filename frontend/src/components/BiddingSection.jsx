@@ -1,33 +1,74 @@
-// BiddingSection.jsx
 import React, { useState, useEffect } from 'react';
-import Timer from '../components/Timer';
 
-const BiddingSection = ({ timerClosed }) => {
+const BiddingSection = ({ currentBid, setCurrentBid,disableBidRaising, timerClosed }) => {
   const [customBid, setCustomBid] = useState("");
   const [timer, setTimer] = useState(null);
-  const [rerenderKey, setRerenderKey] = useState(0);
 
   useEffect(() => {
+    // Start the timer when the component mounts
     startTimer();
+    // Clean up the timer when the component unmounts
     return () => {
       clearTimeout(timer);
     };
-  }, [rerenderKey]);
-
-  const startTimer = () => {
-    const newTimer = setTimeout(() => {
-      setCustomBid("");
-    }, 15000);
-    setTimer(newTimer);
-  };
+  }, []);
 
   const handleBidChange = (e) => {
     setCustomBid(e.target.value);
+    // Restart the timer whenever there's a bid change
     restartTimer();
   };
 
+  const handleCustomBidSubmit = () => {
+    // Convert the custom bid to a number
+    const customBidNumber = parseFloat(customBid);
+
+    // Check if the custom bid is a valid number
+    if (!isNaN(customBidNumber)) {
+      // Handle raised bid submission
+      if (customBidNumber > currentBid) {
+        const roundedCustomBid = Math.round(customBidNumber )
+        setCurrentBid(roundedCustomBid);
+      } else {
+        alert("You can't bid lower than the Current Bid");
+      }
+      // Clear the custom bid input field
+      setCustomBid("");
+      // Restart the timer after bid submission
+      restartTimer();
+    } else {
+      // Display an error message if the custom bid is not a valid number
+      console.error("Invalid custom bid");
+      // You can also display a user-friendly message here if you prefer
+      // For example: setCustomBidError("Please enter a valid number");
+    }
+  };
+
+  const handleRaiseBid = (percentage) => {
+    // Calculate the raised bid based on the percentage
+    const raisedBid = currentBid + (currentBid * percentage) / 100;
+    const roundedRaisedBid = Math.round(raisedBid)
+    // Handle raised bid submission
+    setCurrentBid(roundedRaisedBid);
+    // Restart the timer after bid submission
+    restartTimer();
+  };
+
+  const startTimer = () => {
+    // Set a timeout to close bidding after 15 seconds
+    const newTimer = setTimeout(() => {
+      
+      // Disable bid submission after the timer expires
+      setCustomBid("");
+    }, 15000);
+    // Save the timer ID
+    setTimer(newTimer);
+  };
+
   const restartTimer = () => {
+    // Clear the existing timer
     clearTimeout(timer);
+    // Restart the timer
     startTimer();
   };
 
@@ -35,12 +76,14 @@ const BiddingSection = ({ timerClosed }) => {
     <div className="container mx-auto py-8">
       <h2 className="text-xl font-semibold mb-4">Bidding Section</h2>
       <div className="flex items-center mb-4">
-        {/* Buttons for raising bids */}
+        <button className="px-4 py-2 bg-gray-800 text-white rounded-md mr-4" onClick={() => handleRaiseBid(5)} disabled={timerClosed}>Raise by 5%</button>
+        <button className="px-4 py-2 bg-gray-800 text-white rounded-md mr-4" onClick={() => handleRaiseBid(10)} disabled={timerClosed}>Raise by 10%</button>
+        <button className="px-4 py-2 bg-gray-800 text-white rounded-md mr-4" onClick={() => handleRaiseBid(15)} disabled={timerClosed}>Raise by 15%</button>
       </div>
       <div className="flex items-center mb-4">
-        {/* Custom bid input */}
+        <input type="text" placeholder="Enter Custom Bid" className="px-4 py-2 border rounded-md mr-4" value={customBid} onChange={handleBidChange} />
+        <button className="px-4 py-2 bg-gray-800 text-white rounded-md" onClick={handleCustomBidSubmit} disabled={timerClosed}>Submit Custom Bid</button>
       </div>
-      <Timer key={rerenderKey} duration={15} onTimerComplete={() => setRerenderKey(prevKey => prevKey + 1)} />
     </div>
   );
 };
