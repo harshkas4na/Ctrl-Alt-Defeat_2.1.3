@@ -94,10 +94,10 @@ const EventsPage = () => {
             <div className="flex items-center space-x-4 mr-4 mt-4">
               <div className="relative">
                 <div className=''>
-                  <Link to="/Bidding" className='font-bold text-xl mx-20 border-4 bg-slate-200 p-2 round-xl'>Live Bidding</Link>
+                  <Link to="/Bidding" className="bg-primary text-white px-4 py-2 rounded-md h-10 mr-4">Live Bidding</Link>
 
                   <select
-                    className="appearance-none bg-white text-gray-800 border border-gray-300 rounded-md py-2 px-4 pr-8 focus:outline-none focus:border-primary"
+                    className="border p-2 mr-2 mb-2 appearance-none"
                     id='Filter'
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
@@ -115,7 +115,7 @@ const EventsPage = () => {
                 <div>
 
                   <select
-                    className="appearance-none bg-white text-gray-800 border border-gray-300 rounded-md py-2 px-4 pr-8 focus:outline-none focus:border-primary"
+                    className="border p-2 mr-2 mb-2 appearance-none"
                     value={sortBy}
                     id='Sort'
                     onChange={(e) => setSortBy(e.target.value)}

@@ -58,47 +58,47 @@ import { Link } from 'react-router-dom';
 const BrowsingPage = () => {
   // Sample hardcoded list of items
   // Sample hardcoded list of items
-const sampleItems = [
-  {
-    id: 1,
-    name: 'Artwork 1',
-    photo: item1,
-    category: 'art',
-    basePrice: 200,
-    eventId: 'event123',
-  },
-  {
-    id: 2,
-    name: 'Antique Vase',
-    photo: item2,
-    category: 'antiques',
-    basePrice: 150,
-    eventId: 'event124',
-  },
-  {
-    id: 3,
-    name: 'Beachfront Property',
-    photo: item3,
-    category: 'realEstate',
-    basePrice: 500000,
-    eventId: 'event125',
-  },
-  {
-    id: 4,
-    name: 'Luxury Car',
-    photo: item4,
-    category: 'cars',
-    basePrice: 80000,
-    eventId: 'event126',
-  },
-  {
-    id: 5,
-    name: 'Sapphire Ring',
-    photo: item5,
-    category: 'jewelry',
-    basePrice: 800,
-    eventId: 'event132',
-  }
+  const sampleItems = [
+    {
+      id: 1,
+      name: 'Artwork 1',
+      photo: item1,
+      category: 'art',
+      basePrice: 200,
+      eventId: 'event123',
+    },
+    {
+      id: 2,
+      name: 'Antique Vase',
+      photo: item2,
+      category: 'antiques',
+      basePrice: 150,
+      eventId: 'event124',
+    },
+    {
+      id: 3,
+      name: 'Beachfront Property',
+      photo: item3,
+      category: 'realEstate',
+      basePrice: 500000,
+      eventId: 'event125',
+    },
+    {
+      id: 4,
+      name: 'Luxury Car',
+      photo: item4,
+      category: 'cars',
+      basePrice: 80000,
+      eventId: 'event126',
+    },
+    {
+      id: 5,
+      name: 'Sapphire Ring',
+      photo: item5,
+      category: 'jewelry',
+      basePrice: 800,
+      eventId: 'event132',
+    }
     // Add more items as needed
   ];
 
@@ -141,51 +141,51 @@ const sampleItems = [
 
   return (
     <div>
-    <NavSpace/>
-    <div className="container mx-auto mt-8 p-4">
-    <Link to="/AddItemForm" className='font-bold text-xl mx-20 border-4 bg-slate-200 p-2 round-xl'>Add Item</Link>
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="Search by item name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="border p-2 mr-2"
-      />
+      <NavSpace />
+      <div className="container mx-auto mt-8 p-4">
+        <Link to="/AddItemForm" className=" inline-block bg-primary text-white px-4 py-2 rounded-md h-10 mr-4 mb-2">Add Item</Link>
+        {/* Search Bar */}
+        <input
+          type="text"
+          placeholder="Search by item name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border p-2 mr-2 mb-2"
+        />
+          {/* Filter Dropdown */}
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="border p-2 mr-2 mb-2"
+          >
+            <option value="all">All Categories</option>
+            <option value="art">Art</option>
+            <option value="antiques">Antiques</option>
+            <option value="realEstate">Real Estate</option>
+            <option value="cars">Cars</option>
+            <option value="jewelry">Jewelry</option>
+          </select>
 
-      {/* Filter Dropdown */}
-      <select
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
-        className="border p-2 mr-2"
-      >
-        <option value="all">All Categories</option>
-        <option value="art">Art</option>
-        <option value="antiques">Antiques</option>
-        <option value="realEstate">Real Estate</option>
-        <option value="cars">Cars</option>
-        <option value="jewelry">Jewelry</option>
-      </select>
+          {/* Sort Dropdown */}
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="border p-2 mb-2"
+          >
+            <option value="default">Default Sorting</option>
+            <option value="lowToHigh">Price: Low to High</option>
+            <option value="highToLow">Price: High to Low</option>
+            <option value="AtoZ">A-Z</option>
+          </select>
 
-      {/* Sort Dropdown */}
-      <select
-        value={sortOption}
-        onChange={(e) => setSortOption(e.target.value)}
-        className="border p-2"
-      >
-        <option value="default">Default Sorting</option>
-        <option value="lowToHigh">Price: Low to High</option>
-        <option value="highToLow">Price: High to Low</option>
-        <option value="AtoZ">A-Z</option>
-      </select>
 
-      {/* Display Item Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
-        {filteredItems.map(item => (
-          <ItemCard key={item.id} item={item} />
-        ))}
+        {/* Display Item Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
+          {filteredItems.map(item => (
+            <ItemCard key={item.id} item={item} />
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
