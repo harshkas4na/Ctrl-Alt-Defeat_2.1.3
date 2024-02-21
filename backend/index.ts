@@ -10,6 +10,7 @@ import itemRoutes from './routes/item';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import subscriptionRoutes from './routes/subscription';
+import bodyParser from 'body-parser'; // Import body-parser
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(cookieParser());
+app.use(bodyParser.json()); // Use body-parser to parse JSON bodies
 app.use('/event', eventRoutes);
 app.use('/seller', sellerRoutes);
 app.use('/bidder', bidderRoutes);
