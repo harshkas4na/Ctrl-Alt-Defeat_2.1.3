@@ -181,6 +181,7 @@ const SellerSignup = () => {
                 <ul className="text-left">
                   <li >Free delivery for 20 items</li>
                   <li>Price: $10/month</li>
+                  <li>Direct Contact with seller</li>
                 </ul>
               </div>
             </div>
@@ -192,8 +193,9 @@ const SellerSignup = () => {
               </div>
               <div className="Feature w-3/5 mr-auto ">
                 <ul className="text-left">
-                  <li >Free and Fast delivery for 50 items</li>
+                  <li >Free and Fast delivery</li>
                   <li>Price: $18/month</li>
+                  <li>Direct Contact with seller</li>
                 </ul>
               </div>
             </div>
