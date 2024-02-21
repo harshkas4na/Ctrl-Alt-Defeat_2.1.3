@@ -45,11 +45,12 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <div className="flex flex-col h-screen bg-[#7b3421]">
       {/* Header/Navbar */}
-      <div className="bg-blue-500 p-4 text-white">
+      <div className="bg-[#a066569a] p-4 text-white font-poppins mb-4">
         <h1 className="text-2xl font-bold">Chat Application</h1>
       </div>
+      <div className="container flex flex-col justify-between rounded-[3.3rem] shadow-[0_60px_40px_-30px_rgba(0, 0, 0, 0.27)] w-[80%] h-[80%] mx-auto px-8 py-8 bg-slate-200">
       {/* User Info Card */}
       <div className="p-4">
         {isUsernameSubmitted && (
@@ -61,19 +62,20 @@ const Chat = () => {
         )}
       </div>
       {/* Chat Messages */}
-      <div className="flex-grow overflow-y-auto p-4">
+      <div className="flex-grow overflow-y-auto p-4 mx-4 mb-4 bg-white rounded-lg shadow-md">
         {receivedMessages.map((data, index) => (
           <div 
             key={index} 
-            className={`rounded-lg p-2 mb-2 max-w-md ${data.username === username ? 'bg-gray-200 self-start' : 'bg-blue-200 self-end'}`}
+            className={`rounded-lg p-2 mb-2 max-w-md ${data.username === username ? 'bg-gray-200 self-start text-end' : 'bg-blue-200 self-end text-start'}`}
           >
             {data.username !== username && <div className="text-sm font-semibold mb-1">{data.username}</div>}
             {data.message}
           </div>
         ))}
       </div>
+      </div>
       {/* Message Input */}
-      <div className="p-4">
+      <div className="p-4 w-full flex flex-row justify-center items-center">
         {!isUsernameSubmitted ? (
           <form onSubmit={handleUsernameSubmit} className="flex flex-col">
             <input
@@ -92,10 +94,10 @@ const Chat = () => {
               <option value="Seller">Seller</option>
               <option value="Bidder">Bidder</option>
             </select>
-            <button type="submit" className='p-2 bg-blue-500 text-white rounded-lg mt-2'>Submit</button>
+            <button type="submit" className="bg-primary text-white px-4 py-2 mt-2 rounded-md">Submit</button>
           </form>
         ) : (
-          <form onSubmit={handleMessageSend} className="flex items-center bg-white rounded-lg shadow-md">
+          <form onSubmit={handleMessageSend} className="flex flex-row bg-white rounded-lg shadow-md w-full mx-0">
             <input
               type='text'
               value={message}
@@ -103,7 +105,7 @@ const Chat = () => {
               placeholder='Type your message...'
               className='flex-grow p-2 outline-none rounded-lg'
             />
-            <button type="submit" className='p-2 bg-blue-500 text-white rounded-lg'>Send</button>
+            <button type="submit" className="bg-primary text-white px-4 py-2 rounded-md">Send</button>
           </form>
         )}
       </div>

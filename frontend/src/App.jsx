@@ -13,6 +13,7 @@ import AddItemForm from './pages/AddItemForm';
 import SellerSignup from './pages/SellerSignup';
 import BuyerSignup from './pages/BuyerSignup';
 import SubscriptionPlan from './pages/SubscriptionPlan'
+import Chat from './pages/Chat';
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/BuyerSignup" element={<BuyerSignup />} />
           <Route path="/UpgradePlan" element={<SubscriptionPlan />} />
 
+      <Route path="/Chat" element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </div>
