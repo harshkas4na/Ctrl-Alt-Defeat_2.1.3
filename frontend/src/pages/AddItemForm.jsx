@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './BuyerRegister.css'; // Import your stylesheet
+import './PagesCss/BuyerRegister.css'; // Import your stylesheet
 import logo from './img/logo.png';
 import carousel1 from './img/carousel1.png';
 import carousel2 from './img/carousel2.png';
@@ -33,7 +33,7 @@ const SellerSignup = () => {
                   </div>
                   <div class="input-wrap itimg">
                     <input type="file" class="input-field" autocomplete="off" />
-                    <label className='active'>Item Image</label>
+                    <label className='active mt-9'>Item Image</label>
                   </div>
                   <div class="input-wrap">
                     <input type="text" class="input-field" autocomplete="off" />

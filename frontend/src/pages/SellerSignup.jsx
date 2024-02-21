@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './BuyerRegister.css'; // Import your stylesheet
+import './PagesCss/BuyerRegister.css'; // Import your stylesheet
 import logo from './img/logo.png';
 import carousel1 from './img/carousel1.png';
 import carousel2 from './img/carousel2.png';

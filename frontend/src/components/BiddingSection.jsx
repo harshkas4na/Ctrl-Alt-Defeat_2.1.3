@@ -27,7 +27,8 @@ const BiddingSection = ({ currentBid, setCurrentBid,disableBidRaising, timerClos
     if (!isNaN(customBidNumber)) {
       // Handle raised bid submission
       if (customBidNumber > currentBid) {
-        setCurrentBid(customBidNumber);
+        const roundedCustomBid = Math.round(customBidNumber )
+        setCurrentBid(roundedCustomBid);
       } else {
         alert("You can't bid lower than the Current Bid");
       }
@@ -46,8 +47,9 @@ const BiddingSection = ({ currentBid, setCurrentBid,disableBidRaising, timerClos
   const handleRaiseBid = (percentage) => {
     // Calculate the raised bid based on the percentage
     const raisedBid = currentBid + (currentBid * percentage) / 100;
+    const roundedRaisedBid = Math.round(raisedBid)
     // Handle raised bid submission
-    setCurrentBid(raisedBid);
+    setCurrentBid(roundedRaisedBid);
     // Restart the timer after bid submission
     restartTimer();
   };
@@ -55,7 +57,7 @@ const BiddingSection = ({ currentBid, setCurrentBid,disableBidRaising, timerClos
   const startTimer = () => {
     // Set a timeout to close bidding after 15 seconds
     const newTimer = setTimeout(() => {
-      alert("Bidding closed. No bids were placed within 15 seconds.");
+      
       // Disable bid submission after the timer expires
       setCustomBid("");
     }, 15000);

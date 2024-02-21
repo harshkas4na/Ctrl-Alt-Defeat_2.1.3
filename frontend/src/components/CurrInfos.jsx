@@ -2,37 +2,39 @@
 import React, { useEffect } from 'react';
 
 
-const CurrInfos = ({eventName,setCurrentItem, currentItem, currentBid, startingPrice, bidderInfo }) => {
+const CurrInfos = ({ eventName, setCurrentItem, currentItem, currentBid, startingPrice, bidderInfo, itemsList }) => {
   // const [items, setItems] = useState([{currentItem, currentBid, startingPrice, bidderInfo}])
 
 
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     GetItems();
-  },[])
-  
+  }, [])
+
   const GetItems = async () => {
-    const response = await fetch('http://localhost:3000/item', {
+    const response = await fetch('http://localhost:3000/item/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     })
     const data = await response.json()
+
+   
+
+    
+      setCurrentItem(data[0]);
     
 
-    setCurrentItem(data[0]);
-   
-   
-    
-    
-    
-    
+
+
+
+
   }
-  const currentItemName=currentItem.name;
-  const currentItemDescription=currentItem.description;
-  const currentItemstartingPrice=currentItem.startingPrice;
-  
+  const currentItemName = currentItem.name;
+  const currentItemDescription = currentItem.description;
+  const currentItemstartingPrice = currentItem.startingPrice;
+  const userName =localStorage.getItem('username');
 
   return (
     <div className="container  mx-auto py-8">
@@ -53,7 +55,7 @@ const CurrInfos = ({eventName,setCurrentItem, currentItem, currentBid, startingP
             <div className="flex items-center mb-4">
               <img src={bidderInfo.profilePicture} alt="Bidder Profile" className="w-12 h-12 rounded-full mr-4" />
               <div>
-                <p className="text-gray-700 mb-2"><span className="font-semibold">Name:</span> {bidderInfo.name}</p>
+                <p className="text-gray-700 mb-2"><span className="font-semibold">Name:</span> {userName}</p>
                 <p className="text-gray-700 mb-2"><span className="font-semibold">Email:</span> {bidderInfo.email}</p>
               </div>
             </div>

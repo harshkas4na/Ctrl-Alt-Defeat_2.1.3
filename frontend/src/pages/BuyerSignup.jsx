@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './BuyerRegister.css'; // Import your stylesheet
+import './PagesCss/BuyerRegister.css'; // Import your stylesheet
 import logo from './img/logo.png';
 import carousel1 from './img/carousel1.png';
 import carousel2 from './img/carousel2.png';
@@ -13,6 +13,7 @@ const BuyerSignup = () => {
   const [activeSlider, setActiveSlider] = useState(1);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    role: '',
     name: '',
     profileType: '',
     username: '',
@@ -29,6 +30,20 @@ const BuyerSignup = () => {
     ifscCode: ''
   });
 
+  const [formData2, setFormData2] = useState({
+    role: '',
+    username: '',
+    password: ''
+  })
+
+  const handleChange2 = (e) => {
+    const { name, value } = e.target;
+    setFormData2({
+      ...formData2,
+      [name]: value
+    });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -37,25 +52,60 @@ const BuyerSignup = () => {
     });
   };
 
+  window.localStorage.setItem("username", formData.username);
+  // window.localStorage.setItem("username", formData2.username);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform backend validation here
     try {
-      const res = await axios.post('http://localhost:3000/bidder/signup', formData, {
+      const res = await axios.post('http://localhost:3000/bidder/signup', { ...formData }, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
-      const data = res.data;
+      const Data = res.data;
+
+
       if (res.status === 201) {
-        console.log(data.message);
-        toast.success('Logged In Successfully');
+        console.log(Data.message);
+
+        toast.success('Signed In Successfully');
         navigate("/");
       } else {
-        toast.error(data.errors || data.message);
+        console.log(Data.message);
+        toast.error(Data.errors || Data.message);
       }
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
+      toast.error('An error occurred. Please try again.');
+    }
+
+
+    console.log(formData);
+  };
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+    // Perform backend validation here
+    try {
+      const res = await axios.post('http://localhost:3000/bidder/login', { ...formData2 }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const Data = res.data;
+      if (res.status === 201) {
+        console.log(Data.message);
+
+        toast.success('Signed In Successfully');
+        navigate("/");
+      } else {
+        console.log(Data.message);
+        toast.error(Data.errors || Data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
       toast.error('An error occurred. Please try again.');
     }
 
@@ -88,51 +138,65 @@ const BuyerSignup = () => {
 
               <div className="actual-form">
                 <div class="scrollableArea">
+                  <div class="identify">
+                    <p class="light">Register As:</p>
+
+                    <div class="input-wrap">
+
+                      <select name="role" id="type-id"
+                        onChange={handleChange}>
+                        <option id="nd" value="">Select An Option</option>
+                        <option id="drk" value="bidder">Bidder</option>
+                        <option id="drk" value="seller">Seller</option>
+                      </select>
+
+                    </div>
+                  </div>
                   <div class="input-wrap">
                     <input type="text" class="input-field" autocomplete="off" name="name"
                       onChange={handleChange} />
                     <label className='active'>Name</label>
                   </div>
-                  <div class="radio">
+                  <div className="radio">
 
                     <div>
-                      <p class="light">Profile&nbsp;:</p>
+                      <p className="light">Profile&nbsp;:</p>
                     </div>
                     <div>
                       <input type="radio" name="profileType" id="public"
                         onChange={handleChange} />
-                      <label class="radiolabl" for="public">Public</label>
+                      <label className="radiolabl" htmlFor="public">Public</label>
                     </div>
                     <div>
                       <input type="radio" name="profileType" id="anonymous"
                         onChange={handleChange} />
-                      <label class="radiolabl" for="anonymous">Anonymous</label>
+                      <label className="radiolabl" htmlFor="anonymous">Anonymous</label>
                     </div>
                   </div>
                   <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" name='username'
+                    <input type="text" className="input-field" autoComplete="off" name='username'
                       onChange={handleChange} />
                     <label className='active'>Username</label>
                   </div>
-                  <div class="input-wrap">
-                    <input type="email" class="input-field" autocomplete="off" name='email'
+                  <div className="input-wrap">
+                    <input type="email" className="input-field" autoComplete="off" name='email'
                       onChange={handleChange} />
                     <label className='active'>Email</label>
                   </div>
                   <div class="input-wrap">
-                    <input type="password" class="input-field" autocomplete="off" name='password'
+                    <input type="password" className="input-field" autoComplete="off" name='password'
                       onChange={handleChange} />
                     <label className='active'>Password</label>
                   </div>
                   <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" name='phone'
+                    <input type="text" className="input-field" autoComplete="off" name='phone'
                       onChange={handleChange} />
                     <label className='active'>Phone number</label>
                   </div>
-                  <div class="identify">
-                    <p class="light">Government id :</p>
+                  <div className="identify">
+                    <p className="light">Government id :</p>
 
-                    <div class="input-wrap">
+                    <div className="input-wrap">
 
                       <select name="idType" id="type-id"
                         onChange={handleChange}>
@@ -144,14 +208,14 @@ const BuyerSignup = () => {
 
                     </div>
                   </div>
-                  <div class="input-wrap">
+                  <div className="input-wrap">
                     <label className='active'>id - no </label>
-                    <input type="txt" class="input-field" autocomplete="off" name='idNumber'
+                    <input type="txt" className="input-field" autoComplete="off" name='idNumber'
                       onChange={handleChange} />
                   </div>
 
-                  <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" name='address'
+                  <div className="input-wrap">
+                    <input type="text" className="input-field" autoComplete="off" name='address'
                       onChange={handleChange} />
                     <label className='active'>Address</label>
                   </div>
@@ -160,9 +224,9 @@ const BuyerSignup = () => {
 
 
 
-                  <div class="identify">
-                    <p class="light">Account Type :&nbsp;</p>
-                    <div class="input-wrap">
+                  <div className="identify">
+                    <p className="light">Account Type :&nbsp;</p>
+                    <div className="input-wrap">
                       <select name="accountType" id="type-card"
                         onChange={handleChange}>
                         <option id="nd" value="">Select Card Option</option>
@@ -171,38 +235,38 @@ const BuyerSignup = () => {
                       </select>
                     </div>
                   </div>
-                  <div class="input-wrap">
+                  <div className="input-wrap">
                     <label className='active'>Card Holder Name</label>
-                    <input type="text" class="input-field" id="card" autocomplete="off" name='cardHolderName'
+                    <input type="text" class="input-field" id="card" autoComplete="off" name='cardHolderName'
                       onChange={handleChange} />
                   </div>
-                  <div class="input-wrap">
+                  <div className="input-wrap">
                     <label className='active'>Card Number</label>
-                    <input type="text" class="input-field" autocomplete="off" name='cardNumber'
+                    <input type="text" className="input-field" autoComplete="off" name='cardNumber'
                       onChange={handleChange} />
                   </div>
-                  <div class="input-wrap">
+                  <div className="input-wrap">
                     <label className='active'>Expiry Date</label>
-                    <input type="text" class="input-field" id="card" autocomplete="off" name='expiryDate'
+                    <input type="text" className="input-field" id="card" autoComplete="off" name='expiryDate'
                       onChange={handleChange} />
                   </div>
-                  <div class="input-wrap">
+                  <div className="input-wrap">
                     <label className='active'>IFSC Code</label>
-                    <input type="text" class="input-field" autocomplete="off" name='ifscCode'
+                    <input type="text" className="input-field" autoComplete="off" name='ifscCode'
                       onChange={handleChange} />
                   </div>
 
                 </div>
                 <input type="submit" value="Register" className="sign-btn" onClick={handleSubmit} />
 
-                <p class="text">
+                <p className="text">
                   By signing up, I agree to the
                   <a href="#">Terms of Services</a> and
                   <a href="#">Privacy Policy</a>
                 </p>
               </div>
             </form>
-            <form action="index.html" autoComplete="off" className="sign-in-form">
+            <form autoComplete="off" className="sign-in-form" >
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -217,20 +281,33 @@ const BuyerSignup = () => {
               </div>
 
               <div className="actual-form">
+                <div class="identify">
+                  <p class="light">Login As:</p>
 
+                  <div class="input-wrap">
+
+                    <select name="role" id="type-id"
+                      onChange={handleChange2}>
+                      <option id="nd" value="">Select An Option</option>
+                      <option id="drk" value="bidder">Bidder</option>
+                      <option id="drk" value="seller">Seller</option>
+                    </select>
+
+                  </div>
+                </div>
                 <div class="input-wrap">
-                  <input type="text" class="input-field" autocomplete="off" />
+                  <input type="text" class="input-field" autocomplete="off" onChange={handleChange2} />
                   <label className='active'>Username</label>
                 </div>
 
-                <div class="input-wrap">
-                  <input type="password" class="input-field" autocomplete="off" />
+                <div className="input-wrap">
+                  <input type="password" class="input-field" autoComplete="off" onChange={handleChange2} />
                   <label className='active'>Password</label>
                 </div>
 
-                <input type="submit" value="Login" class="sign-btn" />
+                <input type="submit" value="Login" className="sign-btn" onSubmit={handleSubmit2} />
 
-                <p class="text">
+                <p className="text">
                   Forgotten your password or you login datails?&nbsp;
                   <a href="#">Get help</a> signing in
                 </p>

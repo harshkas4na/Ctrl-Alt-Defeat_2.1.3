@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const bidderschema = new mongoose.Schema({
+    role: String,
     name: String,
     username: String,
     profileType: String,
@@ -16,8 +17,7 @@ const bidderschema = new mongoose.Schema({
     expiryDate: String,
     cardHolderName: String,
     ifscCode: String,
-    bankName: String,
-    pancardId: String
+
 });
 
 export const Bidders = mongoose.model('Bidders', bidderschema);

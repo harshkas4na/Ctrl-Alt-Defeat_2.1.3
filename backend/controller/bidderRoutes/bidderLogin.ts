@@ -4,7 +4,7 @@ import { generateTokenBidder } from '../jwtTokenGeneration/bidderToken'
 
 export const bidderLogin = async (req: Request, res: Response) => {
     try {
-        const bidder = await Bidders.findOne({ username: req.body.username, password: req.body.password });
+        const bidder = await Bidders.findOne({ username: req.body.username, password: req.body.password, role: req.body.role });
         if (!bidder) {
             res.status(401).json({ message: 'Bidder not found' })
         }
@@ -12,7 +12,7 @@ export const bidderLogin = async (req: Request, res: Response) => {
             //@ts-ignore
             const token = generateTokenBidder(bidder._id);
             res.cookie('token', token);
-            return res.status(200).json({
+            return res.status(201).json({
                 message: 'Bidder logged in successfully'
             });
         }
