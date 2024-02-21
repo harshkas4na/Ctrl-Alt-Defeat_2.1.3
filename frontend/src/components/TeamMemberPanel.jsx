@@ -1,8 +1,8 @@
 import React from 'react';
-import Armaan from '../pages/images/Armaan.jpeg';
+import Armaan from '../pages/images/Armaan.jpg'
 import Harsh from '../pages/images/Harsh.jpeg';
-import Prakhar from '../pages/images/Prakhar.jpeg';
-import Naman from '../pages/images/Naman.jpeg';
+import Prakhar from '../pages/images/Prakhar.jpg'
+import Naman from '../pages/images/Naman.jpg'
 
 const TeamMemberPanel = ({ photo, name, role }) => {
   return (

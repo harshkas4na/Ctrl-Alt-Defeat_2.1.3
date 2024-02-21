@@ -7,28 +7,28 @@ const OurStars = () => {
 
   // Sample data for top sellers and buyers
   const topSellers = [
-    { name: 'John Doe', info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', achievements: '1000+ items sold', rating: 4.5 },
-    { name: 'Jane Smith', info: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: '500+ satisfied customers', rating: 4.8 },
-    { name: 'Jane Smith', info: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: '500+ satisfied customers', rating: 4.8 },
-    { name: 'Jane Smith', info: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: '500+ satisfied customers', rating: 4.8 },
-    { name: 'Jane Smith', info: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: '500+ satisfied customers', rating: 4.8 },
-    { name: 'Michael Johnson', info: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.', achievements: 'Successful auctions in various categories', rating: 4.7 },
+    { name: 'John Doe', info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', achievements: '1000+ items sold', rating: 5 },
+    { name: 'Jane Smith', info: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: '500+ satisfied customers', rating: 5 },
+    { name: 'Jane Smith', info: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: '500+ satisfied customers', rating: 5 },
+    { name: 'Jane Smith', info: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: '500+ satisfied customers', rating: 4 },
+    { name: 'Jane Smith', info: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: '500+ satisfied customers', rating: 4 },
+    { name: 'Michael Johnson', info: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.', achievements: 'Successful auctions in various categories', rating: 3 },
     // Add more top sellers as needed
   ];
 
   const topBuyers = [
-    { name: 'Alice Johnson', info: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.', achievements: 'Winner of multiple bidding contests', rating: 4.7 },
-    { name: 'Robert Williams', info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', achievements: 'Active participant in auctions', rating: 4.3 },
-    { name: 'Robert Williams', info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', achievements: 'Active participant in auctions', rating: 4.3 },
-    { name: 'Robert Williams', info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', achievements: 'Active participant in auctions', rating: 4.3 },
-    { name: 'Emily Brown', info: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: 'Highly rated buyer with prompt payments', rating: 4.6 },
+    { name: 'Alice Johnson', info: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.', achievements: 'Winner of multiple bidding contests', rating: 5 },
+    { name: 'Robert Williams', info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', achievements: 'Active participant in auctions', rating: 4 },
+    { name: 'Robert Williams', info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', achievements: 'Active participant in auctions', rating: 4 },
+    { name: 'Robert Williams', info: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', achievements: 'Active participant in auctions', rating: 4 },
+    { name: 'Emily Brown', info: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', achievements: 'Highly rated buyer with prompt payments', rating: 3 },
     // Add more top buyers as needed
   ];
 
   // Function to generate star emojis based on rating
   const renderStars = (rating) => {
     const stars = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 1; i <=5; i++) {
       if (i < rating) {
         stars.push('⭐'); // Filled star emoji
       } else {
