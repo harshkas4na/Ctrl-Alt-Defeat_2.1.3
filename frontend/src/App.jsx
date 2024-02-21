@@ -14,6 +14,8 @@ import SellerSignup from './pages/SellerSignup';
 import BuyerSignup from './pages/BuyerSignup';
 import SubscriptionPlan from './pages/SubscriptionPlan'
 import Chat from './pages/Chat';
+import Terms from './pages/Terms'
+import Privacy from './pages/Privacy';
 
 
 const App = () => {
@@ -37,6 +39,11 @@ const App = () => {
           <Route path="/SellerSignup" element={<SellerSignup />} />
           <Route path="/BuyerSignup" element={<BuyerSignup />} />
           <Route path="/UpgradePlan" element={<SubscriptionPlan />} />
+          <Route path="/SubscriptionPlan" element={<SubscriptionPlan />} />
+          <Route path="/Terms" element={<Terms />} />
+          <Route path="/Privacy" element={<Privacy />} />
+
+
 
       <Route path="/Chat" element={<Chat />} />
         </Routes>

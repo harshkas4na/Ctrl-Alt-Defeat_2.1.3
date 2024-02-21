@@ -135,9 +135,23 @@ const BuyerSignup = () => {
               </div>
 
               <div className="actual-form">
-                <div className="scrollableArea">
-                  <div className="input-wrap">
-                    <input type="text" className="input-field" autoComplete="off" name="name"
+                <div class="scrollableArea">
+                <div class="identify">
+                    <p class="light">Register As:</p>
+
+                    <div class="input-wrap">
+
+                      <select name="role" id="type-id"
+                        onChange={handleChange}>
+                        <option id="nd" value="">Select An Option</option>
+                        <option id="drk" value="bidder">Bidder</option>
+                        <option id="drk" value="seller">Seller</option>
+                      </select>
+
+                    </div>
+                  </div>
+                  <div class="input-wrap">
+                    <input type="text" class="input-field" autocomplete="off" name="name"
                       onChange={handleChange} />
                     <label className='active'>Name</label>
                   </div>
@@ -265,9 +279,22 @@ const BuyerSignup = () => {
               </div>
 
               <div className="actual-form">
+              <div class="identify">
+                    <p class="light">Login As:</p>
 
-                <div className="input-wrap">
-                  <input type="text" name="username" className="input-field" autocomplete="off" onChange={handleChange2} />
+                    <div class="input-wrap">
+
+                      <select name="role" id="type-id"
+                        onChange={handleChange}>
+                        <option id="nd" value="">Select An Option</option>
+                        <option id="drk" value="bidder">Bidder</option>
+                        <option id="drk" value="seller">Seller</option>
+                      </select>
+
+                    </div>
+                  </div>
+                <div class="input-wrap">
+                  <input type="text" class="input-field" autocomplete="off" />
                   <label className='active'>Username</label>
                 </div>
 

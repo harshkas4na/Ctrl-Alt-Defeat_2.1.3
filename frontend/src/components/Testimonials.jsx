@@ -3,9 +3,9 @@ import React from 'react';
 const Testimonials = () => {
   // Sample data for testimonials
   const testimonials = [
-    { name: 'John Doe', position: 'CEO, Company ABC', message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis fringilla laoreet velit a tempus. Sed suscipit ultrices libero, non mattis erat consequat nec.' },
-    { name: 'Jane Smith', position: 'Founder, XYZ Corp', message: 'Nullam ut consectetur metus. Sed eu leo vel nisi efficitur pulvinar. Vestibulum non nulla et nisi rhoncus finibus. Curabitur malesuada orci et nunc ullamcorper, vitae consequat nulla ullamcorper.' },
-    { name: 'Michael Johnson', position: 'Marketing Manager, Company XYZ', message: 'Vivamus vitae felis nisl. Integer ac lorem vel quam accumsan efficitur. Mauris eget odio fermentum, pharetra metus nec, euismod magna. Aenean quis dolor et dui eleifend pretium.' },
+    { name: 'John Doe', position: 'CEO, Company ABC', message: '"Using this auction site was a game-changer! I found unique items, and the bidding process was a breeze. Definitely my go-to for rare finds!"' },
+    { name: 'Jane Smith', position: 'Founder, XYZ Corp', message: '"Auctioning my collectibles here was a joy. The platform is user-friendly, and the community is fantastic. Highly recommend for both buyers and sellers!"' },
+    { name: 'Michael Johnson', position: 'Marketing Manager, Company XYZ', message: 'Selling my antique jewelry was stress-free on this site. The interface is intuitive, and the audience is genuinely interested in quality items. Sold within days!"' },
     // Add more testimonials as needed
   ];
 

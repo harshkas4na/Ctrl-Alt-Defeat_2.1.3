@@ -7,9 +7,15 @@ const UpcomingEvents = () => {
     { name: 'Art Auction', date: 'February 25, 2024', time: '10:00 AM - 2:00 PM', description: 'Join us for our annual art auction featuring works from renowned artists.', type: 'Art' },
     { name: 'Antique Collectibles Sale', date: 'March 10, 2024', time: '9:00 AM - 5:00 PM', description: 'Browse through a wide selection of antique collectibles and find hidden treasures.', type: 'Antiques' },
     { name: 'Real Estate Auction', date: 'March 18, 2024', time: '12:00 PM - 4:00 PM', description: 'Discover your dream home at our real estate auction with properties across the city.', type: 'Real-Estate' },
+    { name: 'Real Estate Auction', date: 'March 16, 2024', time: '1:00 PM - 3:00 PM', description: 'Discover your dream home at our real estate auction with properties across the city.', type: 'Real-Estate' },
     { name: 'Real Estate Auction', date: 'March 18, 2024', time: '12:00 PM - 4:00 PM', description: 'Discover your dream home at our real estate auction with properties across the city.', type: 'Real-Estate' },
     { name: 'Real Estate Auction', date: 'March 18, 2024', time: '12:00 PM - 4:00 PM', description: 'Discover your dream home at our real estate auction with properties across the city.', type: 'Real-Estate' },
-    { name: 'Real Estate Auction', date: 'March 18, 2024', time: '12:00 PM - 4:00 PM', description: 'Discover your dream home at our real estate auction with properties across the city.', type: 'Real-Estate' },
+    { name: 'Jewelry Auction', date: 'March 8, 2024', time: '12:00 PM - 3:00 PM', description: 'Bid on exquisite diamond jewelry pieces crafted by renowned artisans.', type: 'Jewelry' },
+    { name: 'Jewelry Auction', date: 'March 15, 2024', time: '2:00 PM - 6:00 PM', description: 'Bid on exquisite diamond jewelry pieces crafted by renowned artisans.', type: 'Jewelry' },
+    { name: 'Jewelry Auction', date: 'March 22, 2024', time: '11:00 AM - 5:00 PM', description: 'Bid on exquisite diamond jewelry pieces crafted by renowned artisans.', type: 'Jewelry' },
+    { name: 'Cars Auction', date: 'March 5, 2024', time: '11:00 AM - 3:00 PM', description: 'Explore a collection of classic cars from different eras at our exclusive auction.', type: 'Cars' },
+    { name: 'Car Auction', date: 'March 12, 2024', time: '10:00 AM - 4:00 PM', description: 'Explore a collection of classic cars from different eras at our exclusive auction.', type: 'Cars' },
+    { name: 'Car Auction', date: 'March 20, 2024', time: '9:00 AM - 1:00 PM', description: 'Explore a collection of classic cars from different eras at our exclusive auction.', type: 'Cars' },
   ];
 
   return (
