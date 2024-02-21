@@ -14,8 +14,8 @@ const EventPage = () => {
 
   // Sample data for items being sold at the event
   const [eventItems,setEventItems] = useState([
-    { _id: 1, name: 'Artwork 1',seller:"armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100',seller:"armaan" },
-    { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150',seller:"prakhar" },
+    { _id: 1, name: 'Artwork 1',seller:"armaan", description: 'Description of Artwork 1', imagePic: '/artwork1.jpg', startingPrice: '$100' },
+    { _id: 2, name: 'Artwork 2',seller:'prakhar', description: 'Description of Artwork 2', imageUrl: '/artwork2.jpg', startingPrice: '$150' },
     // Add more items as needed
   ]);
   // const  GetRequest = async () => {

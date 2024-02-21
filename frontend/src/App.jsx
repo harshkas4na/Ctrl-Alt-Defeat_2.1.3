@@ -12,6 +12,7 @@ import SellerProfilePage from './pages/SellerProfilePage'
 import AddItemForm from './pages/AddItemForm';
 import SellerSignup from './pages/SellerSignup';
 import BuyerSignup from './pages/BuyerSignup';
+import Chat from './pages/Chat';
 
 
 const App = () => {
@@ -34,6 +35,8 @@ const App = () => {
           <Route path="/AddItemForm" element={<AddItemForm />} />
           <Route path="/SellerSignup" element={<SellerSignup />} />
           <Route path="/BuyerSignup" element={<BuyerSignup />} />
+          <Route path="/BuyerSignup" element={<BuyerSignup />} />
+          <Route path="/Chat" element={<Chat />} />
 
         </Routes>
       </BrowserRouter>
