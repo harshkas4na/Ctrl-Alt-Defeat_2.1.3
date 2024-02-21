@@ -29,6 +29,19 @@ const BuyerSignup = () => {
     ifscCode: ''
   });
 
+  const [formData2, setFormData2] = useState({
+    username: '',
+    password: ''
+  })
+
+  const handleChange2 = (e) => {
+    const { name, value } = e.target;
+    setFormData2({
+      ...formData2,
+      [name]: value
+    });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -36,6 +49,9 @@ const BuyerSignup = () => {
       [name]: value
     });
   };
+
+  window.localStorage.setItem("username", formData.username);
+  // window.localStorage.setItem("username", formData2.username);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,9 +63,40 @@ const BuyerSignup = () => {
         }
       });
       const Data = res.data;
+
+
       if (res.status === 201) {
         console.log(Data.message);
-        toast.success('Logged In Successfully');
+
+        toast.success('Signed In Successfully');
+        navigate("/");
+      } else {
+        console.log(Data.message);
+        toast.error(Data.errors || Data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error('An error occurred. Please try again.');
+    }
+
+
+    console.log(formData);
+  };
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+    // Perform backend validation here
+    try {
+      const res = await axios.post('http://localhost:3000/bidder/login', { ...formData2 }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const Data = res.data;
+      if (res.status === 201) {
+        console.log(Data.message);
+
+        toast.success('Signed In Successfully');
         navigate("/");
       } else {
         console.log(Data.message);
@@ -203,7 +250,7 @@ const BuyerSignup = () => {
                 </p>
               </div>
             </form>
-            <form action="index.html" autoComplete="off" className="sign-in-form">
+            <form autoComplete="off" className="sign-in-form" >
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -220,16 +267,16 @@ const BuyerSignup = () => {
               <div className="actual-form">
 
                 <div className="input-wrap">
-                  <input type="text" class="input-field" autocomplete="off" />
+                  <input type="text" name="username" className="input-field" autocomplete="off" onChange={handleChange2} />
                   <label className='active'>Username</label>
                 </div>
 
                 <div className="input-wrap">
-                  <input type="password" class="input-field" autoComplete="off" />
+                  <input type="password" class="input-field" autoComplete="off" onChange={handleChange2} />
                   <label className='active'>Password</label>
                 </div>
 
-                <input type="submit" value="Login" className="sign-btn" />
+                <input type="submit" value="Login" className="sign-btn" onSubmit={handleSubmit2} />
 
                 <p className="text">
                   Forgotten your password or you login datails?&nbsp;
