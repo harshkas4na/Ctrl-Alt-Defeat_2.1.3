@@ -12,6 +12,8 @@ import SellerProfilePage from './pages/SellerProfilePage'
 import AddItemForm from './pages/AddItemForm';
 import SellerSignup from './pages/SellerSignup';
 import BuyerSignup from './pages/BuyerSignup';
+import SubscriptionPlan from './pages/SubscriptionPlan'
+import Terms from './pages/Terms'
 
 
 const App = () => {
@@ -34,6 +36,9 @@ const App = () => {
           <Route path="/AddItemForm" element={<AddItemForm />} />
           <Route path="/SellerSignup" element={<SellerSignup />} />
           <Route path="/BuyerSignup" element={<BuyerSignup />} />
+          <Route path="/SubscriptionPlan" element={<SubscriptionPlan />} />
+          <Route path="/Terms" element={<Terms />} />
+
 
         </Routes>
       </BrowserRouter>
