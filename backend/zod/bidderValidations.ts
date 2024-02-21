@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const BidderSchema = z.object({
+    role: z.string(),
     name: z.string(),
     username: z.string(),
     profileType: z.string().optional(),

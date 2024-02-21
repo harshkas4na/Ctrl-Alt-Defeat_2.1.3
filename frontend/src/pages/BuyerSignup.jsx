@@ -13,6 +13,7 @@ const BuyerSignup = () => {
   const [activeSlider, setActiveSlider] = useState(1);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    role: '',
     name: '',
     profileType: '',
     username: '',
@@ -30,6 +31,7 @@ const BuyerSignup = () => {
   });
 
   const [formData2, setFormData2] = useState({
+    role: '',
     username: '',
     password: ''
   })
@@ -285,7 +287,7 @@ const BuyerSignup = () => {
                   <div class="input-wrap">
 
                     <select name="role" id="type-id"
-                      onChange={handleChange}>
+                      onChange={handleChange2}>
                       <option id="nd" value="">Select An Option</option>
                       <option id="drk" value="bidder">Bidder</option>
                       <option id="drk" value="seller">Seller</option>
@@ -294,7 +296,7 @@ const BuyerSignup = () => {
                   </div>
                 </div>
                 <div class="input-wrap">
-                  <input type="text" class="input-field" autocomplete="off" />
+                  <input type="text" class="input-field" autocomplete="off" onChange={handleChange2} />
                   <label className='active'>Username</label>
                 </div>
 
