@@ -33,7 +33,7 @@ const SellerSignup = () => {
                   </div>
                   <div class="input-wrap itimg">
                     <input type="file" class="input-field" autocomplete="off" />
-                    <label className='active'>Item Image</label>
+                    <label className='active mt-9'>Item Image</label>
                   </div>
                   <div class="input-wrap">
                     <input type="text" class="input-field" autocomplete="off" />
