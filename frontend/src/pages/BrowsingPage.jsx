@@ -132,7 +132,7 @@ const BrowsingPage = () => {
     <div>
       <NavSpace />
       <div className="container mx-auto mt-8 p-4">
-        <Link to="/AddItemForm" className='font-bold text-xl mx-20 border-4 bg-slate-200 p-2 round-xl'>Add Item</Link>
+        {/* <Link to="/AddItemForm" className='font-bold text-xl mx-20 border-4 bg-slate-200 p-2 round-xl'>Add Item</Link> */}
         <Link to="/AddItemForm" className=" inline-block bg-primary text-white px-4 py-2 rounded-md h-10 mr-4 mb-2">Add Item</Link>
         {/* Search Bar */}
         <input
@@ -176,6 +176,7 @@ const BrowsingPage = () => {
               <p className="text-gray-600">Seller: {item.seller}</p>
               <p className="text-gray-600">Starting Price: {item.startingPrice}</p>
               <p className="text-gray-600">Item Status: {calculateTimeStatus(item.startTime, item.sold)}</p>
+              <Link to="/Chat" className=' inline-block bg-primary text-white px-4 py-2 rounded-md my-2 h-10 mr-4 mb-2'>Chat With Seller</Link>
               {/* <button className="bg-blue-500 text-white px-4 py-2 mt-2 rounded" onClick={() => handleViewDetails(item._id)}>View Availability</button>
               {selectedItem && selectedItem._id === item._id && (
                 <div className="mt-4">
