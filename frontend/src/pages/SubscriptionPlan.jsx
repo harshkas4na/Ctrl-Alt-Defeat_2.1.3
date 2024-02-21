@@ -9,6 +9,7 @@ const SellerSignup = () => {
   const [isSignUpMode, setSignUpMode] = useState(true);
   const [activeSlider, setActiveSlider] = useState(1);
   const [user, setUser] = useState('');
+  console.log(user);
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [subscription, setSubscription] = useState('');
@@ -21,28 +22,36 @@ const SellerSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post('http://localhost:3000/subscription/new', {
-      username: user,
-      email: email,
-      address: address,
-      subscription: subscription
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    if (res.status >= 200 && res.status < 300) {
-      console.log(res.data.message);
-      toast.success(res.data.message)
-      navigate("/");
-    }
-    else {
-      console.log(res.data.message);
-      toast.error(res.data.message);
+    // Check if any required fields are empty
+    if (!user || !email || !address || !subscription) {
+        return toast.error('Please fill in all required fields');
     }
 
+    try {
+        const res = await axios.post('http://localhost:3000/subscription/new', {
+            name: user,
+            email: email,
+            address: address,
+            subscription: subscription
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
 
-  }
+        // Handle success response
+        if (res.data.success) {
+            toast.success(res.data.message);
+            navigate("/");
+        } else {
+            toast.error(res.data.message);
+        }
+    } catch (error) {
+        console.error('Error while submitting subscription:', error);
+        toast.error('Failed to submit subscription');
+    }
+}
+
 
   return (
     <main className={`${isSignUpMode ? 'sign-up-mode' : ''}`}>

@@ -15,6 +15,7 @@ const item_1 = __importDefault(require("./routes/item"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const subscription_1 = __importDefault(require("./routes/subscription"));
+const body_parser_1 = __importDefault(require("body-parser")); // Import body-parser
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -25,6 +26,7 @@ const io = new socket_io_1.Server(server, {
 });
 app.use((0, cors_1.default)());
 app.use((0, cookie_parser_1.default)());
+app.use(body_parser_1.default.json()); // Use body-parser to parse JSON bodies
 app.use('/event', event_1.default);
 app.use('/seller', seller_1.default);
 app.use('/bidder', bidder_1.default);

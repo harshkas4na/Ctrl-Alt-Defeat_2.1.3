@@ -5,7 +5,7 @@ const subscriptionSchema = new mongoose.Schema({
     name: String,
     email: String,
     address: String,
-    Subscription: String
+    subscription: String
 })
 
 
