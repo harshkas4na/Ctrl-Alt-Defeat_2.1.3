@@ -22,7 +22,7 @@ const bidderLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             //@ts-ignore
             const token = (0, bidderToken_1.generateTokenBidder)(bidder._id);
             res.cookie('token', token);
-            return res.status(200).json({
+            return res.status(201).json({
                 message: 'Bidder logged in successfully'
             });
         }

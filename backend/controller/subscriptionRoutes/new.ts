@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Subscriptions } from "../../db/subscriptionSchema";
-import { subscriptionSchema } from "../../zod/subscriptionValidation";
+// import { subscriptionSchema } from "../../zod/subscriptionValidation";
 
 export const newSubscription = async (req: Request, res: Response) => {
     try {
