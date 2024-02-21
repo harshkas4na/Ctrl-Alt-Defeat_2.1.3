@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import './SubscriptionPlan.css'; // Import your stylesheet
+import './PagesCss/SubscriptionPlan.css'; // Import your stylesheet
 import logo from './MainContainerImages/logo-name.png';
-import carousel1 from './img/carousel1.png';
-import carousel2 from './img/carousel2.png';
-import carousel3 from './img/carousel3.png';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const SellerSignup = () => {
   const [isSignUpMode, setSignUpMode] = useState(true);
@@ -14,13 +12,14 @@ const SellerSignup = () => {
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [subscription, setSubscription] = useState('');
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     setSignUpMode(!isSignUpMode);
   };
 
   const handleSubmit = async (e) => {
-    e.preventDeafault();
+    e.preventDefault();
 
     const res = await axios.post('http://localhost:3000/subscription/new', {
       username: user,
@@ -50,19 +49,19 @@ const SellerSignup = () => {
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
-            <form action="index.html" autoComplete="off" className="sign-up-form">
+            <form className="sign-up-form" onSubmit={handleSubmit} >
 
               <div className="actual-form">
-                <div class="scrollableArea">
+                <div className="scrollableArea">
                   <p className='mb-3'>Subscription Plan</p>
-                  <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" onChange={(e) => {
+                  <div className="input-wrap">
+                    <input type="text" className="input-field" onChange={(e) => {
                       setUser(e.target.value)
                     }} />
                     <label className='active '>Username:</label>
                   </div>
-                  <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" onChange={(e) => {
+                  <div className="input-wrap">
+                    <input type="text" className="input-field" onChange={(e) => {
                       setEmail(e.target.value)
                     }} />
                     <label className='active'>Email</label>
@@ -71,17 +70,17 @@ const SellerSignup = () => {
                     <input type="file" class="input-field" autocomplete="off" />
                     <label className='active'>Item Image</label>
                   </div> */}
-                  <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" onChange={(e) => {
+                  <div className="input-wrap">
+                    <input type="text" className="input-field" onChange={(e) => {
                       setAddress(e.target.value)
                     }} />
                     <label className='active'>Address</label>
                   </div>
 
-                  <div class="identify">
-                    <p class="light">Subscription :</p>
+                  <div className="identify">
+                    <p className="light">Subscription :</p>
 
-                    <div class="input-wrap">
+                    <div className="input-wrap">
 
                       <select name="id" id="type-id" onChange={(e) => {
                         setSubscription(e.target.value)
@@ -95,7 +94,7 @@ const SellerSignup = () => {
                   </div>
 
                 </div>
-                <input type="submit" value="Submit" className="sign-btn" onClick={handleSubmit} />
+                <input type="submit" value="Submit" className="sign-btn" />
 
                 <p class="text">
                   By signing up, I agree to the
