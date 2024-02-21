@@ -69,8 +69,8 @@ const MainContainer = () => {
     if (!loggedIn) {
       return (
         <div>
-          <button className="signin" onClick={signinHandler}>SIGN<span>&nbsp;IN</span></button>
-          <button className="signup" onClick={signupHandler}>SIGN<span>&nbsp;UP</span></button>
+          <button className="signin" onClick={signinHandler}>LOG<span>&nbsp;IN</span></button>
+          <button className="signup" onClick={signupHandler}>REGISTER</button>
           <Link to="/BuyerProfilePage" className=' profile '>Profile</Link>
         </div>
       )
