@@ -1,24 +1,121 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState,useMemo } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 import './PagesCss/BuyerRegister.css'; // Import your stylesheet
 import logo from './img/logo.png';
 import carousel1 from './img/carousel1.png';
 import carousel2 from './img/carousel2.png';
 import carousel3 from './img/carousel3.png';
+import { useNavigate } from 'react-router-dom';
 
 const SellerSignup = () => {
   const [isSignUpMode, setSignUpMode] = useState(false);
   const [activeSlider, setActiveSlider] = useState(1);
 
+  const navigate=useNavigate();
+
+  const [formData, setFormData] = useState({
+    role: '',
+    name: '',
+    profileType: '',
+    username: '',
+    email: '',
+    password: '',
+    phone: '',
+    address: '',
+    idType: '',
+    idNumber: '',
+    accountType: '',
+    cardHolderName: '',
+    cardNumber: '',
+    expiryDate: '',
+    ifscCode: ''
+  });
+
+  const [formData2, setFormData2] = useState({
+    role: '',
+    username: '',
+    password: ''
+  })
+
   const handleToggle = () => {
     setSignUpMode(!isSignUpMode);
   };
 
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+  const handleChange2 = (e) => {
+    const { name, value } = e.target;
+    setFormData2({
+      ...formData2,
+      [name]: value
+    });
+  };
+  useMemo(()=>{
+    if(formData2?.role === "seller"){
+      console.log("SellerLogin")
+      navigate('/SellerLogin')
+    }
+    else{
+      navigate('/BuyerLogin')
+    }
+  },[formData2.role])
+
+  useMemo(()=>{
+    if(formData?.role === "seller"){
+      navigate('/SellerSignup')
+    }
+    else{
+      navigate('/BuyerSignup')
+    }
+  },[formData.role])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Perform backend validation here
+    try {
+      console.log(formData)
+      const res = await axios.post('http://localhost:3000/seller/signup', { ...formData }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const Data = res.data;
+      
+
+      if (res.status === 201) {
+        console.log(Data.message);
+
+        toast.success('Signed In Successfully');
+        navigate("/");
+      } else {
+        console.log(Data.message);
+        toast.error(Data.errors || Data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error('An error occurred. Please try again.');
+    }
+
+
+   
+  };
+
+  
+  
+
   return (
-    <main className={`${isSignUpMode ? 'sign-up-mode' : ''}`}>
+    <main className={`${isSignUpMode ? '' : 'sign-up-mode'}`}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
-            <form action="index.html" autoComplete="off" className="sign-up-form">
+            <form action="" autoComplete="off" className="sign-up-form">
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -31,27 +128,39 @@ const SellerSignup = () => {
                   Login
                 </a>
               </div>
+              <div className="input-wrap flex mt-6 ">
+                     <p class="light">Register As:</p>
 
+                      <select name="role" className=" max-h-6" id="type-id"
+                        onChange={handleChange}>
+                        
+                        <option id="drk" value="seller">Seller</option>
+                        <option id="drk" value="bidder">Bidder</option>
+                      </select>
+
+                    </div>
+                   
               <div className="actual-form">
-                <div class="scrollableArea">
+                <div className="scrollableArea">
                   <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" />
+                    <input type="text" className="input-field" name='name' onChange={handleChange} autocomplete="off" />
                     <label className='active'>Name</label>
                   </div>
                   <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" />
+                    <input type="text" class="input-field" name='username' onChange={handleChange} autocomplete="off" />
                     <label className='active'>Username</label>
                   </div>
                   <div class="input-wrap">
-                    <input type="email" class="input-field" autocomplete="off" />
+                    <input type="email" class="input-field" name='email' onChange={handleChange} autocomplete="off" />
                     <label className='active'>Email</label>
                   </div>
+                 
                   <div class="input-wrap">
-                    <input type="password" class="input-field" autocomplete="off" />
+                    <input type="password" class="input-field" name='password' onChange={handleChange} autocomplete="off" />
                     <label className='active'>Password</label>
                   </div>
                   <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" />
+                    <input type="text" class="input-field" name='phone' onChange={handleChange} autocomplete="off" />
                     <label className='active'>Phone number</label>
                   </div>
                   <div class="identify">
@@ -59,7 +168,7 @@ const SellerSignup = () => {
 
                     <div class="input-wrap">
 
-                      <select name="id" id="type-id">
+                      <select name="idType" onChange={handleChange} id="type-id">
                         <option id="nd" value="">Select An Option</option>
                         <option id="drk" value="Adhar-Card">Adhar Card</option>
                         <option id="drk" value="Driving License">Drying License</option>
@@ -68,24 +177,21 @@ const SellerSignup = () => {
 
                     </div>
                   </div>
+                   
                   <div class="input-wrap">
                     <label className='active'>id - no </label>
-                    <input type="txt" class="input-field" autocomplete="off" />
+                    <input type="txt" name='idNumber' class="input-field" onChange={handleChange} autocomplete="off" />
                   </div>
 
                   <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" />
+                    <input type="text" name='address' class="input-field" onChange={handleChange} autocomplete="off" />
                     <label className='active'>Address</label>
                   </div>
-
-
-
-
 
                   <div class="identify">
                     <p class="light">Account Type :&nbsp;</p>
                     <div class="input-wrap">
-                      <select name="addr" id="type-card">
+                      <select name="accountType" id="type-card" onChange={handleChange}>
                         <option id="nd" value="">Select Card Option</option>
                         <option id="drk" value="Credit Card">Credit Card</option>
                         <option id="drk" value="Debit Card">Debit Card</option>
@@ -94,23 +200,23 @@ const SellerSignup = () => {
                   </div>
                   <div class="input-wrap">
                     <label className='active'>Card Holder Name</label>
-                    <input type="text" class="input-field" id="card" autocomplete="off" />
+                    <input type="text" name='cardHolderName' class="input-field" id="card" onChange={handleChange} autocomplete="off" />
                   </div>
                   <div class="input-wrap">
                     <label className='active'>Card Number</label>
-                    <input type="text" class="input-field" autocomplete="off" />
+                    <input type="text" class="input-field" name='cardNumber' onChange={handleChange} autocomplete="off" />
                   </div>
                   <div class="input-wrap">
                     <label className='active'>Expiry Date</label>
-                    <input type="text" class="input-field" id="card" autocomplete="off" />
+                    <input type="text" class="input-field" name='expiryDate' onChange={handleChange} id="card" autocomplete="off" />
                   </div>
                   <div class="input-wrap">
                     <label className='active'>IFSC Code</label>
-                    <input type="text" class="input-field" autocomplete="off" />
+                    <input type="text" class="input-field" name='ifscCode' onChange={handleChange} autocomplete="off" />
                   </div>
 
                 </div>
-                <input type="submit" value="Register" className="sign-btn" />
+                <input type="submit" value="Register"  onClick={handleSubmit} className="sign-btn" />
 
                 <p class="text">
                   By signing up, I agree to the
@@ -132,6 +238,20 @@ const SellerSignup = () => {
                   Register
                 </a>
               </div>
+              <div class="identify mb-6">
+                  <p class="light">Login As:</p>
+
+                  <div className="input-wrap ">
+
+                    <select name="role" id="type-id"
+                      onChange={handleChange2}>
+                      
+                      <option id="drk" value="bidder">Bidder</option>
+                      <option id="drk" value="seller">Seller</option>
+                    </select>
+
+                  </div>
+                </div>
 
               <div className="actual-form">
 

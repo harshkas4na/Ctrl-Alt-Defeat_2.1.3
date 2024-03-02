@@ -21,7 +21,7 @@ const MainContainer = () => {
 
 
   const signinHandler = () => {
-    navigate('/BuyerSignup');
+    navigate('/BuyerLogin');
   }
 
   const signupHandler = () => {

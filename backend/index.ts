@@ -32,7 +32,10 @@ app.use('/item', itemRoutes);
 app.use('/subscription', subscriptionRoutes);
 
 connect('mongodb+srv://namandevv45:XcaNAef52r7n9GF8@cluster0.mttpu48.mongodb.net/Subasta', { dbName: 'Subasta' });
-io.on('connection', (socket: any) => {
+
+
+
+io.on('connection', (socket) => {
     console.log('user connected', socket.id);
 
     socket.on('disconnect', () => {

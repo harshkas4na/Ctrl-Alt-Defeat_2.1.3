@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect,useMemo } from 'react';
 import './PagesCss/BuyerRegister.css'; // Import your stylesheet
 import logo from './img/logo.png';
 import carousel1 from './img/carousel1.png';
@@ -35,6 +35,26 @@ const BuyerSignup = () => {
     username: '',
     password: ''
   })
+
+  useMemo(()=>{
+    if(formData2?.role === "seller"){
+      console.log("SellerLogin")
+      navigate('/SellerLogin')
+    }
+    else{
+      navigate('/BuyerLogin')
+    }
+  },[formData2.role])
+
+  useMemo(()=>{
+    if(formData?.role === "seller"){
+      navigate('/SellerSignup')
+    }
+    else{
+      navigate('/BuyerSignup')
+    }
+  },[formData.role])
+
 
   const handleChange2 = (e) => {
     const { name, value } = e.target;
@@ -82,10 +102,10 @@ const BuyerSignup = () => {
     }
 
 
-    console.log(formData);
+    
   };
 
-  const handleSubmit2 = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     // Perform backend validation here
     try {
@@ -98,19 +118,19 @@ const BuyerSignup = () => {
       if (res.status === 201) {
         console.log(Data.message);
 
-        toast.success('Signed In Successfully');
+        alert('Signed In Successfully');
         navigate("/");
       } else {
         console.log(Data.message);
-        toast.error(Data.errors || Data.message);
+        alert(Data.errors || Data.message);
       }
     } catch (error) {
       console.error(error.message);
-      toast.error('An error occurred. Please try again.');
+      alert('An error occurred. Please try again.');
     }
 
 
-    console.log(formData);
+    
   };
 
   const handleToggle = () => {
@@ -118,11 +138,11 @@ const BuyerSignup = () => {
   };
 
   return (
-    <main className={`${isSignUpMode ? 'sign-up-mode' : ''}`}>
+    <main className={`${isSignUpMode ? '' : 'sign-up-mode'}`}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
-            <form action="index.html" autoComplete="off" className="sign-up-form">
+            <form action="" autoComplete="off" className="sign-up-form">
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -138,14 +158,14 @@ const BuyerSignup = () => {
 
               <div className="actual-form">
                 <div class="scrollableArea">
-                  <div class="identify">
+                  <div class="identify mb-6">
                     <p class="light">Register As:</p>
 
                     <div class="input-wrap">
 
                       <select name="role" id="type-id"
                         onChange={handleChange}>
-                        <option id="nd" value="">Select An Option</option>
+                        
                         <option id="drk" value="bidder">Bidder</option>
                         <option id="drk" value="seller">Seller</option>
                       </select>
@@ -281,14 +301,14 @@ const BuyerSignup = () => {
               </div>
 
               <div className="actual-form">
-                <div class="identify">
+              <div class="identify mb-6">
                   <p class="light">Login As:</p>
 
-                  <div class="input-wrap">
+                  <div className="input-wrap ">
 
                     <select name="role" id="type-id"
                       onChange={handleChange2}>
-                      <option id="nd" value="">Select An Option</option>
+                      
                       <option id="drk" value="bidder">Bidder</option>
                       <option id="drk" value="seller">Seller</option>
                     </select>
@@ -296,16 +316,16 @@ const BuyerSignup = () => {
                   </div>
                 </div>
                 <div class="input-wrap">
-                  <input type="text" class="input-field" autocomplete="off" onChange={handleChange2} />
+                  <input type="text" name='username' class="input-field" autocomplete="off" onChange={handleChange2} />
                   <label className='active'>Username</label>
                 </div>
 
                 <div className="input-wrap">
-                  <input type="password" class="input-field" autoComplete="off" onChange={handleChange2} />
+                  <input type="password" name='password' class="input-field" autoComplete="off" onChange={handleChange2} />
                   <label className='active'>Password</label>
                 </div>
 
-                <input type="submit" value="Login" className="sign-btn" onSubmit={handleSubmit2} />
+                <input type="submit" value="Login" className="sign-btn" onSubmit={handleLogin} />
 
                 <p className="text">
                   Forgotten your password or you login datails?&nbsp;
