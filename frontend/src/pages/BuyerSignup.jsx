@@ -38,7 +38,7 @@ const BuyerSignup = () => {
 
   useMemo(()=>{
     if(formData2?.role === "seller"){
-      console.log("SellerLogin")
+      
       navigate('/SellerLogin')
     }
     else{
@@ -88,12 +88,12 @@ const BuyerSignup = () => {
 
 
       if (res.status === 201) {
-        console.log(Data.message);
+        
 
         toast.success('Signed In Successfully');
         navigate("/");
       } else {
-        console.log(Data.message);
+        
         toast.error(Data.errors || Data.message);
       }
     } catch (error) {
@@ -114,14 +114,15 @@ const BuyerSignup = () => {
           'Content-Type': 'application/json'
         }
       });
-      const Data = res.data;
+      const Data = res?.data;
+      
       if (res.status === 201) {
-        console.log(Data.message);
+        
 
         alert('Signed In Successfully');
         navigate("/");
       } else {
-        console.log(Data.message);
+        
         alert(Data.errors || Data.message);
       }
     } catch (error) {
@@ -173,7 +174,7 @@ const BuyerSignup = () => {
                     </div>
                   </div>
                   <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" name="name"
+                    <input type="text" class="input-field" autoComplete="off" name="name"
                       onChange={handleChange} />
                     <label className='active'>Name</label>
                   </div>
@@ -286,7 +287,7 @@ const BuyerSignup = () => {
                 </p>
               </div>
             </form>
-            <form autoComplete="off" className="sign-in-form" >
+            <form autoComplete="off" onSubmit={handleLogin} className="sign-in-form" >
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -316,7 +317,7 @@ const BuyerSignup = () => {
                   </div>
                 </div>
                 <div class="input-wrap">
-                  <input type="text" name='username' class="input-field" autocomplete="off" onChange={handleChange2} />
+                  <input type="text" name='username' class="input-field" autoComplete="off" onChange={handleChange2} />
                   <label className='active'>Username</label>
                 </div>
 
@@ -325,7 +326,7 @@ const BuyerSignup = () => {
                   <label className='active'>Password</label>
                 </div>
 
-                <input type="submit" value="Login" className="sign-btn" onSubmit={handleLogin} />
+                <input type="submit" value="Login" className="sign-btn" onClick={handleLogin} />
 
                 <p className="text">
                   Forgotten your password or you login datails?&nbsp;

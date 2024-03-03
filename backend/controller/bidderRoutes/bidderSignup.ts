@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Bidders } from '../../db/bidderSchema';
 import { BidderSchema } from '../../zod/bidderValidations';
+import { generateTokenBidder } from '../jwtTokenGeneration/bidderToken'
 
 export const bidderSignup = async (req: Request, res: Response) => {
     try {
@@ -25,7 +26,8 @@ export const bidderSignup = async (req: Request, res: Response) => {
 
         const newBidder = new Bidders({ ...req.body, purchasedItems: [] });
         await newBidder.save();
-        console.log('New bidder created:', newBidder.username);
+        // const bidder = await Bidders.findOne({ username: req.body.username, password: req.body.password, role: req.body.role });
+            // const token = generateTokenBidder(bidder._id);
         return res.status(201).json({ message: 'Bidder logged in successfully' });
     } catch (error) {
         console.error('Internal server error:', error);

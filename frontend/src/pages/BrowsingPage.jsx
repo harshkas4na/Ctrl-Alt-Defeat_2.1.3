@@ -57,7 +57,7 @@ const BrowsingPage = () => {
         }
         const data = await response.json();
         // Combine fetched items with sample items
-        console.log('Fetched items:', data);
+        
         setItems([...sampleItems, ...data]);
         setFilteredItems([...sampleItems, ...data]);
       } catch (error) {
@@ -115,7 +115,7 @@ const BrowsingPage = () => {
 
   const calculateTimeStatus = (startTime, sold) => {
     const currentTime = getCurrentTimeInFormat();
-    console.log("Current time:", currentTime);
+    
 
     if (sold) {
       return "Closed";

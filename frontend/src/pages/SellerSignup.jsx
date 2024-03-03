@@ -6,6 +6,7 @@ import logo from './img/logo.png';
 import carousel1 from './img/carousel1.png';
 import carousel2 from './img/carousel2.png';
 import carousel3 from './img/carousel3.png';
+
 import { useNavigate } from 'react-router-dom';
 
 const SellerSignup = () => {
@@ -92,8 +93,8 @@ const SellerSignup = () => {
       if (res.status === 201) {
         console.log(Data.message);
 
-        toast.success('Signed In Successfully');
         navigate("/");
+        toast.success('Signed In Successfully');
       } else {
         console.log(Data.message);
         toast.error(Data.errors || Data.message);
@@ -105,6 +106,35 @@ const SellerSignup = () => {
 
 
    
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    // Perform backend validation here
+    try {
+      const res = await axios.post('http://localhost:3000/seller/login', { ...formData2 }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const Data = res?.data;
+      console.log(Data);
+      if (res.status === 201) {
+        console.log(Data.message);
+
+        alert('Signed In Successfully');
+        navigate("/");
+      } else {
+        console.log(Data.message);
+        alert(Data.errors || Data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      alert('An error occurred. Please try again.');
+    }
+
+
+    
   };
 
   
@@ -225,7 +255,7 @@ const SellerSignup = () => {
                 </p>
               </div>
             </form>
-            <form action="index.html" autoComplete="off" className="sign-in-form">
+            <form action="" onSubmit={handleLogin} autoComplete="off" className="sign-in-form">
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -256,16 +286,16 @@ const SellerSignup = () => {
               <div className="actual-form">
 
                 <div class="input-wrap">
-                  <input type="text" class="input-field" autocomplete="off" />
+                  <input type="text" name='username' onChange={handleChange2} class="input-field" autocomplete="off" />
                   <label className='active'>Username</label>
                 </div>
 
                 <div class="input-wrap">
-                  <input type="password" class="input-field" autocomplete="off" />
+                  <input type="password" name='password' onChange={handleChange2} class="input-field" autocomplete="off" />
                   <label className='active'>Password</label>
                 </div>
 
-                <input type="submit" value="Login" class="sign-btn" />
+                <input type="submit" value="Login" onClick={handleLogin} class="sign-btn" />
 
                 <p class="text">
                   Forgotten your password or you login datails?&nbsp;

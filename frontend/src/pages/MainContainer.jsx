@@ -12,6 +12,8 @@ import About from './About';
 import BrowsingPage from './BrowsingPage';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userAtom } from '../store/userAtoms/user';
 
 const MainContainer = () => {
   const [active, setActive] = useState(false);
@@ -19,6 +21,7 @@ const MainContainer = () => {
   const loggedIn = false;
   const navigate = useNavigate();
 
+  const [user,setUser] = useRecoilState(userAtom);
 
   const signinHandler = () => {
     navigate('/BuyerLogin');
@@ -28,9 +31,10 @@ const MainContainer = () => {
     navigate('/BuyerSignup');
   }
 
-  useEffect(() => {
-    console.log(currentLink);
-  }, [currentLink]);
+  const signoutHandler = () => {
+    setUser(null);
+  }
+  
 
   const toggleMenu = () => {
     setActive(!active);
@@ -69,9 +73,22 @@ const MainContainer = () => {
     if (!loggedIn) {
       return (
         <div>
+          {
+          user?<><button className='logout' onClick={signoutHandler}>LOG OUT</button>
+          
+          {user?.role==="seller"?<Link to="/SellerProfilePage" className=' profile '>Profile</Link>:<Link to="/BuyerProfilePage" className='profile'>Profile</Link>}
+          </>
+          :
+          <>
           <button className="signin" onClick={signinHandler}>LOG<span>&nbsp;IN</span></button>
           <button className="signup" onClick={signupHandler}>REGISTER</button>
-          <Link to="/BuyerProfilePage" className=' profile '>Profile</Link>
+          
+          </>
+          }
+
+          
+        
+          
         </div>
       )
     } else {

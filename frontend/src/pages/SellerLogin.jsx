@@ -4,7 +4,11 @@ import logo from './img/logo.png';
 import carousel1 from './img/carousel1.png';
 import carousel2 from './img/carousel2.png';
 import carousel3 from './img/carousel3.png';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useRecoilState } from 'recoil';
+import { userAtom } from '../store/userAtoms/user';
 
 const SellerSignup = () => {
   const [isSignUpMode, setSignUpMode] = useState(false);
@@ -36,6 +40,12 @@ const SellerSignup = () => {
     password: ''
   })
 
+
+  const [user,setUser]=useRecoilState(userAtom)
+
+
+  console.log(user);
+
   const handleToggle = () => {
     setSignUpMode(!isSignUpMode);
   };
@@ -58,7 +68,7 @@ const SellerSignup = () => {
 
   useMemo(()=>{
     if(formData2?.role === "seller"){
-      console.log("SellerLogin")
+      
       navigate('/SellerLogin')
     }
     else{
@@ -82,7 +92,7 @@ const SellerSignup = () => {
     e.preventDefault();
     // Perform backend validation here
     try {
-      console.log(formData)
+      
       const res = await axios.post('http://localhost:3000/seller/signup', { ...formData }, {
         headers: {
           'Content-Type': 'application/json'
@@ -92,12 +102,12 @@ const SellerSignup = () => {
       
 
       if (res.status === 201) {
-        console.log(Data.message);
+        
 
         toast.success('Signed In Successfully');
         navigate("/");
       } else {
-        console.log(Data.message);
+        
         toast.error(Data.errors || Data.message);
       }
     } catch (error) {
@@ -107,6 +117,35 @@ const SellerSignup = () => {
 
 
    
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    // Perform backend validation here
+    try {
+      const res = await axios.post('http://localhost:3000/seller/login', { ...formData2 }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const Data = res?.data;
+     
+      if (res.status === 201) {
+        
+        setUser(Data.user);
+        navigate("/");
+        toast.success('Signed In Successfully 222');
+      } else {
+        
+        toast.error(Data.errors || Data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error('An error occurred. Please try again.');
+    }
+
+
+    
   };
 
   return (
@@ -226,7 +265,7 @@ const SellerSignup = () => {
                 </p>
               </div>
             </form>
-            <form action="index.html" autoComplete="off" className="sign-in-form">
+            <form action="" onSubmit={handleLogin} autoComplete="off" className="sign-in-form">
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -258,16 +297,16 @@ const SellerSignup = () => {
               <div className="actual-form">
 
                 <div class="input-wrap">
-                  <input type="text" class="input-field" autocomplete="off" />
+                  <input type="text" name='username' class="input-field" onChange={handleChange2} autocomplete="off" />
                   <label className='active'>Username</label>
                 </div>
 
                 <div class="input-wrap">
-                  <input type="password" class="input-field" autocomplete="off" />
+                  <input type="password" name='password' onChange={handleChange2} class="input-field" autocomplete="off" />
                   <label className='active'>Password</label>
                 </div>
 
-                <input type="submit" value="Login" class="sign-btn" />
+                <input type="submit" onClick={handleLogin} value="Login" class="sign-btn" />
 
                 <p class="text">
                   Forgotten your password or you login datails?&nbsp;

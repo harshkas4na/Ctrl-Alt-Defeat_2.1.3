@@ -8,6 +8,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import SellerSignup from './SellerSignup';
+import { useRecoilState } from 'recoil';
+import { userAtom } from '../store/userAtoms/user';
 
 const BuyerSignup = () => {
   const [isSignUpMode, setSignUpMode] = useState(false);
@@ -37,9 +39,15 @@ const BuyerSignup = () => {
     password: ''
   })
 
+
+  const [user,setUser]=useRecoilState(userAtom)
+
+
+
+
   useMemo(()=>{
     if(formData2?.role === "seller"){
-      console.log("SellerLogin")
+      
       navigate('/SellerLogin')
     }
     else{
@@ -91,12 +99,12 @@ const BuyerSignup = () => {
 
 
       if (res.status === 201) {
-        console.log(Data.message);
+        
 
         toast.success('Signed In Successfully');
         navigate("/");
       } else {
-        console.log(Data.message);
+        
         toast.error(Data.errors || Data.message);
       }
     } catch (error) {
@@ -118,14 +126,17 @@ const BuyerSignup = () => {
         }
       });
       const Data = res.data;
+      
+     
       if (res.status === 201) {
-        console.log(Data.message);
+        
+        setUser(Data.user);
 
         alert('Signed In Successfully');
         navigate("/");
       } else {
         
-        console.log(Data.message);
+       
         alert(Data.errors || Data.message);
       }
     } catch (error) {
@@ -134,8 +145,8 @@ const BuyerSignup = () => {
     }
 
 
-    console.log(formData);
   };
+  
 
   const handleToggle = () => {
     setSignUpMode(!isSignUpMode);
@@ -289,7 +300,7 @@ const BuyerSignup = () => {
                 </p>
               </div>
             </form>
-            <form autoComplete="off" className="sign-in-form" >
+            <form autoComplete="off" onSubmit={handleLogin} className="sign-in-form" >
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -328,7 +339,7 @@ const BuyerSignup = () => {
                   <label className='active'>Password</label>
                 </div>
 
-                <input type="submit" value="Login" className="sign-btn" onSubmit={handleLogin} />
+                <input type="submit" value="Login" className="sign-btn" onClick={handleLogin} />
 
                 <p className="text">
                   Forgotten your password or you login datails?&nbsp;

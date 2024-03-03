@@ -12,13 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addItem = void 0;
 const itemsSchema_1 = require("../../db/itemsSchema");
 const sellerSchema_1 = require("../../db/sellerSchema");
-const newItemValidation_1 = require("../../zod/newItemValidation");
 const addItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const validationResult = newItemValidation_1.ItemSchema.safeParse(req.body);
-        if (!validationResult.success) {
-            return res.status(400).json({ message: 'Validation error', errors: validationResult.error.errors });
-        }
+        // const validationResult = ItemSchema.safeParse(req.body);
+        // if (!validationResult.success) {
+        //     return res.status(400).json({ message: 'Validation error', errors: validationResult.error.errors });
+        // }
         const sellerId = req.params.sellerId;
         const { name } = req.body;
         const item = yield itemsSchema_1.Items.findOne({ name: name });

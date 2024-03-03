@@ -39,7 +39,7 @@ const EventsPage = () => {
     { id: 7, category: 'Real-Estate', name: 'Urban Condo Auction', date: 'March 25, 2024', time: '11:00 AM - 3:00 PM', description: 'Discover stylish urban condos in prime locations up for auction.' },
     // Add more events as needed
   ]);
-  // console.log(events);
+  
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('newest'); // Default sorting option
 
@@ -79,7 +79,7 @@ const EventsPage = () => {
   }
 
 
-  console.log(events);
+ 
 
   return (
     <div>

@@ -50,7 +50,7 @@ const EventPage = () => {
       console.error('Error fetching items:', error.message);
     }
   };
-  console.log(eventItems);
+  
 
   useEffect(() => {
     GetItems();

@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import './PagesCss/BuyerProfilePage.css';
 import Profile from './images/profile_icon.png';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '../store/userAtoms/user';
 
 const ProfilePage = () => {
+  const user = useRecoilValue(userAtom)
+  console.log(user);
+  let buyer;
+  // if(user?.role==="buyer"){
+  if(true){
+    buyer=user;
+  }
+  else{
+    buyer=null;
+  }
+
+  
+  
+
   return (
     <div className=' bg-[#7b3421] flex justify-center items-center w-full h-screen'>
-      <div className="container flex flex-col justify-between rounded-[3.3rem] shadow-[0_60px_40px_-30px_rgba(0, 0, 0, 0.27)] w-full h-[90%] mx-auto px-8 py-8 bg-slate-200">
+      <div className="container flex flex-col overflow-auto no-scrollbar justify-between rounded-[3.3rem] shadow-[0_60px_40px_-30px_rgba(0, 0, 0, 0.27)] w-full h-[90%] mx-auto px-8 py-8 bg-slate-200">
         <div className="flex justify-between items-center bg-[#a066569a] rounded-3xl px-4 py-4">
           <div>
             <h1 className="text-4xl text-[#343a40] pop-h1">Profile</h1>
@@ -24,31 +41,31 @@ const ProfilePage = () => {
           <div className="flex flex-wrap relative">
             <div className="w-1/2 mb-4 flex justify-start items-center">
               <label className="block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h3">Name:</label>
-              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4 '>John Doe</p>
+              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4 '>{buyer?.name}</p>
             </div>
             <div className="w-1/2 mb-4 flex justify-start items-center">
               <label className="block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h3">Profile Type:</label>
-              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>Public</p>
+              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.profileType}</p>
             </div>
             <div className="w-1/2 mb-4 flex justify-start items-center">
               <label className="block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h3">Email:</label>
-              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4'>johndoe123@example.com</p>
+              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.email}</p>
             </div>
             <div className="w-1/2 mb-4 flex justify-start items-center">
               <label className="block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h3">Phone number:</label>
-              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>9876543210</p>
+              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.phone}</p>
             </div>
             <div className="w-1/2 mb-4 flex justify-start items-center">
               <label className="block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h3">Address:</label>
-              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>Indian Institute Of Information Technology, Nagpur</p>
+              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.address}</p>
             </div>
             <div className="w-1/2 mb-4 flex justify-start items-center">
               <label className="block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h3">ID Type:</label>
-              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4'>EPIC Card</p>
+              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.idType}</p>
             </div>
             <div className="w-1/2 mb-4 flex justify-start items-center" >
               <label className="block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h3">ID Number:</label>
-              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4'>6743-1847-3468</p>
+              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.idNumber}</p>
             </div>
           </div>
           <button className="bg-primary text-white px-4 py-2 rounded-md">Edit Profile</button>
@@ -60,15 +77,15 @@ const ProfilePage = () => {
           <div className="flex flex-wrap relative">
             <div className="w-1/2 mb-4 flex">
               <label className="block text-lg relative  text-[#5c5757] flex-shrink-0 mr-2 pop-h3">Card Type:</label>
-              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>Credit</p>
+              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.accountType}</p>
             </div>
             <div className="w-1/2 mb-4 flex">
               <label className="block text-lg relative  text-[#5c5757] flex-shrink-0 mr-2 pop-h3">Card Holder Name:</label>
-              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4'>John Doe</p>
+              <p className='block text-lg relative text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.cardHolderName}</p>
             </div>
             <div className="w-1/2 mb-4 flex">
               <label className="block text-lg relative  text-[#5c5757] flex-shrink-0 mr-2 pop-h3">Card Number:</label>
-              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>4321-6789-1380</p>
+              <p className='block text-lg relative  text-[#5c5757] flex-shrink mr-2 pop-h4'>{buyer?.cardNumber}</p>
             </div>
           </div>
           <button className="bg-primary text-white px-4 py-2 rounded-md">Edit Account Info</button>
