@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ duration, onTimerComplete }) => {
-  const [timeLeft, setTimeLeft] = useState(duration);
+const Timer = ({ duration, onTimerComplete, timeLeft, setTimeLeft, remainingItems }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -9,12 +8,12 @@ const Timer = ({ duration, onTimerComplete }) => {
         setTimeLeft(timeLeft - 1);
       } else {
         onTimerComplete();
+        remainingItems > 0 && setTimeLeft(duration);
       }
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [timeLeft, onTimerComplete]);
-
+  }, [timeLeft]);
   // Convert seconds to formatted time (HH:MM:SS)
   const formatTime = (time) => {
     const hours = Math.floor(time / 3600);
