@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ duration, onTimerComplete, timeLeft, setTimeLeft, remainingItems }) => {
+const Timer = ({ duration, onTimerComplete, timeLeft, setTimeLeft, remainingItems, isDelay, setIsDelay, setCurrentBid }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
       } else {
-        onTimerComplete();
+        isDelay && onTimerComplete();
+        setIsDelay(!isDelay);
         remainingItems > 0 && setTimeLeft(duration);
       }
     }, 1000);
@@ -29,7 +30,7 @@ const Timer = ({ duration, onTimerComplete, timeLeft, setTimeLeft, remainingItem
 
   return (
     <div >
-      <h3 className='font-bold text-5xl mt-8'>Time Left: {formatTime(timeLeft)}</h3>
+      <h3 className='font-bold text-5xl mt-8'>{isDelay ? "Next item in " : "Time left "}{formatTime(timeLeft)}</h3>
     </div>
   );
 };

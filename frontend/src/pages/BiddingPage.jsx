@@ -15,8 +15,10 @@ const BiddingPage = () => {
   const [remainingItemsList, setRemainingItemsList] = useState([]);
   const remainingItems = remainingItemsList.length;
   const previousRatings = "4.5/5";
-  const [currentItem, setCurrentItem] = useState("");
+  const [currentItem, setCurrentItem] = useState(null);
   const [currentBid, setCurrentBid] = useState(0);
+  const [isDelay, setIsDelay] = useState(true);
+
   const bidderInfo = {
     name: "John Doe",
     email: "john@example.com",
@@ -48,8 +50,8 @@ const BiddingPage = () => {
     const data = await response.json()
     // console.log(data);
     setItemsList([...data.filter(item => item.eventName === eventName)]);
-    setRemainingItemsList(data.filter(item => item.eventName === eventName).slice(1));
-    setCurrentItem(data.filter(item => item.eventName === eventName)[0]);
+    setRemainingItemsList(data.filter(item => item.eventName === eventName));
+    // setCurrentItem(data.filter(item => item.eventName === eventName)[0]);
   }
 
   useEffect(() => {
@@ -76,6 +78,8 @@ const BiddingPage = () => {
         currentItem={currentItem}
         currentBid={currentBid}
         bidderInfo={bidderInfo}
+        isDelay={isDelay}
+        setIsDelay={setIsDelay}
       />
 
       <BiddingSection
@@ -86,6 +90,8 @@ const BiddingPage = () => {
         remainingItems={remainingItems}
         remainingItemsList={remainingItemsList}
         setRemainingItemsList={setRemainingItemsList}
+        isDelay={isDelay}
+        setIsDelay={setIsDelay}
       />
 
       <LiveData

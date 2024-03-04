@@ -12,7 +12,6 @@ const LiveData = ({ remainingItemsList, currentBid, currentItem, setCurrentItem,
     <div className="container mx-auto py-8">
       <div className="flex justify-between">
         <h2 className="text-xl font-semibold mb-4">Live Data</h2>
-        {remainingItemsList.length > 0 && <button className="px-4 py-2 bg-gray-800 text-white rounded-md" onClick={handleNextItem}>Next Item</button>}
       </div>
       <div className="bg-white rounded-lg shadow-md overflow-x-auto">
         {remainingItemsList.length === 0 ? <h3 className='text-center text-xl'>No more Items remaining</h3> : <table className="min-w-full divide-y divide-gray-200">
