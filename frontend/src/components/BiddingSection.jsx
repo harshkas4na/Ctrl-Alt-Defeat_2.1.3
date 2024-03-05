@@ -5,7 +5,7 @@ const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem
   const [customBid, setCustomBid] = useState("");
   const startingPrice = Number(currentItem?.startingPrice);
   const step = (0.1 * startingPrice);
-  const duration = 3;
+  const duration = 15;
   const [raiseBy, setRaiseBy] = useState(0);
   const [timeLeft, setTimeLeft] = useState(duration);
 
@@ -71,6 +71,7 @@ const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem
     setCurrentItem(remainingItemsList[0]);
     setRemainingItemsList(remainingItemsList.slice(1));
     setCurrentBid(0);
+    setRaiseBy(0);
   }
 
   return (
