@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Timer from './Timer';
 
-const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem, setRemainingItemsList, remainingItemsList }) => {
+const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem, setRemainingItemsList, remainingItemsList, isDelay, setIsDelay }) => {
   const [customBid, setCustomBid] = useState("");
   const startingPrice = Number(currentItem?.startingPrice);
   const step = (0.1 * startingPrice);
-  const duration = 15;
+  const duration = 3;
   const [raiseBy, setRaiseBy] = useState(0);
   const [timeLeft, setTimeLeft] = useState(duration);
 
@@ -80,32 +80,43 @@ const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem
         <div className='flex flex-col justify-center'>
           <div className="flex items-center mb-4">
             <button
-              className="px-4 py-2 bg-gray-800 text-white rounded-md mr-4"
+              className={`px-4 py-2 ${isDelay || currentBid + raiseBy <= Math.max(startingPrice, currentBid) ? "bg-gray-500" : "bg-gray-800"} text-white rounded-md mr-4`}
               onClick={() => handleLower()}
+              disabled={isDelay || currentBid + raiseBy <= Math.max(startingPrice, currentBid)}
             >
               -
             </button>
             <span>{currentBid + raiseBy}</span>
             <button
-              className="px-4 py-2 bg-gray-800 text-white rounded-md ml-4"
+              className={`px-4 py-2 ${isDelay ? "bg-gray-500" : "bg-gray-800"} text-white rounded-md ml-4`}
               onClick={() => handleHigher()}
+              disabled={isDelay}
             >
               +
             </button>
             <button
               className={`px-4 py-2 ${raiseBy === 0 ? "bg-gray-500" : "bg-gray-800"} text-white rounded-md ml-4`}
               onClick={() => handlePlaceBid()}
-              disabled={raiseBy === 0}
+              disabled={raiseBy === 0 || isDelay}
             >
               Place Bid
             </button>
           </div>
           <div className="flex items-center mb-4">
             <input type="text" placeholder="Enter Custom Bid" className="px-4 py-2 border rounded-md mr-4" value={customBid} onChange={handleBidChange} />
-            <button className="px-4 py-2 bg-gray-800 text-white rounded-md mr-4" onClick={handleCustomBidSubmit} >Submit Custom Bid</button>
+            <button className={`px-4 py-2 ${isDelay ? "bg-gray-500" : "bg-gray-800"} text-white rounded-md ml-4`} onClick={handleCustomBidSubmit} disabled={isDelay}>Submit Custom Bid</button>
           </div>
         </div>
-        <Timer duration={duration} onTimerComplete={handleNextItem} timeLeft={timeLeft} setTimeLeft={setTimeLeft} remainingItems={remainingItemsList.length} />
+        {(remainingItemsList.length || !isDelay) && < Timer
+          duration={duration}
+          onTimerComplete={handleNextItem}
+          timeLeft={timeLeft}
+          setTimeLeft={setTimeLeft}
+          remainingItems={remainingItemsList.length}
+          isDelay={isDelay}
+          setIsDelay={setIsDelay}
+          setCurrentBid={setCurrentBid}
+        />}
       </div>
     </div>
   );
