@@ -23,7 +23,7 @@ export const addItem = async (req: Request & { file: any }, res: Response) => { 
         
         const newItemData = {
             ...req.body,
-            itemPic: url + '/public/' + req.file?.filename // Store the path of uploaded file in the itemPic field
+            itemPic:  req.file?.filename // Store the path of uploaded file in the itemPic field
         };
 
         const newItem = new Items(newItemData);

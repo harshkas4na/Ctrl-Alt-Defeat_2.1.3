@@ -170,7 +170,8 @@ const BrowsingPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
           {filteredItems.map(item => (
             <div key={item._id} className="border p-4">
-              <img src={item.itemPic} alt={item.name} className="w-full h-auto" />
+            <img src={item.itemPic} alt={item.name}
+            className="w-full h-auto" />
               <h2 className="text-xl font-bold mt-2">{item.name}</h2>
               <p className="text-gray-600">{item.description}</p>
               <p className="text-gray-600">Seller: {item.seller}</p>

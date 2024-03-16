@@ -15,7 +15,7 @@ const multer = require('multer');
 const app = (0, express_1.default)();
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './public');
+        cb(null, 'C:/Users/Admin/Desktop/WEBD PROJECTS/Ctrl-Alt-Defeat_2.1.3/frontend/public/');
     },
     filename: (req, file, cb) => {
         const fileName = file.originalname.toLowerCase().split(' ').join('-');
@@ -37,7 +37,7 @@ const upload = multer({
 app.post('/signup', sellerSignup_1.sellerSignup); // Route for seller to signup.
 app.post('/login', sellerLogin_1.sellerLogin); // Route for seller to login.
 app.put('/:sellerId', jwtSeller_1.jwtVerificationSeller, updateProfile_1.updateProfileSeller); // Route for seller to update/modify his/her profile.
-app.post('/item/:sellerId', upload.single('ItemImage'), addItem); // Route for seller to publish new item for bidding into any upcoming event.
+app.post('/item/:sellerId', upload.single('itemPic'), addItem); // Route for seller to publish new item for bidding into any upcoming event.
 app.put('/item/:itemId', jwtSeller_1.jwtVerificationSeller, updateItem_1.updateItem); // Route for seller to update/modify the details of his/her published items.
 app.delete('/item/:itemid', jwtSeller_1.jwtVerificationSeller, deleteItem_1.deleteItem); // Route for seller to delete his/her item from the listing. 
 exports.default = app;

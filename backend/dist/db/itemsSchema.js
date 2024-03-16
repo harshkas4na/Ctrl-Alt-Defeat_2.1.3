@@ -12,8 +12,8 @@ const itemschema = new mongoose_1.default.Schema({
     sold: Boolean,
     itemPic: String,
     buyer: { type: String, ref: 'Bidders' },
-    startingPrice: Number,
-    soldPrice: Number,
+    startingPrice: String,
+    soldPrice: String,
     category: String,
     eventName: String,
 });

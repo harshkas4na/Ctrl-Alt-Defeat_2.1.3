@@ -27,7 +27,7 @@ const addItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         // if (item) {
         //     return res.status(409).json({ message: 'Item already exists' });
         // }
-        const newItemData = Object.assign(Object.assign({}, req.body), { itemPic: url + '/public/' + ((_a = req.file) === null || _a === void 0 ? void 0 : _a.filename) // Store the path of uploaded file in the itemPic field
+        const newItemData = Object.assign(Object.assign({}, req.body), { itemPic: (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename // Store the path of uploaded file in the itemPic field
          });
         const newItem = new itemsSchema_1.Items(newItemData);
         yield newItem.save();
