@@ -1,5 +1,8 @@
 // BiddingPage.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import io from "socket.io-client";
+
+
 import Header from '../components/Header';
 import CurrInfos from '../components/CurrInfos';
 import BiddingSection from '../components/BiddingSection';
@@ -8,6 +11,8 @@ import Footer from '../components/Footer';
 
 
 const BiddingPage = () => {
+  const [socket, setSocket] = useState(null);
+
   // Example values for the event information
   const [eventName, setEventName] = useState("");
   const [itemsList, setItemsList] = useState([]);
@@ -18,6 +23,7 @@ const BiddingPage = () => {
   const [currentItem, setCurrentItem] = useState(null);
   const [currentBid, setCurrentBid] = useState(0);
   const [isDelay, setIsDelay] = useState(true);
+  const [timeLeft,setTimeLeft] = useState(15);
 
   const bidderInfo = {
     name: "John Doe",
@@ -62,7 +68,52 @@ const BiddingPage = () => {
     GetItems();
   }, [eventName])
 
-  // console.log(remainingItemsList)
+  //Logic to sent currentBid to backend the broadcast it on all the clients using socket.io
+  useEffect(() => {
+    const newSocket = io("http://localhost:3000");
+    setSocket(newSocket);
+
+    // Clean up socket connection when component unmounts
+    return () => newSocket.close();
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      // Listen for incoming messages
+      socket.on('receiveCurrentBid', (data) => {
+        setCurrentBid(data.currentBid);
+      });
+      socket.on('receiveTimer', (data) => {
+        
+        setTimeLeft(data.Timer);
+      });
+      socket.on('receiveisDelay', (data) => {
+        console.log(data.isDelay);
+        setIsDelay(data.isDelay);
+      });
+      // socket.on('receivecurrentItem', (data) => {
+        
+      //   setCurrentItem(data.currentItem);
+      // });
+      // socket.on('receiveremainingItemsList', (data) => {
+        
+      //   setItemsList(data.remainingItemsList);
+      // });
+    }
+  }, [socket]);
+  
+   
+  
+    socket?.emit('sendCurrentBid', { currentBid});
+    // socket?.emit('sendremainingItemsList', { remainingItemsList });
+    useMemo(() => {
+      
+    },[isDelay])
+    socket?.emit('sendisDelay', { isDelay });
+    // socket?.emit('sendCurrentItem', { currentItem });
+    socket?.emit('sendTimer',{Timer: timeLeft });
+  
+  
 
   return (
     <div>
@@ -79,7 +130,7 @@ const BiddingPage = () => {
         currentBid={currentBid}
         bidderInfo={bidderInfo}
         isDelay={isDelay}
-        setIsDelay={setIsDelay}
+        
       />
 
       <BiddingSection
@@ -92,6 +143,8 @@ const BiddingPage = () => {
         setRemainingItemsList={setRemainingItemsList}
         isDelay={isDelay}
         setIsDelay={setIsDelay}
+        timeLeft={timeLeft}
+        setTimeLeft={setTimeLeft}
       />
 
       <LiveData

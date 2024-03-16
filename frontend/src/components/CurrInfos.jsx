@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 
 
-const CurrInfos = ({ currentItem, currentBid, bidderInfo, isDelay, setIsDelay }) => {
+const CurrInfos = ({ currentItem, currentBid, bidderInfo, isDelay}) => {
   // const [items, setItems] = useState([{currentItem, currentBid, startingPrice, bidderInfo}])
   const currentItemName = currentItem?.name;
   const currentItemDescription = currentItem?.description;

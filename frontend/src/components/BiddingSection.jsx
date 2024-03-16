@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Timer from './Timer';
 
-const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem, setRemainingItemsList, remainingItemsList, isDelay, setIsDelay }) => {
+const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem, setRemainingItemsList, remainingItemsList, isDelay, setIsDelay,timeLeft, setTimeLeft }) => {
   const [customBid, setCustomBid] = useState("");
   const startingPrice = Number(currentItem?.startingPrice);
   const step = (0.1 * startingPrice);
-  const duration = 15;
+  const duration =15;
   const [raiseBy, setRaiseBy] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(duration);
+  
+  
+  
+  
 
+  
+  
   const handleBidChange = (e) => {
     setCustomBid(e.target.value);
   };
@@ -68,6 +73,7 @@ const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem
   }
 
   function handleNextItem() {
+    
     setCurrentItem(remainingItemsList[0]);
     setRemainingItemsList(remainingItemsList.slice(1));
     setCurrentBid(0);
@@ -109,6 +115,7 @@ const BiddingSection = ({ currentBid, setCurrentBid, currentItem, setCurrentItem
           </div>
         </div>
         {(remainingItemsList.length || !isDelay) && < Timer
+
           duration={duration}
           onTimerComplete={handleNextItem}
           timeLeft={timeLeft}
