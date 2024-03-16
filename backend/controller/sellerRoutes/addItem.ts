@@ -1,26 +1,32 @@
 import { Request, Response } from "express";
 import { Items } from "../../db/itemsSchema";
 import { Sellers } from "../../db/sellerSchema";
-import { ItemSchema } from "../../zod/newItemValidation";
+// const multer = require('multer');
 
-export const addItem = async (req: Request, res: Response) => {
+// Configure multer for handling file uploads
+
+
+// Set the destination folder for uploaded files
+
+export const addItem = async (req: Request & { file: any }, res: Response) => { // Define the file property on the request object
     try {
-        // const validationResult = ItemSchema.safeParse(req.body);
-
-        // if (!validationResult.success) {
-        //     return res.status(400).json({ message: 'Validation error', errors: validationResult.error.errors });
-        // }
-
+        const url = req.protocol + '://' + req.get('host')
         const sellerId = req.params.sellerId;
-        const { name } = req.body;
-        const item = await Items.findOne({ name: name });
+        console.log(sellerId)
+        const name = req.body.name;
+        console.log(req.body)
+        // const item = await Items.findOne({ name: name });
 
-        if (item) {
-            
-            return res.status(409).json({ message: 'Item already exists' });
-        }
+        // if (item) {
+        //     return res.status(409).json({ message: 'Item already exists' });
+        // }
+        
+        const newItemData = {
+            ...req.body,
+            itemPic: url + '/public/' + req.file?.filename // Store the path of uploaded file in the itemPic field
+        };
 
-        const newItem = new Items(req.body);
+        const newItem = new Items(newItemData);
         
         await newItem.save();
 
@@ -32,3 +38,4 @@ export const addItem = async (req: Request, res: Response) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
+

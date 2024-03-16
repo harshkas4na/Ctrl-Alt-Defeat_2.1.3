@@ -71,7 +71,7 @@ const BrowsingPage = () => {
   useEffect(() => {
     // Filter and sort items
     let filtered = items.filter(item =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      item?.name?.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (selectedCategory === 'all' || item.category === selectedCategory)
     );
 
