@@ -28,11 +28,21 @@ const CurrInfos = ({ currentItem, currentBid, bidderInfo, isDelay}) => {
               </div>
               :
               <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-semibold mb-4">Current item : {currentItemName}</h2>
-                <p className="text-gray-700 mb-2"><span className="font-semibold">Description:</span> {currentItemDescription}</p>
-                <p className="text-gray-700 mb-2"><span className="font-semibold">Current Bid:</span> ${currentBid}</p>
-                <p className="text-gray-700 mb-2"><span className="font-semibold">Starting Price:</span> ${currentItemStartingPrice}</p>
-              </div>}
+               <div className="flex items-center mb-4"> 
+                 
+                 <div className="w-2/3"> 
+                  <h2 className="text-xl font-semibold mb-2">Current item : {currentItemName}</h2>
+                    <p className="text-gray-700 mb-2"><span className="font-semibold">Description:</span> {currentItemDescription}</p>
+                    <p className="text-gray-700 mb-2"><span className="font-semibold">Current Bid:</span> ${currentBid}</p>
+                    <p className="text-gray-700 mb-2"><span className="font-semibold">Starting Price:</span> ${currentItemStartingPrice}</p>
+                 </div>
+                 <div className="w-1/3 mr-14"> 
+                  <img src={currentItem.itemPic} alt="Description of the image" className="w-full rounded-md" />
+                 </div>
+              </div>
+            </div>
+
+              }
           </>}
         </div>
         {/* Right Side - Bidder Info */}
