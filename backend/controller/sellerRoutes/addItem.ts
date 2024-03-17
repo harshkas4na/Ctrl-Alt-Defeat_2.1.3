@@ -15,6 +15,12 @@ export const addItem = async (req: Request & { file: any }, res: Response) => { 
         console.log(sellerId)
         const name = req.body.name;
         console.log(req.body)
+
+        //fetch sellerName 
+        const seller = await Sellers.findById(sellerId);
+        console.log(seller)
+        const sellerName = seller?.name;
+        console.log(sellerName)
         // const item = await Items.findOne({ name: name });
 
         // if (item) {
@@ -23,11 +29,12 @@ export const addItem = async (req: Request & { file: any }, res: Response) => { 
         
         const newItemData = {
             ...req.body,
+            sellerName: sellerName,
             itemPic:  req.file?.filename // Store the path of uploaded file in the itemPic field
         };
 
         const newItem = new Items(newItemData);
-        
+        console.log(newItemData)
         await newItem.save();
 
         await Sellers.findByIdAndUpdate(sellerId, { $push: { publishedItems: newItem._id, unsoldItems: newItem._id } }, { new: true });

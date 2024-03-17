@@ -174,7 +174,7 @@ const BrowsingPage = () => {
             className="w-full h-auto" />
               <h2 className="text-xl font-bold mt-2">{item.name}</h2>
               <p className="text-gray-600">{item.description}</p>
-              <p className="text-gray-600">Seller: {item.seller}</p>
+              <p className="text-gray-600">Seller: {item.sellerName}</p>
               <p className="text-gray-600">Starting Price: {item.startingPrice}</p>
               <p className="text-gray-600">Item Status: {calculateTimeStatus(item.startTime, item.sold)}</p>
               <Link to="/Chat" className=' inline-block bg-primary text-white px-4 py-2 rounded-md my-2 h-10 mr-4 mb-2'>Chat With Seller</Link>

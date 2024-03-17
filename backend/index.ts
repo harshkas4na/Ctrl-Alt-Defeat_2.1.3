@@ -55,7 +55,6 @@ io.on('connection', (socket) => {
 
     // Handle sending messages
     socket.on('sendMessage', (message: string) => {
-        console.log('Message received:', message);
         // Emit the message to all connected clients
         io.emit('receiveMessage', message);
     });
@@ -64,33 +63,16 @@ io.on('connection', (socket) => {
 
     //handle CurrentBid
     socket.on('sendCurrentBid', (currentBid: Number) => {
-        
         // Emit the message to all connected clients
         io.emit('receiveCurrentBid', currentBid);
     });
     //Handle Live-Timer
     socket.on('sendTimer', (Timer: Number) => {
-        
         // Emit the message to all connected clients
         io.emit('receiveTimer',Timer);
     });
-    //Handle Is-Delay
-    socket.on('sendisDelay', (isDelay:Boolean) => {
-        
-        // Emit the message to all connected clients
-        io.emit('receiveisDelay',isDelay);
-    });
-    // socket.on('sendremainingItemsList', (remainingItemsList:Array<any>) => {
-        
-    //     // Emit the message to all connected clients
-    //     io.emit('receiveremainingItemsList',remainingItemsList);
-    // });
-
-    //handle CurrentItem
-    // socket.on('sendcurrentItem', (currentItem:String) => {
-    //     // Emit the message to all connected clients
-    //     io.emit('receivecurrentItem', currentItem);
-    // });
+    
+   
     
 });
 

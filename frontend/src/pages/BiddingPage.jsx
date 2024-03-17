@@ -87,30 +87,18 @@ const BiddingPage = () => {
         
         setTimeLeft(data.Timer);
       });
-      socket.on('receiveisDelay', (data) => {
-        console.log(data.isDelay);
-        setIsDelay(data.isDelay);
-      });
-      // socket.on('receivecurrentItem', (data) => {
-        
-      //   setCurrentItem(data.currentItem);
-      // });
-      // socket.on('receiveremainingItemsList', (data) => {
-        
-      //   setItemsList(data.remainingItemsList);
-      // });
+      
+      
     }
   }, [socket]);
   
    
   
     socket?.emit('sendCurrentBid', { currentBid});
-    // socket?.emit('sendremainingItemsList', { remainingItemsList });
-    useMemo(() => {
-      
-    },[isDelay])
-    socket?.emit('sendisDelay', { isDelay });
-    // socket?.emit('sendCurrentItem', { currentItem });
+    
+    
+    
+
     socket?.emit('sendTimer',{Timer: timeLeft });
   
   

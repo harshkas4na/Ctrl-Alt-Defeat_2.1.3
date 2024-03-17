@@ -8,10 +8,12 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const itemschema = new mongoose_1.default.Schema({
     name: String,
     seller: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Sellers' },
+    sellerName: String,
     description: String,
     sold: Boolean,
     itemPic: String,
     buyer: { type: String, ref: 'Bidders' },
+    buyerName: String,
     startingPrice: String,
     soldPrice: String,
     category: String,
