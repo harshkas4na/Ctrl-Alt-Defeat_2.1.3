@@ -11,7 +11,7 @@ const multer = require('multer');
 const app = express();
 const storage = multer.diskStorage({
     destination: (req:Request, file:any, cb:any) => {
-        cb(null, 'C:/Users/Admin/Desktop/WEBD PROJECTS/Ctrl-Alt-Defeat_2.1.3/frontend/public/');
+        cb(null, 'C:/Users/Admin/Desktop/WEBD PROJECTS/CtrlC:/Users/Prakhar Srivastava/OneDrive/Desktop/final blue bit/Ctrl-Alt-Defeat_2.1.3/frontend/public/');
     },
     filename: (req:Request, file:any, cb:any) => {
         const fileName = file.originalname.toLowerCase().split(' ').join('-');

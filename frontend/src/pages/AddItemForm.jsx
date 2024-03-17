@@ -1,64 +1,61 @@
-import React, { useEffect, useState } from 'react';
-import './PagesCss/BuyerRegister.css'; // Import your stylesheet
-import logo from './img/logo.png';
-import carousel1 from './img/carousel1.png';
-import carousel2 from './img/carousel2.png';
-import carousel3 from './img/carousel3.png';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from '../store/userAtoms/user';
-import axios from 'axios';
-import toast from 'react-hot-toast';
+import React, { useEffect, useState } from "react";
+import "./PagesCss/BuyerRegister.css"; // Import your stylesheet
+import logo from "./img/logo.png";
+import carousel1 from "./img/carousel1.png";
+import carousel2 from "./img/carousel2.png";
+import carousel3 from "./img/carousel3.png";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../store/userAtoms/user";
+// import axios from 'axios';
+import toast from "react-hot-toast";
 
 const AddItemForm = () => {
-  const user=useRecoilValue(userAtom)
-  const sellerId=user?._id;
-  
-  const  [formData, setFormData] = useState({
-    name:"Artwork 3",
-    seller:sellerId,
-    description:"",//by form
-    sold:false,
-    itemPic:"",
-    buyer:null,
-    startingPrice:null,
-    soldPrice:null,
-    category:"",
-    eventName:""
-  })
+  const user = useRecoilValue(userAtom);
+  const sellerId = user?._id;
 
-  
+  const [formData, setFormData] = useState({
+    name: "Artwork 3",
+    seller: sellerId,
+    description: "", //by form
+    sold: false,
+    itemPic: "",
+    buyer: null,
+    startingPrice: null,
+    soldPrice: null,
+    category: "",
+    eventName: "",
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const formDataWithPic = new FormData();
-      formDataWithPic.append('name', formData.name);
-      formDataWithPic.append('seller', formData.seller);
-      formDataWithPic.append('description', formData.description);
-      formDataWithPic.append('sold', formData.sold);
-      formDataWithPic.append('itemPic', formData.itemPic); // Append file object to form data
-      formDataWithPic.append('buyer', formData.buyer);
-      formDataWithPic.append('startingPrice', formData.startingPrice);
-      formDataWithPic.append('soldPrice', formData.soldPrice);
-      formDataWithPic.append('category', formData.category);
-      formDataWithPic.append('eventName', formData.eventName);
-      
-      console.log("formDataWithPic:" ,formDataWithPic);
+      formDataWithPic.append("name", formData.name);
+      formDataWithPic.append("seller", formData.seller);
+      formDataWithPic.append("description", formData.description);
+      formDataWithPic.append("sold", formData.sold);
+      formDataWithPic.append("itemPic", formData.itemPic); // Append file object to form data
+      formDataWithPic.append("buyer", formData.buyer);
+      formDataWithPic.append("startingPrice", formData.startingPrice);
+      formDataWithPic.append("soldPrice", formData.soldPrice);
+      formDataWithPic.append("category", formData.category);
+      formDataWithPic.append("eventName", formData.eventName);
+
+      console.log("formDataWithPic:", formDataWithPic);
       const res = await fetch(`http://localhost:3000/seller/item/${sellerId}`, {
-      method: 'POST',
-      body: formDataWithPic
+        method: "POST",
+        body: formDataWithPic,
       });
-      
+
       const data = await res.json();
       console.log(formDataWithPic);
       console.log(data);
-      toast.success('Item Added Successfully');
+      toast.success("Item Added Successfully");
     } catch (err) {
       console.log(err);
-      toast.error('Something Went Wrong');
+      toast.error("Something Went Wrong");
     }
   };
-  
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -66,70 +63,103 @@ const AddItemForm = () => {
       setFormData({
         ...formData,
         [name]: files[0], // Store the file object
-        
       });
     } else {
-      
       setFormData({
         ...formData,
-        [name]: value
+        [name]: value,
       });
     }
   };
 
-  
-
   return (
-    <main className={'sign-up-mode'}>
-            
+    <main className={"sign-up-mode"}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
-            <form action={`http://localhost:3000/seller/item/${sellerId}`} autoComplete="off" className="sign-up-form"  encType='multipart/form-data' onSubmit={handleSubmit}>
-
+            <form
+              action={`http://localhost:3000/seller/item/${sellerId}`}
+              autoComplete="off"
+              className="sign-up-form"
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+            >
               <div className="actual-form">
-                <h1 className='mb-12 text-4xl ml-12 text-[#8b746a] font-bold'>Add Your Item</h1>
+                <h1 className="mb-12 text-4xl ml-12 text-[#8b746a] font-bold">
+                  Add Your Item
+                </h1>
                 <div class="scrollableArea">
-                <p className='mb-9 font-semibold text-xl'>Add Item-Details</p>
-                  
+                  <p className="mb-9 font-semibold text-xl">Add Item-Details</p>
+
                   <div class="input-wrap">
-                    <input type="text" class="input-field" onChange={handleChange} name='name' autocomplete="off" />
-                    <label className='active'>Item Name</label>
+                    <input
+                      type="text"
+                      class="input-field"
+                      onChange={handleChange}
+                      name="name"
+                      autocomplete="off"
+                    />
+                    <label className="active">Item Name</label>
                   </div>
                   <div class="input-wrap itimg">
-                    <label className='active mt-9'>Item Image</label>
-                    <input type="file" class="input-field" onChange={handleChange} name='itemPic' autocomplete="off" />
+                    <label className="active mt-9">Item Image</label>
+                    <input
+                      type="file"
+                      class="input-field"
+                      onChange={handleChange}
+                      name="itemPic"
+                      autocomplete="off"
+                    />
                   </div>
                   <div class="input-wrap">
-                    <input type="text" class="input-field" onChange={handleChange} name='description' autocomplete="off" />
-                    <label className='active'>Item Description</label>
+                    <input
+                      type="text"
+                      class="input-field"
+                      onChange={handleChange}
+                      name="description"
+                      autocomplete="off"
+                    />
+                    <label className="active">Item Description</label>
                   </div>
                   <div class="input-wrap">
-                    <input type="text" class="input-field" onChange={handleChange} name='category' autocomplete="off" />
-                    <label className='active'>Category:</label>
+                    <input
+                      type="text"
+                      class="input-field"
+                      onChange={handleChange}
+                      name="category"
+                      autocomplete="off"
+                    />
+                    <label className="active">Category:</label>
                   </div>
                   <div class="input-wrap">
-                    <input type="text" class="input-field" onChange={handleChange} name='startingPrice' autocomplete="off" />
-                    <label className='active'>Base price</label>
+                    <input
+                      type="text"
+                      class="input-field"
+                      onChange={handleChange}
+                      name="startingPrice"
+                      autocomplete="off"
+                    />
+                    <label className="active">Base price</label>
                   </div>
 
                   <div class="input-wrap">
-                    <input type="text" class="input-field" onChange={handleChange} name='eventName' autocomplete="off" />
-                    <label className='active'>Event Name</label>
+                    <input
+                      type="text"
+                      class="input-field"
+                      onChange={handleChange}
+                      name="eventName"
+                      autocomplete="off"
+                    />
+                    <label className="active">Event Name</label>
                   </div>
-
-
                 </div>
-                <input type="submit" value="Submit"  className="sign-btn" />
-
-               
+                <input type="submit" value="Submit" className="sign-btn" />
               </div>
             </form>
           </div>
           <div className="carousel ">
             <div className="images-wrapper">
               <img src={carousel1} class="image img-1 show" alt="" />
-             
             </div>
 
             <div className="text-slider">
@@ -142,7 +172,6 @@ const AddItemForm = () => {
           </div>
         </div>
       </div>
-
     </main>
   );
 };
