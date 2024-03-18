@@ -149,7 +149,7 @@ const SellerSignup = () => {
   };
 
   return (
-    <main className={`${isSignUpMode ? 'sign-up-mode' : ''}`}>
+    <main className={`${isSignUpMode ? 'sign-up-mode' : ''} w-full h-screen bg-gradient-to-b from-stone-950 to-stone-700`}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">

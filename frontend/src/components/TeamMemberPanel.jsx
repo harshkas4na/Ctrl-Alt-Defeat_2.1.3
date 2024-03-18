@@ -13,7 +13,7 @@ const TeamMemberPanel = ({ photo, name, role }) => {
         className="rounded-full h-24 w-24 object-cover mb-4"
       />
       <h3 className="text-lg font-semibold mb-2">{name}</h3>
-      <p className="text-sm text-gray-500">{role}</p>
+      <p className="text-sm text-[#1A1A1E]">{role}</p>
     </div>
   );
 };
