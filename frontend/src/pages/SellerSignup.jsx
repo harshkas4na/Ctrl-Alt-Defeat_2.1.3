@@ -158,7 +158,7 @@ const SellerSignup = () => {
                   Login
                 </a>
               </div>
-              <div className="input-wrap flex mt-6 ">
+              <div className="input-wrap flex p-0 m-1 mt-1">
                      <p class="light">Register As:</p>
 
                       <select name="role" className=" max-h-6" id="type-id"
@@ -170,8 +170,8 @@ const SellerSignup = () => {
 
                     </div>
                    
-              <div className="actual-form">
-                <div className="scrollableArea">
+              <div className="actual-form ">
+                <div className="scrollableArea mt-0 mb-0 h-64 w-96">
                   <div class="input-wrap">
                     <input type="text" className="input-field" name='name' onChange={handleChange} autocomplete="off" />
                     <label className='active'>Name</label>
@@ -246,13 +246,15 @@ const SellerSignup = () => {
                   </div>
 
                 </div>
-                <input type="submit" value="Register"  onClick={handleSubmit} className="sign-btn" />
-
-                <p class="text">
+                <div className='registerButton relative mb-0 pb-0 border-0'>
+                <input type="submit" value="Register"  onClick={handleSubmit} className="sign-btn"/>
+                <p class="text" >
                   By signing up, I agree to the
                   <a href="#">Terms of Services</a> and
                   <a href="#">Privacy Policy</a>
                 </p>
+                </div>
+              
               </div>
             </form>
             <form action="" onSubmit={handleLogin} autoComplete="off" className="sign-in-form">

@@ -85,13 +85,16 @@ const AddItemForm = () => {
               onSubmit={handleSubmit}
             >
               <div className="actual-form">
-                <h1 className="mb-12 text-4xl ml-12 text-[#8b746a] font-bold">
+                {/* <h1 className="mb-12 text-4xl ml-12 text-[#8b746a] font-bold">
                   Add Your Item
-                </h1>
-                <div class="scrollableArea">
-                  <p className="mb-9 font-semibold text-xl">Add Item-Details</p>
+                </h1> */}
+                <div className="heading">
+                <h2>Add Your Item</h2>
+                </div>
+                <div class="scrollableArea size-96">
+                  <p className="font-semibold text-xl mt-6 mb-4">Item-Details:</p>
 
-                  <div class="input-wrap">
+                  <div class="input-wrap ">
                     <input
                       type="text"
                       class="input-field"
@@ -101,14 +104,16 @@ const AddItemForm = () => {
                     />
                     <label className="active">Item Name</label>
                   </div>
+                  <label className="active mt-52 ml-0 static">Item Image</label>
                   <div class="input-wrap itimg">
-                    <label className="active mt-9">Item Image</label>
+                    
                     <input
                       type="file"
                       class="input-field"
                       onChange={handleChange}
                       name="itemPic"
                       autocomplete="off"
+
                     />
                   </div>
                   <div class="input-wrap">
@@ -153,10 +158,15 @@ const AddItemForm = () => {
                     <label className="active">Event Name</label>
                   </div>
                 </div>
+                <div className='add mt-20'>
                 <input type="submit" value="Submit" className="sign-btn" />
+                </div>
               </div>
             </form>
           </div>
+
+
+          
           <div className="carousel ">
             <div className="images-wrapper">
               <img src={carousel1} class="image img-1 show" alt="" />

@@ -179,7 +179,7 @@ const SellerSignup = () => {
 
                     </div>
               <div className="actual-form">
-                <div class="scrollableArea">
+              <div className="scrollableArea mt-0 mb-0 h-60 w-96">
                   <div class="input-wrap">
                     <input type="text" class="input-field" autocomplete="off" />
                     <label className='active'>Name</label>
