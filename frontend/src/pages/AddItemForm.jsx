@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 const AddItemForm = () => {
   const user = useRecoilValue(userAtom);
   const sellerId = user?._id;
+  const [events, setEvents] = useState([]);
 
   const [formData, setFormData] = useState({
     name: "Artwork 3",
@@ -72,6 +73,26 @@ const AddItemForm = () => {
     }
   };
 
+  const GetRequest = async () => {
+    const response = await fetch("http://localhost:3000/event/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    setEvents(data);
+    // console.log(data);
+    // const curEventData = data.filter(event => event.startTime === 1600);
+    // console.log(curEventData);
+    // setEventName(curEventData[0].name)
+    // console.log(eventName);
+  };
+
+  useEffect(() => {
+    GetRequest();
+  }, []);
+
   return (
     <main className={"sign-up-mode"}>
       <div className="box">
@@ -84,20 +105,19 @@ const AddItemForm = () => {
               encType="multipart/form-data"
               onSubmit={handleSubmit}
             >
-              <div className="actual-form">
-                {/* <h1 className="mb-12 text-4xl ml-12 text-[#8b746a] font-bold">
-                  Add Your Item
-                </h1> */}
+              <div className="actual-form flex flex-col justify-between items-center">
                 <div className="heading">
-                <h2>Add Your Item</h2>
+                  <h2>Add Your Item</h2>
                 </div>
-                <div class="scrollableArea size-96">
-                  <p className="font-semibold text-xl mt-6 mb-4">Item-Details:</p>
+                <div className="scrollableArea size-96 flex-grow">
+                  <p className="font-semibold text-xl mt-6 mb-4">
+                    Item-Details:
+                  </p>
 
-                  <div class="input-wrap ">
+                  <div className="input-wrap ">
                     <input
                       type="text"
-                      class="input-field"
+                      className="input-field"
                       onChange={handleChange}
                       name="name"
                       autocomplete="off"
@@ -105,41 +125,43 @@ const AddItemForm = () => {
                     <label className="active">Item Name</label>
                   </div>
                   <label className="active mt-52 ml-0 static">Item Image</label>
-                  <div class="input-wrap itimg">
-                    
+                  <div className="input-wrap itimg">
                     <input
                       type="file"
-                      class="input-field"
+                      className="input-field"
                       onChange={handleChange}
                       name="itemPic"
                       autocomplete="off"
-
                     />
                   </div>
-                  <div class="input-wrap">
+                  <div className="input-wrap">
                     <input
                       type="text"
-                      class="input-field"
+                      className="input-field"
                       onChange={handleChange}
                       name="description"
                       autocomplete="off"
                     />
                     <label className="active">Item Description</label>
                   </div>
-                  <div class="input-wrap">
-                    <input
-                      type="text"
-                      class="input-field"
-                      onChange={handleChange}
+                  <div className="input-wrap">
+                    <select
                       name="category"
-                      autocomplete="off"
-                    />
+                      onChange={handleChange}
+                      className="input-field"
+                    >
+                      <option value="art">Art</option>
+                      <option value="antiques">Antiques</option>
+                      <option value="jewelry">Jewelry</option>
+                      <option value="cars">Cars</option>
+                      <option value="realEstate">Real Estate</option>
+                    </select>
                     <label className="active">Category:</label>
                   </div>
-                  <div class="input-wrap">
+                  <div className="input-wrap">
                     <input
                       type="text"
-                      class="input-field"
+                      className="input-field"
                       onChange={handleChange}
                       name="startingPrice"
                       autocomplete="off"
@@ -147,29 +169,35 @@ const AddItemForm = () => {
                     <label className="active">Base price</label>
                   </div>
 
-                  <div class="input-wrap">
-                    <input
-                      type="text"
-                      class="input-field"
-                      onChange={handleChange}
+                  <div className="input-wrap mb-0">
+                    <select
                       name="eventName"
-                      autocomplete="off"
-                    />
+                      onChange={handleChange}
+                      className="input-field"
+                    >
+                      {events.map((event) => (
+                        <option value={event.name} key={event._id}>
+                          {event.name}
+                        </option>
+                      ))}
+                    </select>
                     <label className="active">Event Name</label>
                   </div>
                 </div>
-                <div className='add mt-20'>
-                <input type="submit" value="Submit" className="sign-btn" />
-                </div>
+                {/* <div className="add"> */}
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="sign-btn mt-16 mb-0"
+                />
+                {/* </div> */}
               </div>
             </form>
           </div>
 
-
-          
           <div className="carousel ">
             <div className="images-wrapper">
-              <img src={carousel1} class="image img-1 show" alt="" />
+              <img src={carousel1} className="image img-1 show" alt="" />
             </div>
 
             <div className="text-slider">
