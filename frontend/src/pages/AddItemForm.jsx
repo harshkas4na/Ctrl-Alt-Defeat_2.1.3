@@ -73,7 +73,7 @@ const AddItemForm = () => {
   };
 
   return (
-    <main className={"sign-up-mode"}>
+    <main className={"sign-up-mode w-full h-screen bg-gradient-to-b from-stone-950 to-stone-700"}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
