@@ -113,7 +113,7 @@ form.sign-up-form {
 }
 
 .toggle:hover {
-  color: #8371fd;
+  color: #E98F35;
 }
 
 .scrollableArea {
@@ -310,7 +310,7 @@ label.active {
 }
 
 .sign-btn:hover {
-  background-color: #8371fd !important;
+  background-color: #dc7a18da !important;
 }
 
 .text {
@@ -324,7 +324,7 @@ label.active {
 }
 
 .text a:hover {
-  color: #8371fd;
+  color: #E98F35;
 }
 
 main.sign-up-mode form.sign-in-form {

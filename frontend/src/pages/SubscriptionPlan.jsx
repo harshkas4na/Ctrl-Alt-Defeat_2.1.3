@@ -54,15 +54,15 @@ const SellerSignup = () => {
 
 
   return (
-    <main className={`${isSignUpMode ? 'sign-up-mode' : ''}`}>
+    <main className={`${isSignUpMode ? 'sign-up-mode' : ''} w-full h-screen bg-gradient-to-b from-stone-950 to-stone-700 mr-4 `}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
             <form className="sign-up-form" onSubmit={handleSubmit} >
-
+            <p className='mb-16 text-4xl'>Subscription Plan</p>
               <div className="actual-form">
                 <div className="scrollableArea">
-                  <p className='mb-3'>Subscription Plan</p>
+                  
                   <div className="input-wrap">
                     <input type="text" className="input-field" onChange={(e) => {
                       setUser(e.target.value)
@@ -103,12 +103,13 @@ const SellerSignup = () => {
                   </div>
 
                 </div>
+                <div className='mt-4'>
                 <input type="submit" value="Submit" className="sign-btn" />
-
+                </div>
                 <p class="text">
                   By signing up, I agree to the
                   <a href="#">Terms of Services</a> and
-                  <a href="#">Privacy Policy</a>
+                  <a href="#"> Privacy Policy</a>
                 </p>
               </div>
             </form>
@@ -147,7 +148,7 @@ const SellerSignup = () => {
               </div>
             </form> */}
           </div>
-          <div className="carousel flex flex-col justify-evenly overflow-y-auto">
+          <div className="carousel flex flex-col justify-evenly overflow-y-auto bg-[#1A1A1E]">
             {/* <div className="images-wrapper">
               <img src={carousel1} class="image img-1 show" alt="" />
             </div> */}
@@ -160,12 +161,12 @@ const SellerSignup = () => {
             </div>
             <div className="info flex justify-between mx-3 my-3">
               <div className="Type w-2/5 ml-4">
-                <p className="plan font-semibold text-xl">
+                <p className="plan font-semibold text-xl text-[#B2AFA9]">
                   None:
                 </p>
               </div>
               <div className="Feature w-3/5 mr-auto ">
-                <ul className="text-left">
+                <ul className="text-left text-[#F3C291]">
                   <li >Free delivery for first 5 items</li>
                   <li>Price: Free</li>
                 </ul>
@@ -173,12 +174,12 @@ const SellerSignup = () => {
             </div>
             <div className="info flex justify-between mx-3 my-3">
               <div className="Type w-2/5 ml-4">
-                <p className="plan font-semibold text-xl">
+                <p className="plan font-semibold text-xl text-[#B2AFA9]">
                   Basic Plan:
                 </p>
               </div>
               <div className="Feature w-3/5 mr-auto">
-                <ul className="text-left">
+                <ul className="text-left text-[#F3C291]">
                   <li >Free delivery for 20 items</li>
                   <li>Price: $10/month</li>
                   <li>Direct Contact with seller</li>
@@ -187,12 +188,12 @@ const SellerSignup = () => {
             </div>
             <div className="info flex justify-between mx-3 my-3">
               <div className="Type w-2/5 ml-4">
-                <p className="plan font-semibold text-xl">
+                <p className="plan font-semibold text-xl text-[#B2AFA9]">
                   Premium:
                 </p>
               </div>
               <div className="Feature w-3/5 mr-auto ">
-                <ul className="text-left">
+                <ul className="text-left text-[#F3C291]">
                   <li >Free and Fast delivery</li>
                   <li>Price: $18/month</li>
                   <li>Direct Contact with seller</li>

@@ -167,19 +167,21 @@ const SellerSignup = () => {
                 </a>
               </div>
     
-              <div className="input-wrap flex mt-6 ">
-                     <p class="light">Register As:</p>
 
+              <div className="actual-form">
+              <div class="identify mb-6 p-0">
+                     <p class="light">Register As:</p>
+                     <div class="input-wrap">
                       <select name="role" className=" max-h-6" id="type-id"
                         onChange={handleChange}>
                         
                         <option id="drk" value="seller">Seller</option>
                         <option id="drk" value="bidder">Bidder</option>
                       </select>
+                      </div>
 
                     </div>
-              <div className="actual-form">
-              <div className="scrollableArea mt-0 mb-0 h-60 w-96">
+              <div className="scrollableArea mt-0 mb-0 h-64 w-96">
                   <div class="input-wrap">
                     <input type="text" class="input-field" autocomplete="off" />
                     <label className='active'>Name</label>
@@ -315,7 +317,7 @@ const SellerSignup = () => {
               </div>
             </form>
           </div>
-          <div className="carousel">
+          <div className="carousel bg-[#1A1A1E]">
             <div className="images-wrapper">
               <img src={carousel1} class="image img-1 show" alt="" />
               <img src={carousel2} class="image img-2" alt="" />

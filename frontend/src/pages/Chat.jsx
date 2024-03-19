@@ -63,9 +63,9 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[#7b3421]">
+    <div className="flex flex-col h-screen bg-gradient-to-b from-stone-950 to-stone-700">
       {/* Header/Navbar */}
-      <div className="bg-[#a066569a] p-4 text-white font-poppins mb-4">
+      <div className="flex justify-center items-center bg-[#81470E] p-4 text-[#9ea09c] font-poppins mb-4">
         <h1 className="text-2xl font-bold">Chat Application</h1>
       </div>
       {(isUsernameSubmitted && !subscribedUsers) ? (

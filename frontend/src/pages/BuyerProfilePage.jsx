@@ -19,10 +19,10 @@ const ProfilePage = () => {
 
   return (
     <div className="flex justify-center items-center w-full h-screen bg-gradient-to-b from-stone-950 to-stone-700">
-      <div className="container flex flex-col overflow-auto no-scrollbar justify-between rounded-[3.3rem] shadow-[0_60px_40px_-30px_rgba(0, 0, 0, 0.27)] w-full h-[90%] mx-auto px-8 py-8 bg-[#77736a]">
-        <div className="flex justify-between items-center bg-[#6d3d0c] rounded-3xl px-4 py-4">
+      <div className="container flex flex-col overflow-auto no-scrollbar justify-between rounded-[3.3rem] shadow-[0_60px_40px_-30px_rgba(0, 0, 0, 0.27)] w-full h-[90%] mx-auto px-8 py-8 bg-[#ffffffe0]">
+        <div className="flex justify-between items-center bg-[#B86614] rounded-3xl px-4 py-4">
           <div>
-            <h1 className="text-4xl text-[#373835] pop-h1">Profile</h1>
+            <h1 className="text-4xl text-[#B2AFA9] pop-h1">Profile</h1>
           </div>
           <div className="flex flex-row justify-center items-center">
             <Link
@@ -43,7 +43,7 @@ const ProfilePage = () => {
         </div>
         <div>
           <div>
-            <h2 className="text-2xl mb-4 text-[#1a1a1e] pop-h2">
+            <h2 className="text-2xl mb-4 text-[#1A1A1E] pop-h2">
               Personal Info
             </h2>
           </div>
@@ -52,7 +52,7 @@ const ProfilePage = () => {
               <label className="block text-lg relative text-[#262624] flex-shrink mr-2 pop-h3">
                 Name:
               </label>
-              <p className="block text-lg relative text-[#20201fc8] flex-shrink mr-2 pop-h4 ">
+              <p className="block text-lg relative text-[#373835] flex-shrink mr-2 pop-h4 ">
                 {buyer?.name}
               </p>
             </div>
@@ -60,15 +60,15 @@ const ProfilePage = () => {
               <label className="block text-lg relative text-[#262624] flex-shrink mr-2 pop-h3">
                 Profile Type:
               </label>
-              <p className="block text-lg relative  text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative  text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.profileType}
               </p>
             </div>
             <div className="w-1/2 mb-4 flex justify-start items-center">
-              <label className="block text-lg relative text-[#262624] flex-shrink mr-2 pop-h3">
+              <label className="block text-lg relative text-[#373835] flex-shrink mr-2 pop-h3">
                 Email:
               </label>
-              <p className="block text-lg relative text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.email}
               </p>
             </div>
@@ -76,7 +76,7 @@ const ProfilePage = () => {
               <label className="block text-lg relative  text-[#262624] flex-shrink mr-2 pop-h3">
                 Phone number:
               </label>
-              <p className="block text-lg relative  text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative  text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.phone}
               </p>
             </div>
@@ -84,7 +84,7 @@ const ProfilePage = () => {
               <label className="block text-lg relative  text-[#262624] flex-shrink mr-2 pop-h3">
                 Address:
               </label>
-              <p className="block text-lg relative  text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative  text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.address}
               </p>
             </div>
@@ -92,7 +92,7 @@ const ProfilePage = () => {
               <label className="block text-lg relative  text-[#262624] flex-shrink mr-2 pop-h3">
                 ID Type:
               </label>
-              <p className="block text-lg relative text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.idType}
               </p>
             </div>
@@ -100,7 +100,7 @@ const ProfilePage = () => {
               <label className="block text-lg relative  text-[#262624] flex-shrink mr-2 pop-h3">
                 ID Number:
               </label>
-              <p className="block text-lg relative text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.idNumber}
               </p>
             </div>
@@ -120,7 +120,7 @@ const ProfilePage = () => {
               <label className="block text-lg relative  text-[#262624] flex-shrink-0 mr-2 pop-h3">
                 Card Type:
               </label>
-              <p className="block text-lg relative  text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative  text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.accountType}
               </p>
             </div>
@@ -128,7 +128,7 @@ const ProfilePage = () => {
               <label className="block text-lg relative  text-[#262624] flex-shrink-0 mr-2 pop-h3">
                 Card Holder Name:
               </label>
-              <p className="block text-lg relative text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.cardHolderName}
               </p>
             </div>
@@ -136,7 +136,7 @@ const ProfilePage = () => {
               <label className="block text-lg relative  text-[#262624] flex-shrink-0 mr-2 pop-h3">
                 Card Number:
               </label>
-              <p className="block text-lg relative  text-[#20201fc8] flex-shrink mr-2 pop-h4">
+              <p className="block text-lg relative  text-[#373835] flex-shrink mr-2 pop-h4">
                 {buyer?.cardNumber}
               </p>
             </div>
