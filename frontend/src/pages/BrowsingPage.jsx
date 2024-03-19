@@ -178,7 +178,7 @@ const BrowsingPage = () => {
               </div>
               <h2 className="text-xl font-bold mt-2">{item.name}</h2>
               <p className="text-gray-600">{item.description}</p>
-              <p className="text-gray-600">Seller: {item.seller}</p>
+              <p className="text-gray-600">Seller: {item.sellerName}</p>
               <p className="text-gray-600">
                 Starting Price: {item.startingPrice}
               </p>
