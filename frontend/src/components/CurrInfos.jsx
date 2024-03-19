@@ -16,22 +16,31 @@ const CurrInfos = ({ currentItem, currentBid, bidderInfo, isDelay }) => {
           {currentItem && (
             <>
               {isDelay ? (
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <h2 className="text-xl font-semibold mb-4">
-                    {currentItemName}
-                  </h2>
-                  <p className="text-gray-700 mb-2">
-                    <span className="font-semibold">
-                      {currentBid !== 0 ? "Sold For : " : "Unsold"}
-                    </span>
-                    {currentBid !== 0 ? `$${currentBid}` : ""}
-                  </p>
-                  {currentBid !== 0 && (
-                    <p className="text-gray-700 mb-2">
-                      <span className="font-semibold">Sold To : </span>{" "}
-                      {userName}
+                <div className="flex justify-center bg-[#e4e4e46f] rounded-lg shadow-md p-6">
+                  <div className="w-2/3">
+                    <h2 className="text-xl text-[#5d5c5c] font-semibold mb-4">
+                      {currentItemName}
+                    </h2>
+                    <p className="text-gray-800 mb-2">
+                      <span className="font-semibold">
+                        {currentBid !== 0 ? "Sold For : " : "Unsold"}
+                      </span>
+                      {currentBid !== 0 ? `$${currentBid}` : ""}
                     </p>
-                  )}
+                    {currentBid !== 0 && (
+                      <p className="text-gray-900 mb-2">
+                        <span className="font-semibold">Sold To : </span>{" "}
+                        {userName}
+                      </p>
+                    )}
+                  </div>
+                  <div className="w-1/3 mx-0 size-32 p-0 flex justify-center">
+                    <img
+                      src={currentItem.itemPic}
+                      alt="Description of the image"
+                      className="max-w-full h-auto rounded-md opacity-50"
+                    />
+                  </div>
                 </div>
               ) : (
                 <div className="bg-[#E8E8E9] rounded-lg shadow-md p-6">

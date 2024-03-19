@@ -195,7 +195,7 @@ const AddItemForm = () => {
             </form>
           </div>
 
-          <div className="carousel ">
+          <div className="carousel bg-[#1A1A1E] ">
             <div className="images-wrapper">
               <img src={carousel1} className="image img-1 show" alt="" />
             </div>
