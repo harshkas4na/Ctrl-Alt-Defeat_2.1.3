@@ -21,14 +21,14 @@ const CurrInfos = ({ currentItem, currentBid, bidderInfo, isDelay }) => {
                     <h2 className="text-xl text-[#5d5c5c] font-semibold mb-4">
                       {currentItemName}
                     </h2>
-                    <p className="text-gray-300 mb-2">
+                    <p className="text-gray-800 mb-2">
                       <span className="font-semibold">
                         {currentBid !== 0 ? "Sold For : " : "Unsold"}
                       </span>
                       {currentBid !== 0 ? `$${currentBid}` : ""}
                     </p>
                     {currentBid !== 0 && (
-                      <p className="text-gray-300 mb-2">
+                      <p className="text-gray-900 mb-2">
                         <span className="font-semibold">Sold To : </span>{" "}
                         {userName}
                       </p>
