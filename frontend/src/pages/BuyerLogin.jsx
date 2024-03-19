@@ -447,7 +447,7 @@ const BuyerSignup = () => {
               </div>
             </form>
           </div>
-          <div className="carousel">
+          <div className="carousel bg-[#1A1A1E]">
             <div className="images-wrapper">
               <img src={carousel1} class="image img-1 show" alt="" />
               <img src={carousel2} class="image img-2" alt="" />
