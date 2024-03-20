@@ -8,11 +8,13 @@ import { useRecoilValue } from "recoil";
 import { userAtom } from "../store/userAtoms/user";
 // import axios from 'axios';
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddItemForm = () => {
   const user = useRecoilValue(userAtom);
   const sellerId = user?._id;
   const [events, setEvents] = useState([]);
+  const navigate=useNavigate();
 
   const [formData, setFormData] = useState({
     name: "Artwork 3",
@@ -47,11 +49,8 @@ const AddItemForm = () => {
         method: "POST",
         body: formDataWithPic,
       });
-
-      const data = await res.json();
-      console.log(formDataWithPic);
-      console.log(data);
       toast.success("Item Added Successfully");
+      navigate("/");
     } catch (err) {
       console.log(err);
       toast.error("Something Went Wrong");
