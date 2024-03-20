@@ -60,6 +60,12 @@ io.on('connection', (socket) => {
         // Emit the message to all connected clients
         io.emit('receiveTimer', Timer);
     });
+    //handle currentItem
+    socket.on('sendcurrentItem', (currentItem) => {
+        // console.log(currentItem);
+        // Emit the message to all connected clients
+        io.emit('receivecurrentItem', currentItem);
+    });
 });
 server.listen(3000, () => {
     console.log('Server is running on port 3000');

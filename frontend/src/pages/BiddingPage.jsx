@@ -87,6 +87,10 @@ const BiddingPage = () => {
         
         setTimeLeft(data.Timer);
       });
+      // socket.on('receivecurrentItem', (data) => {
+      //   // console.log(data.currentItem);
+      //   setCurrentItem(data.currentItem);
+      // });
       
       
     }
@@ -95,7 +99,10 @@ const BiddingPage = () => {
    
   
     socket?.emit('sendCurrentBid', { currentBid});
-    
+    // useEffect(() => {
+
+    //   socket?.emit('sendcurrentItem', { currentItem });
+    // },[currentItem])
     
     
 
