@@ -139,7 +139,7 @@ const BuyerSignup = () => {
   };
 
   return (
-    <main className={`${isSignUpMode ? '' : 'sign-up-mode'}`}>
+    <main className={`${isSignUpMode ? '' : 'sign-up-mode'} w-full h-screen bg-gradient-to-b from-stone-950 to-stone-700`}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
@@ -158,8 +158,7 @@ const BuyerSignup = () => {
               </div>
 
               <div className="actual-form">
-                <div class="scrollableArea">
-                  <div class="identify mb-6">
+              <div class="identify flex mb-1 p-0 mt-1">
                     <p class="light">Register As:</p>
 
                     <div class="input-wrap">
@@ -173,6 +172,8 @@ const BuyerSignup = () => {
 
                     </div>
                   </div>
+               <div className="scrollableArea mt-0 mb-0 h-64 w-96">
+
                   <div class="input-wrap">
                     <input type="text" class="input-field" autoComplete="off" name="name"
                       onChange={handleChange} />
@@ -283,7 +284,7 @@ const BuyerSignup = () => {
                 <p className="text">
                   By signing up, I agree to the
                   <a href="#">Terms of Services</a> and
-                  <a href="#">Privacy Policy</a>
+                  <a href="#"> Privacy Policy</a>
                 </p>
               </div>
             </form>
@@ -335,7 +336,7 @@ const BuyerSignup = () => {
               </div>
             </form>
           </div>
-          <div className="carousel">
+          <div className="carousel bg-[#1A1A1E]">
             <div className="images-wrapper">
               <img src={carousel1} class="image img-1 show" alt="" />
               <img src={carousel2} class="image img-2" alt="" />
@@ -344,7 +345,7 @@ const BuyerSignup = () => {
 
             <div className="text-slider">
               <div className="text-wrap">
-                <div className="text-group">
+              <div className="text-group text-[#B2AFA9]">
                   <h2>Real-time bidding auction platform.</h2>
                 </div>
               </div>

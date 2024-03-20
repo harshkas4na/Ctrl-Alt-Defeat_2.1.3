@@ -141,7 +141,7 @@ const SellerSignup = () => {
   
 
   return (
-    <main className={`${isSignUpMode ? '' : 'sign-up-mode'}`}>
+    <main className={`${isSignUpMode ? '' : 'sign-up-mode'} w-full h-screen bg-gradient-to-b from-stone-950 to-stone-700`}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
@@ -158,7 +158,10 @@ const SellerSignup = () => {
                   Login
                 </a>
               </div>
-              <div className="input-wrap flex mt-6 ">
+
+                   
+              <div className="actual-form ">
+              <div className="identify flex p-0 mb-1 mt-1">
                      <p class="light">Register As:</p>
 
                       <select name="role" className=" max-h-6" id="type-id"
@@ -169,9 +172,7 @@ const SellerSignup = () => {
                       </select>
 
                     </div>
-                   
-              <div className="actual-form">
-                <div className="scrollableArea">
+                <div className="scrollableArea mt-0 mb-0 h-64 w-96">
                   <div class="input-wrap">
                     <input type="text" className="input-field" name='name' onChange={handleChange} autocomplete="off" />
                     <label className='active'>Name</label>
@@ -246,13 +247,15 @@ const SellerSignup = () => {
                   </div>
 
                 </div>
-                <input type="submit" value="Register"  onClick={handleSubmit} className="sign-btn" />
-
-                <p class="text">
+                <div className='registerButton relative mb-0 pb-0 border-0'>
+                <input type="submit" value="Register"  onClick={handleSubmit} className="sign-btn"/>
+                <p class="text" >
                   By signing up, I agree to the
                   <a href="#">Terms of Services</a> and
                   <a href="#">Privacy Policy</a>
                 </p>
+                </div>
+              
               </div>
             </form>
             <form action="" onSubmit={handleLogin} autoComplete="off" className="sign-in-form">
@@ -304,7 +307,7 @@ const SellerSignup = () => {
               </div>
             </form>
           </div>
-          <div className="carousel">
+          <div className="carousel bg-[#1A1A1E]">
             <div className="images-wrapper">
               <img src={carousel1} class="image img-1 show" alt="" />
               <img src={carousel2} class="image img-2" alt="" />
@@ -313,7 +316,7 @@ const SellerSignup = () => {
 
             <div className="text-slider">
               <div className="text-wrap">
-                <div className="text-group">
+                <div className="text-group text-[#B2AFA9]">
                   <h2>Real-time bidding auction platform.</h2>
                 </div>
               </div>

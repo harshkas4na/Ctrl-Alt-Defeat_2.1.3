@@ -14,8 +14,8 @@ section {
     position: relative;
     min-height: 100vh;
     width: 100%;
-    background-color: #485461;
-    background-image: linear-gradient(135deg, #4b5563 0%, #111827 74%);
+    background-color: #151515;
+    background-image: linear-gradient(135deg , #393533d9 0%, #151515b0 74%);
     overflow-x: hidden;
     transform-style: preserve-3d;
 }
@@ -57,27 +57,27 @@ menu div img{
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 4rem;
-    color: #866053;
+    color: #a97767;
 }
 
 .logo span {
     font-weight: 300;
-    color: #eab9ab;
+    color: #DC7A18;
 }
 
 .signin, .signup, .profile, .logout {
-    border: 2px solid #eab9ab;
+    border: 2px solid #CA7016;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     margin: 0 0.5rem;
-    color: #eab9ab;
+    color: #DC7A18;
     cursor: pointer;
     background-color: transparent;
 }
 
 .signin:hover, .signup:hover, .profile:hover, .logout:hover {
-    background-color: #eab9ab;
-    color: #42002c;
+    background-color: #CA7016;
+    color: #472602;
     transition: 0.2s;
 }
 
@@ -94,7 +94,7 @@ menu div img{
     width: 1.9rem;
     height: 1.5px;
     border-radius: 2px;
-    background-color: #eab9ab;
+    background-color: #935210;
     position: relative;
     transition: 0.5s;
 }
@@ -104,7 +104,7 @@ menu div img{
     content: "";
     width: inherit;
     height: inherit;
-    background-color: #eab9ab;
+    background-color: #CA7016;
     position: absolute;
     transition: 0.5s;
 }
