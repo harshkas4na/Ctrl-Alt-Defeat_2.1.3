@@ -71,7 +71,12 @@ io.on('connection', (socket) => {
         // Emit the message to all connected clients
         io.emit('receiveTimer',Timer);
     });
-    
+    //handle currentItem
+    socket.on('sendcurrentItem', (currentItem: Number) => {
+        // console.log(currentItem);
+        // Emit the message to all connected clients
+        io.emit('receivecurrentItem',currentItem);
+    });
    
     
 });
