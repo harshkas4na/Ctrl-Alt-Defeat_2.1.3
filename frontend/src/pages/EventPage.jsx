@@ -46,7 +46,7 @@ const EventPage = () => {
   console.log(eventItems);
   useEffect(() => {
     GetItems();
-  }, []);
+  }, [eventItems]);
 
   // Function to render the table rows for event items
   // const renderEventItems = () => {

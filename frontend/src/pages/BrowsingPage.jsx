@@ -8,38 +8,6 @@ import item5 from "../pages/images/jewellaryBackground.png";
 import { Link } from "react-router-dom";
 
 const BrowsingPage = () => {
-  const sampleItems = [
-    {
-      _id: "sample_id_1",
-      name: "Artwork 1",
-      seller: "sample_seller_1",
-      description: "Sample description for artwork 1",
-      sold: false,
-      itemPic: item1,
-      buyer: "",
-      startingPrice: 200,
-      soldPrice: null,
-      category: "art",
-      eventName: "event123",
-      startTime: 1634514000, // Sample start time for event123 (current time in Unix timestamp format)
-    },
-    {
-      _id: "sample_id_2",
-      name: "Antique Vase",
-      seller: "sample_seller_2",
-      description: "Sample description for antique vase",
-      sold: true,
-      itemPic: item2,
-      buyer: "",
-      startingPrice: 150,
-      soldPrice: null,
-      category: "antiques",
-      eventName: "event124",
-      startTime: 1634517600, // Sample start time for event124 (current time in Unix timestamp format)
-    },
-    // Add more sample items
-  ];
-
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -58,8 +26,8 @@ const BrowsingPage = () => {
         const data = await response.json();
         // Combine fetched items with sample items
 
-        setItems([...sampleItems, ...data]);
-        setFilteredItems([...sampleItems, ...data]);
+        setItems(data);
+        setFilteredItems(data);
       } catch (error) {
         console.error("Error fetching items:", error);
       }
@@ -168,7 +136,10 @@ const BrowsingPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
           {filteredItems.map((item) => (
-            <div key={item._id} className="border p-4">
+            <div
+              key={item._id}
+              className="border p-4 flex flex-col justify-between"
+            >
               <div className="flex justify-center items-center w-[700px] md:w-[470px] lg:w-[340px] h-[390px] md:h-[260px] lg:h-[190px] overflow-hidden">
                 <img
                   src={item.itemPic}
@@ -176,21 +147,25 @@ const BrowsingPage = () => {
                   className="w-[90%] h-[90%] object-center object-contain mb-4"
                 />
               </div>
-              <h2 className="text-xl font-bold mt-2">{item.name}</h2>
-              <p className="text-gray-600">{item.description}</p>
-              <p className="text-gray-600">Seller: {item.sellerName}</p>
-              <p className="text-gray-600">
-                Starting Price: {item.startingPrice}
-              </p>
-              <p className="text-gray-600">
-                Item Status: {calculateTimeStatus(item.startTime, item.sold)}
-              </p>
-              <Link
-                to="/Chat"
-                className=" inline-block bg-primary text-white px-4 py-2 rounded-md my-2 h-10 mr-4 mb-2"
-              >
-                Chat With Seller
-              </Link>
+              <div>
+                <h2 className="text-xl font-bold mt-2">{item.name}</h2>
+                <p className="text-gray-600">{item.description}</p>
+                <p className="text-gray-600">Seller: {item.sellerName}</p>
+                <p className="text-gray-600">
+                  Starting Price: {item.startingPrice}
+                </p>
+                <p className="text-gray-600">
+                  Item Status: {calculateTimeStatus(item.startTime, item.sold)}
+                </p>
+              </div>
+              <div>
+                <Link
+                  to="/Chat"
+                  className=" inline-block bg-primary text-white px-4 py-2 rounded-md my-2 h-10 mr-4 mb-2"
+                >
+                  Chat With Seller
+                </Link>
+              </div>
             </div>
           ))}
         </div>
