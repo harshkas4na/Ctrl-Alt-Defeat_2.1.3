@@ -147,25 +147,28 @@ const BrowsingPage = () => {
                   className="w-[90%] h-[90%] object-center object-contain mb-4"
                 />
               </div>
-              <div>
-                <h2 className="text-xl font-bold mt-2">{item.name}</h2>
-                <p className="text-gray-600">{item.description}</p>
-                <p className="text-gray-600">Seller: {item.sellerName}</p>
-                <p className="text-gray-600">
-                  Starting Price: {item.startingPrice}
-                </p>
-                <p className="text-gray-600">
-                  Item Status: {calculateTimeStatus(item.startTime, item.sold)}
-                </p>
-              </div>
-              <div>
-                <Link
-                  to="/Chat"
-                  className=" inline-block bg-primary text-white px-4 py-2 rounded-md my-2 h-10 mr-4 mb-2"
-                >
-                  Chat With Seller
-                </Link>
-              </div>
+              <h2 className="text-xl font-bold mt-2">{item.name}</h2>
+              <p className="text-gray-400 p-2">{item.description}</p>
+              <p className="text-gray-600 ml-0 pt-2 pb-2">
+                <span className="text-zinc-800">Seller:</span>
+                <span className="text-gray-600">{item.sellerName}</span>
+              </p>
+              <p className="text-gray-600 ml-0 pt-2 pb-2">
+                <span className="text-zinc-800">Starting Price:</span>
+                <span className="text-gray-600">{item.startingPrice}</span>
+              </p>
+              <p className="text-gray-600 ml-0 pt-2 pb-2">
+                <span className="text-zinc-800">Item Status:</span>
+                <span className="text-gray-600">
+                  {calculateTimeStatus(item.startTime, item.sold)}
+                </span>
+              </p>
+              <Link
+                to="/Chat"
+                className=" inline-block bg-primary text-white px-4 py-2 rounded-md my-2 h-10 mr-4 mb-2"
+              >
+                Chat With Seller
+              </Link>
             </div>
           ))}
         </div>
