@@ -19,11 +19,11 @@ const LiveData = ({
       <div className="flex justify-between">
         <h2 className="text-xl font-semibold mb-4">Live Data</h2>
       </div>
-      <div className="bg-white rounded-lg shadow-md overflow-x-auto">
+      <div className="bg-white rounded-lg shadow-md overflow-none">
         {remainingItemsList.length === 0 ? (
           <h3 className="text-center text-xl">No more Items remaining</h3>
         ) : (
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-gray-200 ">
             <thead className="bg-gray-50">
               <tr>
                 <th
