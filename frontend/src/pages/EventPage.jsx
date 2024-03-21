@@ -55,11 +55,11 @@ const EventPage = () => {
   // };
 
   return (
-    <div className="bg-gradient-to-b from-stone-950 to-stone-700">
+    <div className="flex justify-between bg-gradient-to-b from-stone-950 to-stone-700">
       <div className="container mx-auto px-4">
         {/* Event Details */}
         <div className="mb-8  bg-[#B86614] rounded-3xl px-4 py-4">
-          <h2 className="text-3xl font-semibold text-gray-400">
+          <h2 className="text-3xl font-semibold text-[#d3cccce6]">
             {event?.name}
           </h2>
           <p className="text-gray-800 mt-2">{event?.date?.slice(0, 10)} </p>
@@ -71,25 +71,26 @@ const EventPage = () => {
           </h3>
         </div>
 
-        <div>
-          <table className="bg-[#ffffffc0] table-auto w-full border-solid border-2 border-slate-500">
+        <div className="bg-[#ffffffc0] rounded-xl shadow-md overflow-none">
+          <table className="bg-[#ffffffc0] rounded-xl table-auto w-full">
             <thead className="text-[#2c2b2bc7]">
-              <tr>
-                <th className="px-4 py-2">Item Name</th>
-                <th className="px-4 py-2">Item Pic</th>
-                <th className="px-4 py-2">Item Min Bid Price</th>
-                <th className="px-4 py-2">Description</th>
-                <th className="px-4 py-2">Seller</th>
+              <tr >
+                <th className="bg-[#c0bfbf6b]  rounded-xl rounded-t-none rounded-l-xl shadow-md">Item Name</th>
+                <th className="bg-[#c0bfbf6b]   rounded-xl rounded-t-none shadow-md">Item Pic</th>
+                <th className="bg-[#c0bfbf6b]   rounded-xl rounded-t-none shadow-md">Item Min Bid Price</th>
+                <th className="bg-[#c0bfbf6b]   rounded-xl rounded-t-none shadow-md">Description</th>
+                <th className="bg-[#c0bfbf6b]   rounded-xl rounded-t-none rounded-r-xl shadow-md">Seller</th>
               </tr>
             </thead>
+            
             <tbody className="text-[#262624b9]">
               {eventItems.map((item) => (
                 <tr
                   key={item._id}
-                  className="border-solid border-2 border-slate-500"
+                  className=" shadow-md "
                 >
                   <td className="">
-                    <div className="flex justify-center items-center pt-4">
+                    <div className="flex justify-center items-center pt-4 pl-2">
                       {item.name}
                     </div>
                   </td>
@@ -97,21 +98,25 @@ const EventPage = () => {
                   <td className="">
                     <img
                       src={`/${item.itemPic}`}
-                      className="size-28 rounded-full m-0 ml-20 p-0"
+                      className="size-28 rounded-full m-0 ml-8 mr-8 p-0"
                       alt={item.name}
                     />
                   </td>
                   <td className="">
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center m-0 p-0 ml-8 mr-8">
                       {item.startingPrice}
                     </div>
                   </td>
                   <td className="">
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center m-0 p-0 ml-8 mr-8 ">
                       {item.description}
                     </div>
                   </td>
-                  <td className="">{item.sellerName}</td>
+                  <td className="">
+                  <div className="flex justify-center items-center m-0 p-0 ml-8 mr-8 ">
+                    {item.sellerName}
+                    </div>
+                    </td>
                 </tr>
               ))}
             </tbody>

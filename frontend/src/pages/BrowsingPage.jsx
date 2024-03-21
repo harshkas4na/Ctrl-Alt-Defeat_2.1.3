@@ -179,13 +179,13 @@ const BrowsingPage = () => {
               <h2 className="text-xl font-bold mt-2">{item.name}</h2>
               <p className="text-gray-400 p-2">{item.description}</p>
               <p className="text-gray-600 ml-0 pt-2 pb-2">
-              <span className="text-zinc-800">Seller:</span> 
+              <span className="text-zinc-800">Seller : </span> 
               <span className="text-gray-600">
               {item.sellerName}
               </span>
                 </p>
               <p className="text-gray-600 ml-0 pt-2 pb-2">
-                <span className="text-zinc-800">Starting Price:</span>
+                <span className="text-zinc-800">Starting Price : </span>
                 <span className="text-gray-600">{item.startingPrice}</span> 
               </p>
               <p className="text-gray-600 ml-0 pt-2 pb-2">
@@ -199,7 +199,7 @@ const BrowsingPage = () => {
               </p>
               <Link
                 to="/Chat"
-                className=" inline-block bg-primary text-white px-4 py-2 rounded-md my-2 h-10 mr-4 mb-2"
+                className="text-center inline-block bg-primary text-white px-4 py-2 rounded-md my-2 h-10 mr-4 mb-2"
               >
                 Chat With Seller
               </Link>
