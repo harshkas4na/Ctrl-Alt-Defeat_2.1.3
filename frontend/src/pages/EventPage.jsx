@@ -46,7 +46,7 @@ const EventPage = () => {
 
   useEffect(() => {
     GetItems();
-  }, []);
+  }, [eventItems]);
 
   // Function to render the table rows for event items
   // const renderEventItems = () => {
@@ -62,9 +62,9 @@ const EventPage = () => {
           <h2 className="text-3xl font-semibold text-gray-400">
             {event?.name}
           </h2>
-          <p className="text-gray-800 mt-2">{event?.date.slice(0, 10)} </p>
+          <p className="text-gray-800 mt-2">{event?.date?.slice(0, 10)} </p>
           <p className="text-gray-700 mt-4">
-            {event?.description.toUpperCase()}
+            {event?.description?.toUpperCase()}
           </p>
           <h3 className="text-xl font-semibold text-gray-800 mb-4">
             Items for Auction
