@@ -170,6 +170,7 @@ const BrowsingPage = () => {
           {filteredItems.map((item) => (
             <div key={item._id} className="border p-4">
               <div className="flex justify-center items-center w-[700px] md:w-[470px] lg:w-[340px] h-[390px] md:h-[260px] lg:h-[190px] overflow-hidden">
+                {console.log(item.itemPic)}
                 <img
                   src={item.itemPic}
                   alt={item.name}
