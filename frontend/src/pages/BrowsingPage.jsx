@@ -9,34 +9,7 @@ import { Link } from "react-router-dom";
 
 const BrowsingPage = () => {
   const sampleItems = [
-    {
-      _id: "sample_id_1",
-      name: "Artwork 1",
-      seller: "sample_seller_1",
-      description: "Sample description for artwork 1",
-      sold: false,
-      itemPic: item1,
-      buyer: "",
-      startingPrice: 200,
-      soldPrice: null,
-      category: "art",
-      eventName: "event123",
-      startTime: 1634514000, // Sample start time for event123 (current time in Unix timestamp format)
-    },
-    {
-      _id: "sample_id_2",
-      name: "Antique Vase",
-      seller: "sample_seller_2",
-      description: "Sample description for antique vase",
-      sold: true,
-      itemPic: item2,
-      buyer: "",
-      startingPrice: 150,
-      soldPrice: null,
-      category: "antiques",
-      eventName: "event124",
-      startTime: 1634517600, // Sample start time for event124 (current time in Unix timestamp format)
-    },
+    
     // Add more sample items
   ];
 
