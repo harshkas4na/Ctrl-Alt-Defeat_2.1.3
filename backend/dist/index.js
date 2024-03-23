@@ -16,6 +16,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const subscription_1 = __importDefault(require("./routes/subscription"));
 const body_parser_1 = __importDefault(require("body-parser")); // Import body-parser
+const multer = require('multer'); // Import multer for handling file uploads
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -26,7 +27,12 @@ const io = new socket_io_1.Server(server, {
 });
 app.use((0, cors_1.default)());
 app.use((0, cookie_parser_1.default)());
-app.use(body_parser_1.default.json()); // Use body-parser to parse JSON bodies
+// Parse JSON bodies
+app.use(body_parser_1.default.json());
+// Parse URL-encoded bodies
+app.use(body_parser_1.default.urlencoded({ extended: true }));
+// Multer configuration for handling file uploads
+const upload = multer({ dest: 'uploads/' }); // Set the destination folder for uploaded files
 app.use('/event', event_1.default);
 app.use('/seller', seller_1.default);
 app.use('/bidder', bidder_1.default);
@@ -40,9 +46,25 @@ io.on('connection', (socket) => {
     });
     // Handle sending messages
     socket.on('sendMessage', (message) => {
-        console.log('Message received:', message);
         // Emit the message to all connected clients
         io.emit('receiveMessage', message);
+    });
+    //Handle Live_Bidding
+    //handle CurrentBid
+    socket.on('sendCurrentBid', (currentBid) => {
+        // Emit the message to all connected clients
+        io.emit('receiveCurrentBid', currentBid);
+    });
+    //Handle Live-Timer
+    socket.on('sendTimer', (Timer) => {
+        // Emit the message to all connected clients
+        io.emit('receiveTimer', Timer);
+    });
+    //handle currentItem
+    socket.on('sendcurrentItem', (currentItem) => {
+        // console.log(currentItem);
+        // Emit the message to all connected clients
+        io.emit('receivecurrentItem', currentItem);
     });
 });
 server.listen(3000, () => {

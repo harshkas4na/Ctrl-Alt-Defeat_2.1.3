@@ -1,6 +1,8 @@
 import { NextFunction } from 'express';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
-import { Request, Response } from 'express';
+import { Request, Response } from 'express'
+import * as dotenv from "dotenv"
+dotenv.config()
 
 const secret_key_bidder: string = process.env.secret_key_bidder || 'AlrightIwillsettleforthis';
 

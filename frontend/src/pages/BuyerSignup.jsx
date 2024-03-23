@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect,useMemo } from 'react';
 import './PagesCss/BuyerRegister.css'; // Import your stylesheet
 import logo from './img/logo.png';
 import carousel1 from './img/carousel1.png';
@@ -36,6 +36,26 @@ const BuyerSignup = () => {
     password: ''
   })
 
+  useMemo(()=>{
+    if(formData2?.role === "seller"){
+      
+      navigate('/SellerLogin')
+    }
+    else{
+      navigate('/BuyerLogin')
+    }
+  },[formData2.role])
+
+  useMemo(()=>{
+    if(formData?.role === "seller"){
+      navigate('/SellerSignup')
+    }
+    else{
+      navigate('/BuyerSignup')
+    }
+  },[formData.role])
+
+
   const handleChange2 = (e) => {
     const { name, value } = e.target;
     setFormData2({
@@ -68,12 +88,12 @@ const BuyerSignup = () => {
 
 
       if (res.status === 201) {
-        console.log(Data.message);
+        
 
         toast.success('Signed In Successfully');
         navigate("/");
       } else {
-        console.log(Data.message);
+        
         toast.error(Data.errors || Data.message);
       }
     } catch (error) {
@@ -82,10 +102,10 @@ const BuyerSignup = () => {
     }
 
 
-    console.log(formData);
+    
   };
 
-  const handleSubmit2 = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     // Perform backend validation here
     try {
@@ -94,23 +114,24 @@ const BuyerSignup = () => {
           'Content-Type': 'application/json'
         }
       });
-      const Data = res.data;
+      const Data = res?.data;
+      
       if (res.status === 201) {
-        console.log(Data.message);
+        
 
-        toast.success('Signed In Successfully');
+        alert('Signed In Successfully');
         navigate("/");
       } else {
-        console.log(Data.message);
-        toast.error(Data.errors || Data.message);
+        
+        alert(Data.errors || Data.message);
       }
     } catch (error) {
       console.error(error.message);
-      toast.error('An error occurred. Please try again.');
+      alert('An error occurred. Please try again.');
     }
 
 
-    console.log(formData);
+    
   };
 
   const handleToggle = () => {
@@ -118,11 +139,11 @@ const BuyerSignup = () => {
   };
 
   return (
-    <main className={`${isSignUpMode ? 'sign-up-mode' : ''}`}>
+    <main className={`${isSignUpMode ? '' : 'sign-up-mode'} w-full h-screen bg-gradient-to-b from-stone-950 to-stone-700`}>
       <div className="box">
         <div className="inner-box">
           <div className="forms-wrap">
-            <form action="index.html" autoComplete="off" className="sign-up-form">
+            <form action="" autoComplete="off" className="sign-up-form">
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -137,23 +158,24 @@ const BuyerSignup = () => {
               </div>
 
               <div className="actual-form">
-                <div class="scrollableArea">
-                  <div class="identify">
+              <div class="identify flex mb-1 p-0 mt-1">
                     <p class="light">Register As:</p>
 
                     <div class="input-wrap">
 
                       <select name="role" id="type-id"
                         onChange={handleChange}>
-                        <option id="nd" value="">Select An Option</option>
+                        
                         <option id="drk" value="bidder">Bidder</option>
                         <option id="drk" value="seller">Seller</option>
                       </select>
 
                     </div>
                   </div>
+               <div className="scrollableArea mt-0 mb-0 h-64 w-96">
+
                   <div class="input-wrap">
-                    <input type="text" class="input-field" autocomplete="off" name="name"
+                    <input type="text" class="input-field" autoComplete="off" name="name"
                       onChange={handleChange} />
                     <label className='active'>Name</label>
                   </div>
@@ -262,11 +284,11 @@ const BuyerSignup = () => {
                 <p className="text">
                   By signing up, I agree to the
                   <a href="#">Terms of Services</a> and
-                  <a href="#">Privacy Policy</a>
+                  <a href="#"> Privacy Policy</a>
                 </p>
               </div>
             </form>
-            <form autoComplete="off" className="sign-in-form" >
+            <form autoComplete="off" onSubmit={handleLogin} className="sign-in-form" >
               <div className="logo">
                 <img src={logo} alt="subasta" />
                 <h4>SUBASTA</h4>
@@ -281,14 +303,14 @@ const BuyerSignup = () => {
               </div>
 
               <div className="actual-form">
-                <div class="identify">
+              <div class="identify mb-6">
                   <p class="light">Login As:</p>
 
-                  <div class="input-wrap">
+                  <div className="input-wrap ">
 
                     <select name="role" id="type-id"
                       onChange={handleChange2}>
-                      <option id="nd" value="">Select An Option</option>
+                      
                       <option id="drk" value="bidder">Bidder</option>
                       <option id="drk" value="seller">Seller</option>
                     </select>
@@ -296,16 +318,16 @@ const BuyerSignup = () => {
                   </div>
                 </div>
                 <div class="input-wrap">
-                  <input type="text" class="input-field" autocomplete="off" onChange={handleChange2} />
+                  <input type="text" name='username' class="input-field" autoComplete="off" onChange={handleChange2} />
                   <label className='active'>Username</label>
                 </div>
 
                 <div className="input-wrap">
-                  <input type="password" class="input-field" autoComplete="off" onChange={handleChange2} />
+                  <input type="password" name='password' class="input-field" autoComplete="off" onChange={handleChange2} />
                   <label className='active'>Password</label>
                 </div>
 
-                <input type="submit" value="Login" className="sign-btn" onSubmit={handleSubmit2} />
+                <input type="submit" value="Login" className="sign-btn" onClick={handleLogin} />
 
                 <p className="text">
                   Forgotten your password or you login datails?&nbsp;
@@ -314,7 +336,7 @@ const BuyerSignup = () => {
               </div>
             </form>
           </div>
-          <div className="carousel">
+          <div className="carousel bg-[#1A1A1E]">
             <div className="images-wrapper">
               <img src={carousel1} class="image img-1 show" alt="" />
               <img src={carousel2} class="image img-2" alt="" />
@@ -323,7 +345,7 @@ const BuyerSignup = () => {
 
             <div className="text-slider">
               <div className="text-wrap">
-                <div className="text-group">
+              <div className="text-group text-[#B2AFA9]">
                   <h2>Real-time bidding auction platform.</h2>
                 </div>
               </div>

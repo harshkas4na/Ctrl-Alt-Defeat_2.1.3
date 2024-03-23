@@ -30,7 +30,8 @@ const bidderSignup = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }
         const newBidder = new bidderSchema_1.Bidders(Object.assign(Object.assign({}, req.body), { purchasedItems: [] }));
         yield newBidder.save();
-        console.log('New bidder created:', newBidder.username);
+        // const bidder = await Bidders.findOne({ username: req.body.username, password: req.body.password, role: req.body.role });
+        // const token = generateTokenBidder(bidder._id);
         return res.status(201).json({ message: 'Bidder logged in successfully' });
     }
     catch (error) {

@@ -11,15 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sellerSignup = void 0;
 const sellerSchema_1 = require("../../db/sellerSchema");
-const sellerValidaitons_1 = require("../../zod/sellerValidaitons");
 const sellerSignup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const validationResult = sellerValidaitons_1.SellerSchema.safeParse(req.body);
-        if (!validationResult.success) {
-            return res.status(400).json({ message: 'Validation error', errors: validationResult.error.errors });
-        }
+        // const validationResult = SellerSchema.safeParse(req.body);
+        // if (!validationResult.success) {
+        //     return res.status(400).json({ message: 'Validation error', errors: validationResult.error.errors });
+        // }
         const seller = yield sellerSchema_1.Sellers.findOne({ username: req.body.username });
         if (seller) {
+            console.log('Seller already exists');
             return res.status(409).json({ message: 'Seller already exists' });
         }
         const newSeller = new sellerSchema_1.Sellers(Object.assign(Object.assign({}, req.body), { publishedItems: [], unsoldItems: [] }));

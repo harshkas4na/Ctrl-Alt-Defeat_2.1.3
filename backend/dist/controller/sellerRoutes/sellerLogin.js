@@ -22,7 +22,8 @@ const sellerLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             //@ts-ignore
             const token = (0, sellerToken_1.generateTokenSeller)(seller._id);
             res.cookie('token', token);
-            return res.status(200).json({
+            return res.status(201).json({
+                user: seller,
                 message: 'Seller logged in successfully'
             });
         }

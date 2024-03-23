@@ -18,7 +18,7 @@ ul {
     text-decoration: none;
     display: block;
     padding: 0.7rem 0;
-    color: #eab9ab;
+    color: #DC7A18;
     font-size: 1rem;
     font-weight: 300;
     text-transform: uppercase;
@@ -30,7 +30,7 @@ ul {
 }
 
 .links a:hover {
-    color: #42002c;
+    color: #6d3e17;
 }
 
 section.active .links a {

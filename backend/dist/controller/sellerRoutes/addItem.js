@@ -12,20 +12,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addItem = void 0;
 const itemsSchema_1 = require("../../db/itemsSchema");
 const sellerSchema_1 = require("../../db/sellerSchema");
-const newItemValidation_1 = require("../../zod/newItemValidation");
+// const multer = require('multer');
+// Configure multer for handling file uploads
+// Set the destination folder for uploaded files
 const addItem = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
-        const validationResult = newItemValidation_1.ItemSchema.safeParse(req.body);
-        if (!validationResult.success) {
-            return res.status(400).json({ message: 'Validation error', errors: validationResult.error.errors });
-        }
+        const url = req.protocol + '://' + req.get('host');
         const sellerId = req.params.sellerId;
-        const { name } = req.body;
-        const item = yield itemsSchema_1.Items.findOne({ name: name });
-        if (item) {
-            return res.status(409).json({ message: 'Item already exists' });
-        }
-        const newItem = new itemsSchema_1.Items(req.body);
+        console.log(sellerId);
+        const name = req.body.name;
+        console.log(req.body);
+        //fetch sellerName 
+        const seller = yield sellerSchema_1.Sellers.findById(sellerId);
+        console.log(seller);
+        const sellerName = seller === null || seller === void 0 ? void 0 : seller.name;
+        console.log(sellerName);
+        // const item = await Items.findOne({ name: name });
+        // if (item) {
+        //     return res.status(409).json({ message: 'Item already exists' });
+        // }
+        const newItemData = Object.assign(Object.assign({}, req.body), { sellerName: sellerName, itemPic: (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename // Store the path of uploaded file in the itemPic field
+         });
+        const newItem = new itemsSchema_1.Items(newItemData);
+        console.log(newItemData);
         yield newItem.save();
         yield sellerSchema_1.Sellers.findByIdAndUpdate(sellerId, { $push: { publishedItems: newItem._id, unsoldItems: newItem._id } }, { new: true });
         return res.status(201).json(newItem);

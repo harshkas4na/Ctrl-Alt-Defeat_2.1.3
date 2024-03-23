@@ -1,55 +1,30 @@
 // BiddingPage.jsx
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import io from "socket.io-client";
+
+
 import Header from '../components/Header';
 import CurrInfos from '../components/CurrInfos';
 import BiddingSection from '../components/BiddingSection';
 import LiveData from '../components/LiveData';
 import Footer from '../components/Footer';
-import Timer from '../components/Timer';
-
 
 
 const BiddingPage = () => {
+  const [socket, setSocket] = useState(null);
+
   // Example values for the event information
-  const [eventName,setEventName] =useState("Ongoing Auction Event");
-  const [totalItems,setTotalItems] =useState(50);
-  const [itemsList,setItemsList] =useState([]);
-  // const [timer, setTimer] = useState(null);
-  // const [timerClosed, setTimerClosed] = useState(false);
-  const [remainingItems,setRemainingItems] =useState(20);
+  const [eventName, setEventName] = useState("");
+  const [itemsList, setItemsList] = useState([]);
+  const totalItems = itemsList.length;
+  const [remainingItemsList, setRemainingItemsList] = useState([]);
+  const remainingItems = remainingItemsList.length;
   const previousRatings = "4.5/5";
+  const [currentItem, setCurrentItem] = useState(null);
+  const [currentBid, setCurrentBid] = useState(0);
+  const [isDelay, setIsDelay] = useState(true);
+  const [timeLeft,setTimeLeft] = useState(15);
 
- 
-
-
-    // Function to disable bid raising buttons
-    // const disableBidRaising = () => {
-    //   setTimerClosed(true);
-    //   clearTimeout(timer);
-    // };
-  
-    // useEffect(() => {
-    //   // Start the timer when the component mounts
-    //   startTimer();
-    //   // Clean up the timer when the component unmounts
-    //   return () => {
-    //     clearTimeout(timer);
-    //   };
-    // }, []);
-  
-    // const startTimer = () => {
-    //   // Set a timeout to close bidding after 15 seconds
-    //   const newTimer = setTimeout(() => {
-    //     setTimerClosed(true);
-    //   }, 150000);
-    //   // Save the timer ID
-    //   setTimer(newTimer);
-    // };
-
-  // Example values for the current item information
-  const [currentItem,setCurrentItem] = useState("Antique Painting");
-  const [currentBid,setCurrentBid] =useState(200);
-  const [startingPrice,setStartingPrice] = useState(100);
   const bidderInfo = {
     name: "John Doe",
     email: "john@example.com",
@@ -57,48 +32,126 @@ const BiddingPage = () => {
     rating: 4.5 // Example rating
   };
 
+  const GetRequest = async () => {
+    const response = await fetch("http://localhost:3000/event/", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json();
+    const curEventData = data.filter(event => event.startTime === 1600);
+    // console.log(curEventData);
+    setEventName(curEventData[0].name)
+    // console.log(eventName);
+  }
 
+  const GetItems = async () => {
+    const response = await fetch('http://localhost:3000/item/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    // console.log(data);
+    setItemsList([...data.filter(item => item.eventName === eventName)]);
+    setRemainingItemsList(data.filter(item => item.eventName === eventName));
+    // setCurrentItem(data.filter(item => item.eventName === eventName)[0]);
+  }
 
+  useEffect(() => {
+    GetRequest();
+  }, [])
+
+  useEffect(() => {
+    GetItems();
+  }, [eventName])
+
+  //Logic to sent currentBid to backend the broadcast it on all the clients using socket.io
+  useEffect(() => {
+    const newSocket = io("http://localhost:3000");
+    setSocket(newSocket);
+
+    // Clean up socket connection when component unmounts
+    return () => newSocket.close();
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      // Listen for incoming messages
+      socket.on('receiveCurrentBid', (data) => {
+        setCurrentBid(data.currentBid);
+      });
+      socket.on('receiveTimer', (data) => {
+        
+        setTimeLeft(data.Timer);
+      });
+      // socket.on('receivecurrentItem', (data) => {
+      //   // console.log(data.currentItem);
+      //   setCurrentItem(data.currentItem);
+      // });
+      
+      
+    }
+  }, [socket]);
+  
+   
+  
+    socket?.emit('sendCurrentBid', { currentBid});
+    // useEffect(() => {
+
+    //   socket?.emit('sendcurrentItem', { currentItem });
+    // },[currentItem])
+    
+    
+
+    socket?.emit('sendTimer',{Timer: timeLeft });
+  
+  
 
   return (
     <div>
       <Header
         eventName={eventName}
-        setEventName={setEventName}
         totalItems={totalItems}
-        setTotalItems={setTotalItems}
         remainingItems={remainingItems}
-        setRemainingItems={setRemainingItems}
         previousRatings={previousRatings}
         itemsList={itemsList}
-        setItemsList={setItemsList}
       />
-      
-        <CurrInfos
+
+      <CurrInfos
         currentItem={currentItem}
-        setCurrentItem={setCurrentItem}
         currentBid={currentBid}
-        startingPrice={startingPrice}
         bidderInfo={bidderInfo}
-        />
+        isDelay={isDelay}
         
-      
-      <div className='flex justify-between mx-20 align-center'>
+      />
+
       <BiddingSection
         currentBid={currentBid}
         setCurrentBid={setCurrentBid}
-        // disableBidRaising={disableBidRaising}
-        //  timerClosed={timerClosed}
-      />
-      {/* {!timerClosed && <Timer duration={15} onTimerComplete={() => setTimerClosed(true)} />} */}
-      </div>
-      <LiveData
-        itemsList={itemsList}
-        currentBid={currentBid}
         currentItem={currentItem}
+        setCurrentItem={setCurrentItem}
+        remainingItems={remainingItems}
+        remainingItemsList={remainingItemsList}
+        setRemainingItemsList={setRemainingItemsList}
+        isDelay={isDelay}
+        setIsDelay={setIsDelay}
+        timeLeft={timeLeft}
+        setTimeLeft={setTimeLeft}
       />
-       
-      <Footer/>
+
+      <LiveData
+        remainingItemsList={remainingItemsList}
+        setRemainingItemsList={setRemainingItemsList}
+        currentBid={currentBid}
+        setCurrentBid={setCurrentBid}
+        currentItem={currentItem}
+        setCurrentItem={setCurrentItem}
+      />
+
+      <Footer />
 
     </div>
   );
